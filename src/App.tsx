@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import Navigation from "./Navigation";
 import Page from "./Page";
+import './Styles/App.sass'
 
 function App() {
   return (
