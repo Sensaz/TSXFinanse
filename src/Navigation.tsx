@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Styles/Navigation.sass";
 import logo from './Img/logo.png'
+import { useEffect, useState } from "react";
 const nav = [
   {
     id: 2,
@@ -35,32 +36,52 @@ const nav = [
 ];
 
 const Navigation = () => {
+  const [flag, setFlag] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1000) setFlag(false)
+    }
+  
+    window.addEventListener('resize', handleResize)
+  
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+  
+  const handleHamburgerToggleClass = () => {
+    if (window.innerWidth <= 1000) setFlag(prev => !prev)
+  }
+
+
   const links = nav.map((link) => (
     <li className="navigation__item" key={link.id}>
-      <NavLink className={`navigation__link`} to={link.path}>{link.content}</NavLink>
+      <NavLink onClick={handleHamburgerToggleClass} className={`navigation__link`} to={link.path}>{link.content}</NavLink>
     </li>
   ));
   return(
   <div className="navigation">
-    <ul className="navigation__list">
-      <li className="navigation__item" >
-        <NavLink className={`navigation__link`} to='/home'>
-          <img className="navigation__logo" src={logo} alt="logo" />
-        </NavLink>
-      </li>
-      {links}
+    <NavLink className={`navigation__link ${flag ? 'navigation__link--hidden' : ''}`} to='/home'>
+      <img className="navigation__logo" src={logo} alt="logo" />
+    </NavLink>
+      <ul className={`navigation__list ${flag ? 'navigation__list--show' : ''}`}>{links}
+        {flag ? <li>  <button onClick={handleHamburgerToggleClass} className="navigation__button--small" >
+      <NavLink to='/UserProfil' className="navigation__link">
+        <span className="navigation__button--custom-text">Zaloguj</span> 
+      </NavLink>
+      </button></li> : null}
       </ul>
-
-      {/* <NavLink to='/UserProfil' className="navigation__link">
-        <button className="navigation__button" >Zaloguj</button>
-      </NavLink> */}
-      <button className="navigation__button" >
-        <NavLink to='/UserProfil' className="navigation__link">
-         <span className="navigation__button--custom-text">Zaloguj</span> 
-        </NavLink>
+    <button className="navigation__button" >
+      <NavLink to='/UserProfil' className="navigation__link">
+        <span className="navigation__button--custom-text">Zaloguj</span> 
+      </NavLink>
       </button>
-      
-
+      <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
+        <span className={`navigation__hamburger--component ${flag ? 'navigation__hamburger--component--open45' : ''}`}></span> 
+        <span className={`navigation__hamburger--component ${flag ? 'navigation__hamburger--component--hidden' : ''}`}></span> 
+        <span className={`navigation__hamburger--component ${flag ? 'navigation__hamburger--component--open-45' : ''}`}></span> 
+      </button>
   </div>
   )
 };
