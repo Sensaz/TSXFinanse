@@ -1,21 +1,51 @@
 import AboutMe from './AboutMe'
-import Credits from './Credits'
-import FinancialInstrumentsValuation from './FinancialInstrumentsValuation'
+import { CreditCalculator, LoanAmortizationSimulation } from './Credits'
+
+import {
+  BondValuationCalculator,
+  EquitiesValuationCalculator,
+  FuturesAndForwardsCalculator,
+  OptionValutionCalculator,
+  SwapPricingCalculator,
+} from './FinancialInstrumentsValuation'
+
 import HomePage from './Home'
+
 import InvestmentStrategyHelper from './InvestmentStrategyHelper'
-import KnowledgeBase from './KnowledgeBase'
-import TimeValueOfMoney from './TimeValueOfMoney'
+
+import {
+  FinancialInstruments,
+  InvestmentStrategies,
+  SolutionsInApp,
+} from './KnowledgeBase'
+
+import {
+  CompoundInterestCalculator,
+  PresentValueCalculator,
+} from './TimeValueOfMoney'
+
 import UserProfil from './UserProfil'
+
 import ErrorPage from './ErrorPage.tsx'
+
+console.log(PresentValueCalculator)
 
 export {
   AboutMe,
-  Credits,
-  FinancialInstrumentsValuation,
+  CreditCalculator,
+  LoanAmortizationSimulation,
+  SwapPricingCalculator,
+  FuturesAndForwardsCalculator,
+  EquitiesValuationCalculator,
+  OptionValutionCalculator,
+  BondValuationCalculator,
   HomePage,
   InvestmentStrategyHelper,
-  KnowledgeBase,
-  TimeValueOfMoney,
+  FinancialInstruments,
+  InvestmentStrategies,
+  SolutionsInApp,
+  CompoundInterestCalculator,
+  PresentValueCalculator,
   UserProfil,
   ErrorPage,
 }

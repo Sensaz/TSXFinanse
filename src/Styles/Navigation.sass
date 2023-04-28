@@ -42,7 +42,7 @@
     justify-content: center
     margin: 0 5% 0 auto
     width: 70px
-    background: #fff
+    background: #fcfcfc
     border: none
     &--component
       width: 100%
@@ -114,3 +114,42 @@
       margin: 10px 10px
     &__button--small
       margin: 15px 10px
+
+
+
+.dropdown 
+  position: relative
+  &__arrow
+    margin: 0
+    padding: 0
+    width: 15px
+  &__button
+    cursor: pointer
+    border: none
+    background: #fcfcfc
+    color: #1b1b1b
+    font-size: 16px
+  &__menu 
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    background: #e7e7e7
+    list-style-type: none
+    position: absolute
+    padding: 10px 15px
+    top: 25px
+    left: 0
+    border-radius: 5px
+  &__divider
+    width: 100%
+    padding: 1px 0
+    background: #1b1b1b
+  .dropdown__item
+    padding: 10px 5px
+    &--lowerLevel
+      width: 100%
+      color: #1b1b1b
+      text-decoration: none
+      &:hover
+        color: #010101

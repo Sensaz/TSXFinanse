@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import Navigation from "./Navigation";
+import Navigation from "./Components/Navigation/Navigation";
 import Page from "./Page";
 import './Styles/App.sass'
 

@@ -1,3 +1,4 @@
-import Credits from './Credits.tsx'
+import CreditCalculator from './CreditCalculator'
+import LoanAmortizationSimulation from './LoanAmortizationSimulation'
 
-export { Credits as default }
+export { CreditCalculator, LoanAmortizationSimulation }

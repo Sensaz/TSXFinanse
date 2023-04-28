@@ -1,3 +1,13 @@
-import FinancialInstrumentsValuation from './FinancialInstrumentsValuation.tsx'
+import BondValuationCalculator from './BondValuation'
+import EquitiesValuationCalculator from './EquitiesValution'
+import FuturesAndForwardsCalculator from './FuturesAndForwardsValution'
+import OptionValutionCalculator from './OptionsValution'
+import SwapPricingCalculator from './SwapContractValution'
 
-export { FinancialInstrumentsValuation as default }
+export {
+  BondValuationCalculator,
+  EquitiesValuationCalculator,
+  FuturesAndForwardsCalculator,
+  OptionValutionCalculator,
+  SwapPricingCalculator,
+}

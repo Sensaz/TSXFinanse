@@ -1,3 +1,4 @@
-import TimeValueOfMoney from './TimeValueOfMoney.tsx'
+import CompoundInterestCalculator from './CompoundInterestCalculator'
+import PresentValueCalculator from './PresentValueCalculator'
 
-export { TimeValueOfMoney as default }
+export { CompoundInterestCalculator, PresentValueCalculator }
