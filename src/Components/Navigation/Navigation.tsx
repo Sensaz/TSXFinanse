@@ -144,7 +144,13 @@ const Navigation = () => {
   }, [window.innerWidth])
   
   const handleHamburgerToggleClass = () => {
-    if (window.innerWidth <= 1090) setFlag(prev => !prev)
+    if (window.innerWidth <= 1090) {
+      setFlag(prev => !prev)
+      setIsTimeValueOfMoneyDropdownOpen(false)
+      setIsTimeCreditsDropdownOpen(false)
+      setIsFinancialInstrumentsValuationDropdownOpen(false)
+      setIsKnowledgeBaseDropdownOpen(false)
+    }
   }
 
   const links = nav.map((link) => (
