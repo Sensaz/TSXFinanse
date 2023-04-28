@@ -11,30 +11,34 @@ const Navigation = () => {
   const [isTimeCreditsDropdownOpen, setIsTimeCreditsDropdownOpen] = useState(false);
   const [isFinancialInstrumentsValuationDropdownOpen, setIsFinancialInstrumentsValuationDropdownOpen] = useState(false);
   const [isKnowledgeBaseDropdownOpen, setIsKnowledgeBaseDropdownOpen] = useState(false);
-  
-  const handleTimeValueOfMoneyDropdownOpen = () => {
+
+  const handleTimeValueOfMoneyDropdownOpen = (e: any) => {
     setIsTimeValueOfMoneyDropdownOpen(prev => !prev)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
     setIsTimeCreditsDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
   }
 
-  const handleTimeCreditsDropdownOpen = () => {
+  const handleTimeCreditsDropdownOpen = (e: any) => {
     setIsTimeCreditsDropdownOpen(prev => !prev)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
   }
 
-  const handleFinancialInstrumentsValuationDropdownOpen = () => {
+  const handleFinancialInstrumentsValuationDropdownOpen = (e: any) => {
     setIsFinancialInstrumentsValuationDropdownOpen(prev => !prev)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
   }
 
-  const handleKnowledgeBaseDropdownOpen = () => {
+  const handleKnowledgeBaseDropdownOpen = (e: any) => {
     setIsKnowledgeBaseDropdownOpen(prev => !prev)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -65,9 +69,9 @@ const Navigation = () => {
       id: 1,
       content:  <Dropdown isOpen={isTimeCreditsDropdownOpen} click={handleTimeCreditsDropdownOpen} title="Kredyty">
       <>
-          <DropDownItem click={handleTimeCreditsDropdownOpen} path="Credits/CreditCalculator">Symulacja Amortyzacji Kredytu</DropDownItem>
-          
-          <DropDownItem click={handleTimeCreditsDropdownOpen} path="Credits/LoanAmortizationSimulation"> Kalkulator Zdolności Kredytowej</DropDownItem>
+          <DropDownItem click={handleTimeCreditsDropdownOpen} path="Credits/LoanAmortizationSimulation">Symulacja Amortyzacji Kredytu</DropDownItem>
+
+          <DropDownItem click={handleTimeCreditsDropdownOpen} path="Credits/CreditCalculator"> Kalkulator Zdolności Kredytowej</DropDownItem>
           
           <li className="dropdown__divider"></li>
           
@@ -122,29 +126,42 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1000) setFlag(false)
+      if (window.innerWidth >= 1091) {
+        setFlag(false)
+        setIsTimeValueOfMoneyDropdownOpen(false)
+        setIsTimeCreditsDropdownOpen(false)
+        setIsFinancialInstrumentsValuationDropdownOpen(false)
+        setIsKnowledgeBaseDropdownOpen(false)
+      }
     }
-  
+
     window.addEventListener('resize', handleResize)
-  
+    
+    
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [window.innerWidth])
   
   const handleHamburgerToggleClass = () => {
-    if (window.innerWidth <= 1000) setFlag(prev => !prev)
+    if (window.innerWidth <= 1090) setFlag(prev => !prev)
   }
 
   const links = nav.map((link) => (
     <li className="navigation__item" key={link.id}>
-      <NavLink onClick={handleHamburgerToggleClass} className={`navigation__link`} to={link.path}>{link.content}</NavLink>
+      {typeof link.content === "string" ? (
+        <NavLink onClick={handleHamburgerToggleClass} className="navigation__link" to={link.path}>
+          {link.content}
+        </NavLink>
+      ) : (
+        link.content
+      )}
     </li>
   ));
-
+  
   return(
   <div className="navigation">
-    <NavLink className={`navigation__link ${flag && 'navigation__link--hidden'}`} to='/home'>
+    <NavLink className={`navigation__link `} to='/home'>
       <img className="navigation__logo" src={logo} alt="logo" />
     </NavLink>
       <ul className={`navigation__list ${flag && 'navigation__list--show'}`}>{links}

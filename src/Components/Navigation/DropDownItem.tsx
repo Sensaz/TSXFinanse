@@ -11,7 +11,6 @@ interface MyComponentProps {
 
 const DropDownItem = ({ click, path, children }: MyComponentProps) => {
   
-
   return (
     <li className="dropdown__item">
       <NavLink onClick={click} className="dropdown__item--lowerLevel" to={path}>{children}</NavLink>
