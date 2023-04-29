@@ -1,7 +1,14 @@
 .app
   display: flex
   flex-wrap: wrap
-  background: #fafafa
-  .app__navigation
+  &__navigation
     width: 100vw
     background: #fefefe
+  &__main
+    margin: 30px
+    width: 100%
+
+@media screen and ( max-width: 350px )
+  .app__main
+    margin: 30px 10px
+  

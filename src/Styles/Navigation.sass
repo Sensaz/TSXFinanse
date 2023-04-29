@@ -83,6 +83,7 @@ $drobDownMenuBG: #dadada
 
 .dropdown 
   position: relative
+  z-index: 99
   &__arrow
     margin: 0
     padding: 0
@@ -151,6 +152,7 @@ $drobDownMenuBG: #dadada
       left: 0
     &__list--show
       display: flex
+      z-index: 100
       background: $hamburgerMenuBG
       min-height: 100vh
       flex-direction: column
@@ -172,7 +174,7 @@ $drobDownMenuBG: #dadada
 @media (max-width: 360px) 
   .navigation
     &__logo
-      margin-left: 10px
+      margin-left: 15px
     &__hamburger
       margin: 0 5px 0 auto
     &__item

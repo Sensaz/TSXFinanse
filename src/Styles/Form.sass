@@ -1,0 +1,161 @@
+$primary: #2196f3
+$fontColor: #1b1b1b
+$fontColorWarn: #d89b17
+$fontColorOptional: #6d6d6d
+$border: 1px solid #1d1d1d
+$borderOptional: 1px solid #6d6d6d
+$focusBorderOptional: 2px solid #6d6d6d
+$borderWarn: 1px solid #d89b17
+$focusBorder: 2px solid #31db3f
+$validBorder: 1px solid #31db3f
+$pageBG: #fafafa
+$focusButtonBG: #1b1b1b
+  
+.form
+  margin: 0
+  padding: 0
+  display: flex
+  min-height: auto
+  flex-direction: column
+  gap: 30px
+  &__group
+    display: flex
+    flex-direction: column
+    gap: 15px
+  &__label
+    position: relative
+    min-width: 300px
+    max-width: auto
+  &__input
+    box-sizing: border-box
+    width: 100%
+    max-height: 40px
+    padding: 10px
+    border: $border
+    background: none
+    border-radius: 5px
+    outline: none
+    font-size: 1em
+    &::-webkit-outer-spin-button, 
+    &::-webkit-inner-spin-button
+      -webkit-appearance: none
+      margin: 0
+    &:valid
+      border: $validBorder
+    &:focus
+      border: $focusBorder
+    &:valid ~ .form__help-text,
+    &:focus ~ .form__help-text
+      color: $primary
+      transform: translateX(10px) translateY(-7px)
+      font-size: 0.8em
+      padding: 0 15px
+      margin: 0
+      border-left: $validBorder
+      border-right: $validBorder
+    &:valid ~ .form__help-text--optional
+      transform: translateX(10px) translateY(-30px)
+      font-size: 0.8em
+      padding: 0 15px
+      margin: 0
+      border-left: $borderOptional
+      border-right: $borderOptional
+    &:focus ~ .form__help-text--optional,
+    &:focus ~ .form__help-text--optional::before
+      color: $fontColor
+      border-left: $border
+      border-right: $border
+    &--warning
+      border: $borderWarn
+    &--optional
+      &:valid
+        border: $borderOptional
+      &:focus
+        border: $focusBorderOptional
+  &__help-text
+    position: absolute
+    left: 0
+    margin: 10px
+    pointer-events: none
+    font-size: 1em
+    color: $fontColor
+    text-transform: uppercase
+    background: $pageBG
+    transition: .3s
+    &--warn
+      position: absolute
+      color: $fontColorWarn
+      font-size: .6em
+      border-left: $borderWarn
+      border-right: $borderWarn
+      padding: 0 5px
+      left: 0
+      bottom: 0
+      background-color: $pageBG
+      transform: translateX(15px) translateY(3px)
+    &--optional 
+      position: absolute
+      left: 0
+      bottom: 0
+      background: $pageBG
+      color: $fontColorOptional
+      text-transform: uppercase
+      margin: 10px
+      transition: .3s
+      &::before
+        content: "OPCJONALNE"
+        position: absolute
+        bottom: 0
+        left: 0
+        padding: 0 5px
+        background: $pageBG
+        border-left: $borderOptional
+        border-right: $borderOptional
+        font-size: .6em
+        transform: translateY(33px)
+  &__select
+    width: auto
+    padding: 7px
+    border: $borderWarn
+    &:valid
+      border: $validBorder
+    &--required
+      border: $borderWarn
+    &--optional:valid
+      color: $fontColorOptional
+      border: $borderOptional
+  &__option
+    padding: 7px
+  &__button
+    border: $border
+    background: $pageBG
+    color: $fontColor
+    overflow: hidden
+    width: 80px
+    height: 35px
+    cursor: pointer
+    border-radius: 5px
+    transition: .1s linear color, background
+    &:active
+      color: $pageBG
+      background: $focusButtonBG
+@media screen and ( max-width: 350px )
+  .form
+    width: 100%
+    &__label
+      width: 100%
+
+@media screen and ( min-width: 399px )
+  .form
+    flex-direction: row
+    flex-wrap: wrap
+    &__button
+      display: block
+      margin-right: 80%
+
+@media screen and ( min-width: 749px )
+  .form
+    position: relative
+    width: 700px
+    left: 50%
+    transform: translate(-50%)

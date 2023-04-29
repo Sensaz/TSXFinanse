@@ -28,8 +28,6 @@ import UserProfil from './UserProfil'
 
 import ErrorPage from './ErrorPage.tsx'
 
-console.log(PresentValueCalculator)
-
 export {
   AboutMe,
   CreditCalculator,

@@ -24,8 +24,6 @@ import UserProfil from './UserProfil'
 
 import ErrorPage from './ErrorPage'
 
-console.log(PresentValueCalculator)
-
 export {
   AboutMe,
   CreditCalculator,
