@@ -4,8 +4,8 @@ import '../../Styles/Form.sass';
 interface SelectInputProps {
   children: ReactNode;
   isRequired?: boolean;
-  swapOptionalState?: string;
-  handleSwapOptionalState?: (value: ChangeEvent<HTMLInputElement>) => void;
+  // swapOptionalState?: string;
+  // handleSwapOptionalState?: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetSelectState: (value: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -29,8 +29,8 @@ const SelectInput = ({
   children,
   isRequired = true,
   handleSetSelectState,
-  handleSwapOptionalState,
-  swapOptionalState
+  // handleSwapOptionalState,
+  // swapOptionalState
 }: SelectInputProps) => {
 
   const handleOptionChange = (e: any) => {
@@ -40,12 +40,12 @@ const SelectInput = ({
       }
     } as ChangeEvent<HTMLInputElement>;
     handleSetSelectState(newEvent);
-    handleSwapOptionalState(newEvent)
+    // handleSwapOptionalState(newEvent)
   };
 
-  const swapOptionalInput = swapOptionalState !== '' ? 'form__input--warning' : 'form__input--optional'
+  // const swapOptionalInput = swapOptionalState !== '' ? 'form__input--warning' : 'form__input--optional'
 
-  const swapOptionalSpan = swapOptionalState !== '' ? 'form__help-text' : 'form__help-text--optional'
+  // const swapOptionalSpan = swapOptionalState !== '' ? 'form__help-text' : 'form__help-text--optional'
 
   const requiredClass = isRequired ? 'form__select--required' : 'form__select--optional'
 

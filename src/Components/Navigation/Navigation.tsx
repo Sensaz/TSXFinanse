@@ -49,10 +49,14 @@ const Navigation = () => {
       id: 0,
       content: <Dropdown isOpen={isTimeValueOfMoneyDropdownOpen} click={handleTimeValueOfMoneyDropdownOpen} title="Wartość Pieniądza w czasie">
         <>
-          <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/CompoundInterestCalculator">
-            Kalkulator Procentu Składanego
+          <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/FutureValueOfASingleFlowCalculator">
+            Wartość przyszła pojedynczego przepływu
           </DropDownItem>
 
+          <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/FutureValueOfAnAnnuityCalculator">
+            Wartość przyszła renty
+          </DropDownItem>
+        
           <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/PresentValueCalculator">
             Kalkulator Wartości Obecnej
           </DropDownItem>

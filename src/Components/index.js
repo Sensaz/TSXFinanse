@@ -20,8 +20,9 @@ import {
 } from './KnowledgeBase'
 
 import {
-  CompoundInterestCalculator,
+  FutureValueOfASingleFlowCalculator,
   PresentValueCalculator,
+  FutureValueOfAnAnnuityCalculator,
 } from './TimeValueOfMoney'
 
 import UserProfil from './UserProfil'
@@ -42,8 +43,9 @@ export {
   FinancialInstruments,
   InvestmentStrategies,
   SolutionsInApp,
-  CompoundInterestCalculator,
+  FutureValueOfASingleFlowCalculator,
   PresentValueCalculator,
+  FutureValueOfAnAnnuityCalculator,
   UserProfil,
   ErrorPage,
 }

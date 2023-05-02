@@ -17,7 +17,9 @@ import FinancialInstruments from './KnowledgeBase/FinancialInstruments'
 import InvestmentStrategies from './KnowledgeBase/InvestmentStrategies'
 import SolutionsInApp from './KnowledgeBase/SolutionsInApp'
 
-import CompoundInterestCalculator from './TimeValueOfMoney/CompoundInterestCalculator'
+import FutureValueOfASingleFlowCalculator from './TimeValueOfMoney/FutureValueOfASingleFlowCalculator'
+import FutureValueOfAnAnnuityCalculator from './TimeValueOfMoney/FutureValueOfAnAnnuityCalculator'
+
 import PresentValueCalculator from './TimeValueOfMoney/PresentValueCalculator'
 
 import UserProfil from './UserProfil'
@@ -38,7 +40,8 @@ export {
   FinancialInstruments,
   InvestmentStrategies,
   SolutionsInApp,
-  CompoundInterestCalculator,
+  FutureValueOfASingleFlowCalculator,
+  FutureValueOfAnAnnuityCalculator,
   PresentValueCalculator,
   UserProfil,
   ErrorPage,

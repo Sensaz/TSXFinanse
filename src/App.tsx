@@ -20,4 +20,6 @@ function App() {
   )
 }
 
+export type AppProps = {}
+
 export default App

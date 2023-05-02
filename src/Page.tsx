@@ -18,7 +18,8 @@ import {
   FinancialInstruments,
   InvestmentStrategies,
   SolutionsInApp,
-  CompoundInterestCalculator,
+  FutureValueOfASingleFlowCalculator,
+  FutureValueOfAnAnnuityCalculator,
   PresentValueCalculator,
   UserProfil,
   ErrorPage
@@ -57,7 +58,8 @@ const Page = () => {
       </Route>
 
       <Route path="/TimeValueOfMoney">
-        <Route path="CompoundInterestCalculator" element={<CompoundInterestCalculator />} />
+        <Route path="FutureValueOfASingleFlowCalculator" element={<FutureValueOfASingleFlowCalculator />} />
+        <Route path="FutureValueOfAnAnnuityCalculator" element={<FutureValueOfAnAnnuityCalculator />} />
         <Route path="PresentValueCalculator" element={<PresentValueCalculator />} />
       </Route>
       
