@@ -23,13 +23,13 @@ const FutureValueOfAnAnnuityCalculator = () => {
   }
  
   // Renta Płatna z Góry/Dłu
-  const [rentaPaymentOption, setAnnuityPaymentOption] = useState("")
+  const [annuityPaymentOption, setAnnuityPaymentOption] = useState("")
   const handleSetAnnuityPaymentOption = (e: ChangeEvent<HTMLInputElement>) => {
     setAnnuityPaymentOption(e.target.value)
   }
 
   // Renta płatna co Rok / Pół Roku / Kwartał / Miesiąc
-  const [rentaPaymentFrequency, setAnnuityPaymentFrequency] = useState("")
+  const [annuityPaymentFrequency, setAnnuityPaymentFrequency] = useState("")
   const handleSetAnnuityPaymentFrequency = (e: ChangeEvent<HTMLInputElement>) => {
     setAnnuityPaymentFrequency(e.target.value)
   }
@@ -53,11 +53,17 @@ const FutureValueOfAnAnnuityCalculator = () => {
       duration,
       interestRate,
       optionDuration,
-      rentaPaymentOption,
-      rentaPaymentFrequency,
+      annuityPaymentOption,
+      annuityPaymentFrequency,
       setResultCompoundInterestCalculate
     )
   }
+
+  // Funkcja do przeliczania lat na miesięcy oraz dzielenia tego w zależności od jak często renta jest płacona wynik zaokrąglony w dół bez miejsc po przecinku
+  // Funkcja renty płatnej z góry
+      // -- NumberOfAnnuityPeriods
+  // Funkcja renty płatnej z dołu 
+  // Funkcja łącząca te mechanizmy ze sprawdzeniem czy renta jest płatna z góry czy z dołu
 
   return (
     <div>

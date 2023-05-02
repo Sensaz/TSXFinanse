@@ -3,8 +3,8 @@ const compoundInterestCalculate = (
   duration,
   interestRate,
   optionDuration,
-  rentaPaymentOption,
-  rentaPaymentFrequency,
+  annuityPaymentOption,
+  annuityPaymentFrequency,
   setResultCompoundInterestCalculate
 ) => {}
 
