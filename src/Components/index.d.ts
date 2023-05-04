@@ -18,6 +18,7 @@ import InvestmentStrategies from './KnowledgeBase/InvestmentStrategies'
 import SolutionsInApp from './KnowledgeBase/SolutionsInApp'
 
 import FutureValueOfASingleFlowCalculator from './TimeValueOfMoney/FutureValueOfASingleFlowCalculator'
+import PresentValueOfASingleFlowCalculator from './TimeValueOfMoney/PresentValueOfASingleFlowCalculator'
 import FutureValueOfAnAnnuityCalculator from './TimeValueOfMoney/FutureValueOfAnAnnuityCalculator'
 
 import PresentValueCalculator from './TimeValueOfMoney/PresentValueCalculator'
@@ -41,6 +42,7 @@ export {
   InvestmentStrategies,
   SolutionsInApp,
   FutureValueOfASingleFlowCalculator,
+  PresentValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
   PresentValueCalculator,
   UserProfil,

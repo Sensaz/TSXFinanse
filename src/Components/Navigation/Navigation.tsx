@@ -53,13 +53,14 @@ const Navigation = () => {
             Wartość przyszła pojedynczego przepływu
           </DropDownItem>
 
+          <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/PresentValueOfASingleFlowCalculator">
+            Wartość obecna pojedynczego przepływu
+          </DropDownItem>
+          
           <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/FutureValueOfAnAnnuityCalculator">
             Wartość przyszła renty
           </DropDownItem>
         
-          <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/PresentValueCalculator">
-            Kalkulator Wartości Obecnej
-          </DropDownItem>
 
           <li className="dropdown__divider"></li>
 

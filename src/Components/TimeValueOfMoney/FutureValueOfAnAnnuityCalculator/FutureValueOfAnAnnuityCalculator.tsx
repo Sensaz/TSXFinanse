@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, MouseEvent } from "react"
 import FutureValueOfAnAnnuityForm from "./FutureValueOfAnAnnuityForm"
 import ResultTimeValueOfMoney from "../ResultTimeValueOfMoney"
-import compoundInterestCalculate from "./FunctionForTest"
+import futureValueOfAnnuityFunction from "./FunctionForTest"
 
 const FutureValueOfAnAnnuityCalculator = () => {
   // Wysokość Renty
@@ -41,14 +41,14 @@ const FutureValueOfAnAnnuityCalculator = () => {
   }
 
   const [resultCompoundInterestCalculate, setResultCompoundInterestCalculate] = useState({
-    parsedStartValue: 0,
+    parsedPensionAmount: 0,
     investmentResult: 0,
     accruedInterest: 0
   })
 
   const compoundInterestCalculateResults = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    compoundInterestCalculate(
+    futureValueOfAnnuityFunction(
       pensionAmount,
       duration,
       interestRate,
@@ -80,7 +80,7 @@ const FutureValueOfAnAnnuityCalculator = () => {
         calculate={compoundInterestCalculateResults}
       />
       <ResultTimeValueOfMoney
-        parsedStartValue={resultCompoundInterestCalculate.parsedStartValue}
+        parsedStartValue={resultCompoundInterestCalculate.parsedPensionAmount}
         investmentResult={resultCompoundInterestCalculate.investmentResult}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />

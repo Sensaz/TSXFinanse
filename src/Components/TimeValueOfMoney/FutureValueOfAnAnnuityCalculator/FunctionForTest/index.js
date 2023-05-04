@@ -1,3 +1,3 @@
-import compoundInterestCalculate from './compoundInterestCalculate.ts'
+import futureValueOfAnnuityFunction from './futureValueOfAnnuityFunction.ts'
 
-export default compoundInterestCalculate
+export default futureValueOfAnnuityFunction

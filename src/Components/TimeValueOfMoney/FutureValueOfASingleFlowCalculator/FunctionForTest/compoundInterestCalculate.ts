@@ -1,13 +1,21 @@
 import capitalizationInThePeriod from './capitalizationInThePeriod'
 import durationInvestmentInMonth from './durationInvestmentInMonth'
 
+type ResultCompoundInterestCalculateType = {
+  parsedStartValue: any
+  investmentResult: any
+  accruedInterest: any
+}
+
 const compoundInterestCalculate = (
   propsStartValue: string,
   propsDuration: string,
   interestRate: string,
   propsOptionDuration: string,
   propsInterestCapitalization: string,
-  propsSetResultCompoundInterestCalculate: any
+  propsSetResultCompoundInterestCalculate: (
+    resultCompoundInterestCalculate: ResultCompoundInterestCalculateType
+  ) => void
 ) => {
   let parsedStartValue = parseFloat(propsStartValue)
   let parsedDuration = parseFloat(propsDuration)

@@ -20,7 +20,7 @@ import {
   SolutionsInApp,
   FutureValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
-  PresentValueCalculator,
+  PresentValueOfASingleFlowCalculator,
   UserProfil,
   ErrorPage
 } from './Components'
@@ -60,7 +60,7 @@ const Page = () => {
       <Route path="/TimeValueOfMoney">
         <Route path="FutureValueOfASingleFlowCalculator" element={<FutureValueOfASingleFlowCalculator />} />
         <Route path="FutureValueOfAnAnnuityCalculator" element={<FutureValueOfAnAnnuityCalculator />} />
-        <Route path="PresentValueCalculator" element={<PresentValueCalculator />} />
+        <Route path="PresentValueOfASingleFlowCalculator" element={<PresentValueOfASingleFlowCalculator />} />
       </Route>
       
       <Route path="/UserProfil" element={<UserProfil />} />

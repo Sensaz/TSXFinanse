@@ -21,7 +21,7 @@ import {
 
 import {
   FutureValueOfASingleFlowCalculator,
-  PresentValueCalculator,
+  PresentValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
 } from './TimeValueOfMoney'
 
@@ -44,7 +44,7 @@ export {
   InvestmentStrategies,
   SolutionsInApp,
   FutureValueOfASingleFlowCalculator,
-  PresentValueCalculator,
+  PresentValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
   UserProfil,
   ErrorPage,
