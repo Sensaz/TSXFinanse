@@ -60,6 +60,9 @@ const Navigation = () => {
           <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/FutureValueOfAnAnnuityCalculator">
             Wartość przyszła renty
           </DropDownItem>
+          <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/PresentValueOfAnAnnuityCalculator">
+            Wartość obecna renty
+          </DropDownItem>
         
 
           <li className="dropdown__divider"></li>

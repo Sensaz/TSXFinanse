@@ -1,0 +1,3 @@
+import PresentValueOfAnAnnuityFunction from './PresentValueOfAnAnnuityFunction.ts'
+
+export default PresentValueOfAnAnnuityFunction

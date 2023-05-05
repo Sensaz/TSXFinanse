@@ -1,11 +1,11 @@
 import FutureValueOfASingleFlowCalculator from './FutureValueOfASingleFlowCalculator'
 import PresentValueOfASingleFlowCalculator from './PresentValueOfASingleFlowCalculator'
 import FutureValueOfAnAnnuityCalculator from './FutureValueOfAnAnnuityCalculator'
-import PresentValueCalculator from './PresentValueCalculator'
+import PresentValueOfAnAnnuityCalculator from './PresentValueOfAnAnnuityCalculator'
 
 export {
   FutureValueOfASingleFlowCalculator,
   PresentValueOfASingleFlowCalculator,
-  PresentValueCalculator,
+  PresentValueOfAnAnnuityCalculator,
   FutureValueOfAnAnnuityCalculator,
 }

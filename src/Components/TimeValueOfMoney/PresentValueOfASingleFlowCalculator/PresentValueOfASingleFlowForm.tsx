@@ -14,7 +14,7 @@ interface PresentValueOfASingleFlowCalculatorProps {
   calculate: (value: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const PresentValueOfASingleFlowCalculator = ({
+const PresentValueOfASingleFlowForm = ({
   expectedFinalValue,
   duration,
   interestRate,
@@ -66,4 +66,4 @@ const PresentValueOfASingleFlowCalculator = ({
   );
 };
 
-export default PresentValueOfASingleFlowCalculator;
+export default PresentValueOfASingleFlowForm;

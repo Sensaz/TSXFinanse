@@ -23,6 +23,7 @@ import {
   FutureValueOfASingleFlowCalculator,
   PresentValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
+  PresentValueOfAnAnnuityCalculator,
 } from './TimeValueOfMoney'
 
 import UserProfil from './UserProfil'
@@ -46,6 +47,7 @@ export {
   FutureValueOfASingleFlowCalculator,
   PresentValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
+  PresentValueOfAnAnnuityCalculator,
   UserProfil,
   ErrorPage,
 }

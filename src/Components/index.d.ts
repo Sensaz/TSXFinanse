@@ -20,6 +20,7 @@ import SolutionsInApp from './KnowledgeBase/SolutionsInApp'
 import FutureValueOfASingleFlowCalculator from './TimeValueOfMoney/FutureValueOfASingleFlowCalculator'
 import PresentValueOfASingleFlowCalculator from './TimeValueOfMoney/PresentValueOfASingleFlowCalculator'
 import FutureValueOfAnAnnuityCalculator from './TimeValueOfMoney/FutureValueOfAnAnnuityCalculator'
+import PresentValueOfAnAnnuityCalculator from './TimeValueOfMoney/PresentValueOfAnAnnuityCalculator'
 
 import PresentValueCalculator from './TimeValueOfMoney/PresentValueCalculator'
 
@@ -44,6 +45,7 @@ export {
   FutureValueOfASingleFlowCalculator,
   PresentValueOfASingleFlowCalculator,
   FutureValueOfAnAnnuityCalculator,
+  PresentValueOfAnAnnuityCalculator,
   PresentValueCalculator,
   UserProfil,
   ErrorPage,

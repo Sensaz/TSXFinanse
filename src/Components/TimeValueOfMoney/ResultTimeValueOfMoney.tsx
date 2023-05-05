@@ -1,8 +1,8 @@
 import "../../Styles/Result.sass"
 
 interface CompoundInterestCalculateResult {
+  parsedStartValue: number;
   investmentResult: number;
-  parsedExpectedFinalValue: number;
   accruedInterest: number;
 }
 
