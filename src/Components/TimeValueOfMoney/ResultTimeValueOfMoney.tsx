@@ -7,9 +7,9 @@ interface CompoundInterestCalculateResult {
 }
 
 
-const ResultTimeValueOfMoney = ({ parsedExpectedFinalValue, investmentResult, accruedInterest }: CompoundInterestCalculateResult) => {
+const ResultTimeValueOfMoney = ({ parsedStartValue, investmentResult, accruedInterest }: CompoundInterestCalculateResult) => {
   const jsxInvestmentResult = investmentResult > 0 ? investmentResult : investmentResult.toFixed(2)
-  const jsxParsedExpectedFinalValue = parsedExpectedFinalValue > 0 ? parsedExpectedFinalValue : parsedExpectedFinalValue.toFixed(2)
+  const jsxParsedExpectedFinalValue = parsedStartValue > 0 ? parsedStartValue : parsedStartValue.toFixed(2)
   const jsxAccruedInterest = accruedInterest > 0 ? accruedInterest : accruedInterest.toFixed(2)
   return (
     <div className='result'>

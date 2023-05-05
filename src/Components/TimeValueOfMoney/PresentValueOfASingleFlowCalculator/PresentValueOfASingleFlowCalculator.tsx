@@ -1,6 +1,6 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
 import PresentValueOfASingleFlowForm from "./PresentValueOfASingleFlowForm.tsx";
-import ResultTimeValueOfMoney from "../ResultTimeValueOfMoney.tsx"
+import ResultPresentTimeValueOfMoney from "../ResultPresentTimeValueOfMoney.tsx"
 import presentValueCalculate from "./FunctionForTest/presentValueCalculate.ts"
 
 
@@ -40,8 +40,8 @@ const PresentValueOfASingleFlowCalculator = () => {
   }
   
   const [resultCompoundInterestCalculate, setResultCompoundInterestCalculate] = useState({
+    presentValue: 0,
     parsedExpectedFinalValue: 0,
-    investmentResult: 0,
     accruedInterest: 0
   })
   
@@ -54,7 +54,7 @@ const PresentValueOfASingleFlowCalculator = () => {
       optionDuration,
       interestCapitalization,
       setResultCompoundInterestCalculate
-    )
+      )
   }
 
 
@@ -71,9 +71,9 @@ const PresentValueOfASingleFlowCalculator = () => {
         handleSetInterestCapitalization={handleSetInterestCapitalization}
         calculate={compoundInterestCalculateResults}
       />
-      <ResultTimeValueOfMoney
+      <ResultPresentTimeValueOfMoney
+        investmentResult={resultCompoundInterestCalculate.presentValue}
         parsedExpectedFinalValue={resultCompoundInterestCalculate.parsedExpectedFinalValue}
-        investmentResult={resultCompoundInterestCalculate.investmentResult}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />
     </div>

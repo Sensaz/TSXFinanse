@@ -24,7 +24,6 @@ const futureValueOfAnnuityFunction = (
     resultCompoundInterestCalculate: ResultCompoundInterestCalculateType
   ) => void
 ) => {
-  console.log(optionDuration, annuityPaymentOption, annuityPaymentFrequency)
   const parsePensionAmount = parseFloat(pensionAmount)
   const parseDuration = parseFloat(duration)
   const parseInterestRate = parseFloat(interestRate)

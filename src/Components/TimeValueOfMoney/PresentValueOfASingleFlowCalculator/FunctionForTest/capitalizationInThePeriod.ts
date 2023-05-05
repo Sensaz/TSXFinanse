@@ -19,11 +19,12 @@ const capitalizationInThePeriod = (
     frequencyCapitalization
   ).includes(interestCapitalization)
 
-  if (parsedInterestRate <= 0 || chceckInterestCapitalization)
+  if (parsedInterestRate <= 0 || chceckInterestCapitalization) {
     return {
       result: 0,
       capitalization: 1,
     }
+  }
 
   const result =
     parsedInterestRate / frequencyCapitalization[interestCapitalization] / 100
