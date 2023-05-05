@@ -1,22 +1,40 @@
 import PresentValueOfAnAnnuityFunction from '../FunctionForTest/PresentValueOfAnAnnuityFunction.ts'
 const setResultCompoundInterestCalculate = jest.fn()
 
+// expectedAnnuity - Oczekiwana renta
+// duration - Czas Trwania
+// requiredInterestRate - Wymagana Stopa zwrotu
+
+// annuityRecived - Renta Otrzymywana z
+// ------ AnnuityPaidInAdvance - Góry
+// ------ AnnuityPayableInAdvance - Dołu
+
+// optionDuration - Czas Trwania podany w
+// ------ DurationInMonths
+// ------ DurationInYears
+
+// annuityCapitalization - Renta otrzymywana co
+// ------ AnnuityRecivedAnnually
+// ------ AnnuityRecivedSemiAnnually
+// ------ AnnuityRecivedQuarterly
+// ------ AnnuityRecivedMonthyly
+
 describe('PresentValueOfAnAnnuityFunction should return three zeros when', () => {
-  describe('PENSION AMOUTN TESTS', () => {
+  describe('EXPECTED ANNUITY TESTS', () => {
     test('is empty', () => {
       PresentValueOfAnAnnuityFunction(
         '',
         '100',
         '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -25,15 +43,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '-3232',
         '100',
         '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -42,15 +60,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '0',
         '100',
         '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -61,15 +79,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '500',
         '',
         '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -78,15 +96,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '500',
         '-100',
         '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -95,34 +113,34 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '100',
         '0',
         '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
   })
-  describe('INTEREST RATE TESTS', () => {
+  describe('REQUIRED INTEREST RATE TESTS', () => {
     test('is empty', () => {
       PresentValueOfAnAnnuityFunction(
         '500',
         '10',
         '',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -131,15 +149,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '500',
         '10',
         '-20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -148,15 +166,51 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '100',
         '10',
         '0',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
+        accruedInterest: 0,
+      })
+    })
+  })
+  describe('ANNUITY RECIVED TESTS', () => {
+    test('is empty', () => {
+      PresentValueOfAnAnnuityFunction(
+        '500',
+        '10',
+        '20',
+        '',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
+        setResultCompoundInterestCalculate
+      )
+
+      expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
+        accruedInterest: 0,
+      })
+    })
+    test('is random string', () => {
+      PresentValueOfAnAnnuityFunction(
+        '100',
+        '10',
+        '20',
+        'kebab',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
+        setResultCompoundInterestCalculate
+      )
+
+      expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -167,15 +221,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '500',
         '10',
         '20',
-        '',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        '',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -184,34 +238,34 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '100',
         '10',
         '20',
-        'fdsfsdfsdf',
         'AnnuityPaidInAdvance',
-        'QuarterlyCapitalization',
+        'pizza',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
   })
-  describe('ANNUITY PAYMENT OPTION TESTS', () => {
+  describe('ANNUITY CAPITALIZATION TESTS', () => {
     test('is empty', () => {
       PresentValueOfAnAnnuityFunction(
         '500',
         '10',
         '20',
+        'AnnuityPaidInAdvance',
         'DurationInMonths',
         '',
-        'QuarterlyCapitalization',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -220,51 +274,15 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
         '100',
         '10',
         '20',
-        'DurationInMonths',
-        'fdsfsdfsdf',
-        'QuarterlyCapitalization',
-        setResultCompoundInterestCalculate
-      )
-
-      expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
-        accruedInterest: 0,
-      })
-    })
-  })
-  describe('ANNUITY PAYMENT FREQUENCY TESTS', () => {
-    test('is empty', () => {
-      PresentValueOfAnAnnuityFunction(
-        '500',
-        '10',
-        '20',
-        'DurationInMonths',
         'AnnuityPaidInAdvance',
-        '',
-        setResultCompoundInterestCalculate
-      )
-
-      expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
-        accruedInterest: 0,
-      })
-    })
-    test('is random string', () => {
-      PresentValueOfAnAnnuityFunction(
-        '100',
-        '10',
-        '20',
         'DurationInMonths',
-        'AnnuityPaidInAdvance',
-        'kebab',
+        'BułkaZTuńczykiemWAutobusie',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: 0,
-        investmentResult: 0,
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -272,288 +290,286 @@ describe('PresentValueOfAnAnnuityFunction should return three zeros when', () =>
 })
 
 describe('PresentValueOfAnAnnuityFunction should return results when', () => {
-  describe('optionDuration equal DurationInMonths and annuityPaymentOption equal AnnuityPaidInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+  describe('annuityRecived equal AnnuityPaidInAdvance and optionDuration equal DurationInMonths', () => {
+    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidAnnually',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '200.00',
-        investmentResult: '231.00',
-        accruedInterest: '31.00',
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
+        accruedInterest: 0,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'DurationInMonths',
+        'AnnuityRecivedSemiAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '500.00',
-        investmentResult: '580.19',
-        accruedInterest: '80.19',
+        presentValue: '100.00',
+        parsedExpectedFinalValue: '100.00',
+        accruedInterest: 0,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidQuarterly',
+        'DurationInMonths',
+        'AnnuityRecivedQuarterly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '1000.00',
-        investmentResult: '1148.35',
-        accruedInterest: '148.35',
+        presentValue: '285.94',
+        parsedExpectedFinalValue: '300.00',
+        accruedInterest: '14.06',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidMonthyly',
+        'DurationInMonths',
+        'AnnuityRecivedMonthyly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '3000.00',
-        investmentResult: '3420.62',
-        accruedInterest: '420.62',
+        presentValue: '929.36',
+        parsedExpectedFinalValue: '1000.00',
+        accruedInterest: '70.64',
       })
     })
   })
 
-  describe('optionDuration equal DurationInYears and annuityPaymentOption equal AnnuityPaidInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+  describe('annuityRecived equal AnnuityPaidInAdvance and optionDuration equal DurationInYears', () => {
+    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidAnnually',
+        'DurationInYears',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '3000.00',
-        investmentResult: '18094.34',
-        accruedInterest: '15094.34',
+        presentValue: '503.10',
+        parsedExpectedFinalValue: '1000.00',
+        accruedInterest: '496.90',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'DurationInYears',
+        'AnnuityRecivedSemiAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '6000.00',
-        investmentResult: '37126.29',
-        accruedInterest: '31126.29',
+        presentValue: '936.49',
+        parsedExpectedFinalValue: '2000.00',
+        accruedInterest: '1063.51',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidQuarterly',
+        'DurationInYears',
+        'AnnuityRecivedQuarterly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '12000.00',
-        investmentResult: '75268.41',
-        accruedInterest: '63268.41',
+        presentValue: '1801.70',
+        parsedExpectedFinalValue: '4000.00',
+        accruedInterest: '2198.30',
       })
     })
-
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidMonthyly',
+        'DurationInYears',
+        'AnnuityRecivedMonthyly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '36000.00',
-        investmentResult: '227932.53',
-        accruedInterest: '191932.53',
+        presentValue: '5260.73',
+        parsedExpectedFinalValue: '12000.00',
+        accruedInterest: '6739.27',
       })
     })
   })
 
-  describe('optionDuration equal DurationInMonths and annuityPaymentOption equal AnnuityPayableInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+  describe('annuityRecived equal AnnuityPayableInAdvance and optionDuration equal DurationInMonths', () => {
+    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidAnnually',
+        'DurationInMonths',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '200.00',
-        investmentResult: '210.00',
-        accruedInterest: '10.00',
+        presentValue: 0,
+        parsedExpectedFinalValue: 0,
+        accruedInterest: 0,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'DurationInMonths',
+        'AnnuityRecivedSemiAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '500.00',
-        investmentResult: '552.56',
-        accruedInterest: '52.56',
+        presentValue: '90.91',
+        parsedExpectedFinalValue: '100.00',
+        accruedInterest: '9.09',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidQuarterly',
+        'DurationInMonths',
+        'AnnuityRecivedQuarterly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '1000.00',
-        investmentResult: '1120.34',
-        accruedInterest: '120.34',
+        presentValue: '272.32',
+        parsedExpectedFinalValue: '300.00',
+        accruedInterest: '27.68',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidMonthyly',
+        'DurationInMonths',
+        'AnnuityRecivedMonthyly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '3000.00',
-        investmentResult: '3392.35',
-        accruedInterest: '392.35',
+        presentValue: '914.13',
+        parsedExpectedFinalValue: '1000.00',
+        accruedInterest: '85.87',
       })
     })
   })
 
-  describe('optionDuration equal DurationInYears and annuityPaymentOption equal AnnuityPayableInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+  describe('annuityRecived equal AnnuityPayableInAdvance and optionDuration equal DurationInYears', () => {
+    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInMonths',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidAnnually',
+        'DurationInYears',
+        'AnnuityRecivedAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '200.00',
-        investmentResult: '210.00',
-        accruedInterest: '10.00',
+        presentValue: '419.25',
+        parsedExpectedFinalValue: '1000.00',
+        accruedInterest: '580.75',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'DurationInYears',
+        'AnnuityRecivedSemiAnnually',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '6000.00',
-        investmentResult: '35358.37',
-        accruedInterest: '29358.37',
+        presentValue: '851.36',
+        parsedExpectedFinalValue: '2000.00',
+        accruedInterest: '1148.64',
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidQuarterly',
+        'DurationInYears',
+        'AnnuityRecivedQuarterly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '12000.00',
-        investmentResult: '73432.60',
-        accruedInterest: '61432.60',
+        presentValue: '1715.91',
+        parsedExpectedFinalValue: '4000.00',
+        accruedInterest: '2284.09',
       })
     })
-
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
       PresentValueOfAnAnnuityFunction(
         '100',
-        '30',
         '10',
-        'DurationInYears',
+        '20',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidMonthyly',
+        'DurationInYears',
+        'AnnuityRecivedMonthyly',
         setResultCompoundInterestCalculate
       )
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
-        parsedPensionAmount: '36000.00',
-        investmentResult: '226048.79',
-        accruedInterest: '190048.79',
+        presentValue: '5174.49',
+        parsedExpectedFinalValue: '12000.00',
+        accruedInterest: '6825.51',
       })
     })
   })

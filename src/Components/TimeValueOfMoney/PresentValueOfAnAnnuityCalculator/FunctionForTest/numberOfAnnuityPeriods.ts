@@ -9,10 +9,10 @@ function isValidDurationOption(
 ) {
   const validDurationOptions = ['DurationInMonths', 'DurationInYears']
   const validAnnuityPaymentFrequencies = [
-    'AnnuityPaidAnnually',
-    'AnnuityPaidSemiAnnually',
-    'AnnuityPaidQuarterly',
-    'AnnuityPaidMonthyly',
+    'AnnuityRecivedAnnually',
+    'AnnuityRecivedSemiAnnually',
+    'AnnuityRecivedQuarterly',
+    'AnnuityRecivedMonthyly',
   ]
 
   return (
@@ -40,10 +40,10 @@ const numberOfAnnuityPeriods = (
   if (optionDuration === 'DurationInYears') propertiesParsedDuration *= 12
 
   const annuityPaymentFrequencyOptions: annuityPaymentFrequencyInterface = {
-    AnnuityPaidAnnually: 12,
-    AnnuityPaidSemiAnnually: 6,
-    AnnuityPaidQuarterly: 3,
-    AnnuityPaidMonthyly: 1,
+    AnnuityRecivedAnnually: 12,
+    AnnuityRecivedSemiAnnually: 6,
+    AnnuityRecivedQuarterly: 3,
+    AnnuityRecivedMonthyly: 1,
   }
   const propsAnnuityPaymentFrequencyOptions =
     annuityPaymentFrequencyOptions[annuityPaymentFrequency]

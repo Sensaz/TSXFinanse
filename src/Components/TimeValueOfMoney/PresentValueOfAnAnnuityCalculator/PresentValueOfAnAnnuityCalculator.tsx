@@ -79,8 +79,8 @@ const PresentValueOfAnAnnuityCalculator = () => {
         calculate={compoundInterestCalculateResults}
       />
       <ResultPresentTimeValueOfMoney
-        parsedExpectedFinalValue={resultCompoundInterestCalculate.presentValue}
-        investmentResult={resultCompoundInterestCalculate.parsedExpectedFinalValue}
+        investmentResult={resultCompoundInterestCalculate.presentValue}
+        parsedExpectedFinalValue={resultCompoundInterestCalculate.parsedExpectedFinalValue}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />
     </div>

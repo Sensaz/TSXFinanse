@@ -21,24 +21,24 @@ describe('Function should result zero when', () => {
 })
 
 describe('Function should result positive number when', () => {
-  test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+  test('annuityPaymentFrequency equal AnnuityRecivedAnnually', () => {
     expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidAnnually')
+      interestRateForPeriodicBaseAnnuity(100, 'AnnuityRecivedAnnually')
     ).toEqual(1)
   })
-  test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+  test('annuityPaymentFrequency equal AnnuityRecivedSemiAnnually', () => {
     expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidSemiAnnually')
+      interestRateForPeriodicBaseAnnuity(100, 'AnnuityRecivedSemiAnnually')
     ).toEqual(0.5)
   })
-  test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+  test('annuityPaymentFrequency equal AnnuityRecivedQuarterly', () => {
     expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidQuarterly')
+      interestRateForPeriodicBaseAnnuity(100, 'AnnuityRecivedQuarterly')
     ).toEqual(0.25)
   })
-  test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+  test('annuityPaymentFrequency equal AnnuityRecivedMonthyly', () => {
     expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidMonthyly')
+      interestRateForPeriodicBaseAnnuity(100, 'AnnuityRecivedMonthyly')
     ).toEqual(0.08333333333333334)
   })
 })
