@@ -1,16 +1,16 @@
 const durationInvestmentInMonth = (
-  parsedDuration: number,
+  duration: number,
   optionDuration: string
 ) => {
   if (
-    parsedDuration <= 0 ||
+    duration <= 0 ||
     (optionDuration !== 'DurationInMonths' &&
       optionDuration !== 'DurationInYears')
   )
     return 0
 
-  if (optionDuration === 'DurationInMonths') return parsedDuration
-  else return parsedDuration * 12
+  if (optionDuration === 'DurationInMonths') return duration
+  else return duration * 12
 }
 
 export default durationInvestmentInMonth

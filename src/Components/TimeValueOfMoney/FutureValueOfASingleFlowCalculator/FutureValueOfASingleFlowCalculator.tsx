@@ -1,26 +1,26 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
 import CompoundInterestForm from "./FutureValueOfASingleFlowForm.tsx";
-import ResultTimeValueOfMoney from "../ResultTimeValueOfMoney.tsx"
-import compoundInterestCalculate from "./FunctionForTest/compoundInterestCalculate.ts"
+import ResultFutureTimeValueOfMoney from "../ResultFutureTimeValueOfMoney.tsx"
+import futureValueOfASingleFlowResult from "./FunctionForTest/futureValueOfASingleFlowResult.ts"
 
 
 const FutureValueOfASingleFlowCalculator = () => {
   // Kwota początkowa
-  const [startValue, setStartValue] = useState("")
+  const [startValue, setStartValue] = useState(0)
   // Czas Trwania
-  const [duration, setDuration] = useState("")
+  const [duration, setDuration] = useState(0)
   // Roczne oprocentowanie
-  const [interestRate, setInterestRate] = useState("")
+  const [interestRate, setInterestRate] = useState(0)
 
   const handleSetStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartValue(e.target.value)
+    setStartValue(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
   const handleSetDuration = (e: ChangeEvent<HTMLInputElement>) => {
-    setDuration(e.target.value)
+    setDuration(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
 
   const handleSetInterestRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setInterestRate(e.target.value)
+    setInterestRate(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
 
 
@@ -40,14 +40,14 @@ const FutureValueOfASingleFlowCalculator = () => {
   }
   
   const [resultCompoundInterestCalculate, setResultCompoundInterestCalculate] = useState({
-    parsedStartValue: 0,
+    startValue: 0,
     investmentResult: 0,
     accruedInterest: 0
   })
 
   const compoundInterestCalculateResults = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    compoundInterestCalculate(
+    futureValueOfASingleFlowResult(
       startValue,
       duration,
       interestRate,
@@ -56,7 +56,6 @@ const FutureValueOfASingleFlowCalculator = () => {
       setResultCompoundInterestCalculate
     )
   }
-
 
   return (
     <div>
@@ -71,9 +70,9 @@ const FutureValueOfASingleFlowCalculator = () => {
         handleSetInterestCapitalization={handleSetInterestCapitalization}
         calculate={compoundInterestCalculateResults}
       />
-      <ResultTimeValueOfMoney
-        parsedStartValue={resultCompoundInterestCalculate.parsedStartValue}
+      <ResultFutureTimeValueOfMoney
         investmentResult={resultCompoundInterestCalculate.investmentResult}
+        investedAmountValue={resultCompoundInterestCalculate.startValue}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />
     </div>

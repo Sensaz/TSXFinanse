@@ -101,7 +101,6 @@ const PresentValueOfAnAnnuityFunction = (
     })
   }
 
-  console.log(PV)
   return propsSetResultCompoundInterestCalculate({
     presentValue: PV.toFixed(2),
     parsedExpectedFinalValue: checkParsedExpectedFinalValueResult,

@@ -3,7 +3,7 @@ type annuityPaymentFrequencyInterface = {
 }
 
 const interestRateForPeriodicBaseAnnuity = (
-  parsedInterestRate: number,
+  interestRate: number,
   annuityPaymentFrequency: string
 ) => {
   const annuityPaymentFrequencyOptions: annuityPaymentFrequencyInterface = {
@@ -16,9 +16,9 @@ const interestRateForPeriodicBaseAnnuity = (
   const propsAnnuityPaymentFrequencyOptions =
     annuityPaymentFrequencyOptions[annuityPaymentFrequency]
 
-  if (parsedInterestRate <= 0 || !propsAnnuityPaymentFrequencyOptions) return 0
+  if (interestRate <= 0 || !propsAnnuityPaymentFrequencyOptions) return 0
 
-  return parsedInterestRate / propsAnnuityPaymentFrequencyOptions / 100
+  return interestRate / propsAnnuityPaymentFrequencyOptions / 100
 }
 
 export default interestRateForPeriodicBaseAnnuity

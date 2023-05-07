@@ -1,25 +1,25 @@
 import { ChangeEvent, useState, MouseEvent } from "react"
 import FutureValueOfAnAnnuityForm from "./FutureValueOfAnAnnuityForm"
-import ResultTimeValueOfMoney from "../ResultTimeValueOfMoney"
-import futureValueOfAnnuityFunction from "./FunctionForTest"
+import ResultFutureTimeValueOfMoney from "../ResultFutureTimeValueOfMoney.tsx"
+import futureValueOfAnAnnuityResult from "./FunctionForTest/futureValueOfAnAnnuityResult.ts"
 
 const FutureValueOfAnAnnuityCalculator = () => {
   // Wysokość Renty
-  const [pensionAmount, setPenstionAmount] = useState("")
+  const [pensionAmount, setPenstionAmount] = useState(0)
   const handleSetPenstionAmount = (e: ChangeEvent<HTMLInputElement>) => {
-    setPenstionAmount(e.target.value)
+    setPenstionAmount(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
 
   // Czas Trwania Inwestycji
-  const [duration, setDuration] = useState("")
+  const [duration, setDuration] = useState(0)
   const handleSetDuration = (e: ChangeEvent<HTMLInputElement>) => {
-    setDuration(e.target.value)
+    setDuration(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
 
   // Roczne Oprocentowanie 
-  const [interestRate, setInterestRate] = useState("")
+  const [interestRate, setInterestRate] = useState(0)
   const handleSetInterestRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setInterestRate(e.target.value)
+    setInterestRate(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
  
   // Renta Płatna z Góry/Dłu
@@ -41,14 +41,14 @@ const FutureValueOfAnAnnuityCalculator = () => {
   }
 
   const [resultCompoundInterestCalculate, setResultCompoundInterestCalculate] = useState({
-    parsedPensionAmount: 0,
+    pensionAmount: 0,
     investmentResult: 0,
     accruedInterest: 0
   })
 
   const compoundInterestCalculateResults = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    futureValueOfAnnuityFunction(
+    futureValueOfAnAnnuityResult(
       pensionAmount,
       duration,
       interestRate,
@@ -58,12 +58,6 @@ const FutureValueOfAnAnnuityCalculator = () => {
       setResultCompoundInterestCalculate
     )
   }
-
-  // Funkcja do przeliczania lat na miesięcy oraz dzielenia tego w zależności od jak często renta jest płacona wynik zaokrąglony w dół bez miejsc po przecinku
-  // Funkcja renty płatnej z góry
-      // -- NumberOfAnnuityPeriods
-  // Funkcja renty płatnej z dołu 
-  // Funkcja łącząca te mechanizmy ze sprawdzeniem czy renta jest płatna z góry czy z dołu
 
   return (
     <div>
@@ -79,9 +73,9 @@ const FutureValueOfAnAnnuityCalculator = () => {
         handleSetOptionDuration={handleSetOptionDuration}
         calculate={compoundInterestCalculateResults}
       />
-      <ResultTimeValueOfMoney
-        parsedStartValue={resultCompoundInterestCalculate.parsedPensionAmount}
+      <ResultFutureTimeValueOfMoney
         investmentResult={resultCompoundInterestCalculate.investmentResult}
+        investedAmountValue={resultCompoundInterestCalculate.pensionAmount}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />
     </div>

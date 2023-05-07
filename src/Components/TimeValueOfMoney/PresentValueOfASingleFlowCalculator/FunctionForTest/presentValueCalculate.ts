@@ -72,7 +72,6 @@ const presentValueCalculate = (
     1 + resultCapitalizationInThePeriod,
     (resultDurationInMonths / 12) * capitalization
   )
-  console.log(propsInterestCapitalization)
 
   const PV = parsedExpectedFinalValue / presentValueMultiplier
 

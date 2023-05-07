@@ -3,7 +3,7 @@ type FrequencyCapitalizationInterface = {
 }
 
 const capitalizationInThePeriod = (
-  parsedInterestRate: number,
+  interestRate: number,
   interestCapitalization: string
 ) => {
   const frequencyCapitalization: FrequencyCapitalizationInterface = {
@@ -19,14 +19,14 @@ const capitalizationInThePeriod = (
     frequencyCapitalization
   ).includes(interestCapitalization)
 
-  if (parsedInterestRate <= 0 || chceckInterestCapitalization)
+  if (interestRate <= 0 || isNaN(interestRate) || chceckInterestCapitalization)
     return {
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     }
 
   const result =
-    parsedInterestRate / frequencyCapitalization[interestCapitalization] / 100
+    interestRate / frequencyCapitalization[interestCapitalization] / 100
 
   const capitalization = frequencyCapitalization[interestCapitalization]
   return {

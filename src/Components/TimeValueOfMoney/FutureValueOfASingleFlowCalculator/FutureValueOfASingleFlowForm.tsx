@@ -3,9 +3,9 @@ import '../../../Styles/Form.sass'
 import { Input, SelectInput, SelectOption  } from '../../Global'
 
 interface CompoundInterestFormProps {
-  startValue: string;
-  duration: string;
-  interestRate: string;
+  startValue: number;
+  duration: number;
+  interestRate: number;
   handleSetStartValue: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetInterestRate: (value: ChangeEvent<HTMLInputElement>) => void;
@@ -24,25 +24,14 @@ const CompoundInterestForm = ({
   handleSetOptionDuration,
   handleSetInterestCapitalization,
   calculate
-}: CompoundInterestFormProps) => {
-  
-  // const [checkPaymentFrequencyValue, setCheckPaymentFrequencyValue] = useState("")
-
-  
-  // const handleSetCheckPaymentFrequencyValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setCheckPaymentFrequencyValue(e?.target?.value);
-  //   console.log(checkPaymentFrequencyValue?.length)
-  // };
-  
-  
+}: CompoundInterestFormProps) => {  
   return (
     <form className="form">
-
       <div className='form__group'>
-        <Input inputState={startValue} handleSetInputState={handleSetStartValue} content="Kwota początkowa" />
+        <Input inputState={`${startValue <= 0 || Number.isNaN(startValue) ? "" : startValue}`} handleSetInputState={handleSetStartValue} content="Kwota początkowa" />
       </div>
       <div className='form__group'>
-        <Input inputState={duration} handleSetInputState={handleSetDuration} content="Czas trwania" />
+        <Input inputState={`${duration <= 0 || Number.isNaN(duration) ? "" : duration}`} handleSetInputState={handleSetDuration} content="Czas trwania" />
 
         <SelectInput handleSetSelectState={handleSetOptionDuration}>
           <SelectOption value=''>Podany</SelectOption>
@@ -53,7 +42,7 @@ const CompoundInterestForm = ({
 
         <div className='form__group'>
         
-          <Input inputState={interestRate} handleSetInputState={handleSetInterestRate} content="Roczne Oprocentowanie w %" />
+          <Input inputState={`${interestRate <= 0 || Number.isNaN(interestRate) ? "" : interestRate}`} handleSetInputState={handleSetInterestRate} content="Roczne Oprocentowanie w %" />
 
           <SelectInput handleSetSelectState={handleSetInterestCapitalization}>
             <SelectOption value=''>Kapitalizacja Oprocentowania</SelectOption>
