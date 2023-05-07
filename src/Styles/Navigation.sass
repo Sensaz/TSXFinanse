@@ -7,7 +7,7 @@ $navBG: #fcfcfc
 $hamburgerMenuBG: #383838
 $drobDownMenuBG: #dadada
 
-@mixin mainButton ($size: '--nomrmal') 
+@mixin mainButton ($size: '--nomrmal')
   background: $primary
   margin: 0 2% 0 auto
   padding: 10px 16px
@@ -46,6 +46,7 @@ $drobDownMenuBG: #dadada
       display: none
     &:hover
       color: $hoverFontColor
+      font-weight: 600
     &:focus-visible
       padding: 3px
   &__button
@@ -120,6 +121,7 @@ $drobDownMenuBG: #dadada
       text-decoration: none
       &:hover
         color: $hoverFontColor
+        font-weight: 600
 
 
 
@@ -159,6 +161,8 @@ $drobDownMenuBG: #dadada
       align-items: flex-start
     &__hamburger
       display: flex
+      z-index: 100
+      background: none
     &__logo
       width: 60px
   .dropdown

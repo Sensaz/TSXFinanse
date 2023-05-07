@@ -4,17 +4,28 @@ import Dropdown from "./DropDown.tsx";
 import DropDownItem from "./DropDownItem.tsx";
 import "../../Styles/Navigation.sass";
 import logo from '../../Img/logo.png'
+import {actions} from '../Global/globalStore.ts'
+import { useDispatch, useSelector } from "react-redux";
 
 const Navigation = () => {
-  const [flag, setFlag] = useState(false)
   const [isTimeValueOfMoneyDropdownOpen, setIsTimeValueOfMoneyDropdownOpen] = useState(false);
   const [isTimeCreditsDropdownOpen, setIsTimeCreditsDropdownOpen] = useState(false);
   const [isFinancialInstrumentsValuationDropdownOpen, setIsFinancialInstrumentsValuationDropdownOpen] = useState(false);
   const [isKnowledgeBaseDropdownOpen, setIsKnowledgeBaseDropdownOpen] = useState(false);
+  const flagState = useSelector((state: any) => state.flag)
+  const dispatch = useDispatch()
+  
+  const toggleFlag = () => {
+    dispatch(actions.toggledFlag())
+  }
 
+  const setFlagFalse = () => {
+    dispatch(actions.setFalseFlag())
+  }
+  
   const handleTimeValueOfMoneyDropdownOpen = (e: any) => {
     setIsTimeValueOfMoneyDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
@@ -22,7 +33,7 @@ const Navigation = () => {
 
   const handleTimeCreditsDropdownOpen = (e: any) => {
     setIsTimeCreditsDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
@@ -30,7 +41,7 @@ const Navigation = () => {
 
   const handleFinancialInstrumentsValuationDropdownOpen = (e: any) => {
     setIsFinancialInstrumentsValuationDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
@@ -38,7 +49,7 @@ const Navigation = () => {
 
   const handleKnowledgeBaseDropdownOpen = (e: any) => {
     setIsKnowledgeBaseDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlag(false)
+    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -135,7 +146,7 @@ const Navigation = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1091) {
-        setFlag(false)
+        setFlagFalse()
         setIsTimeValueOfMoneyDropdownOpen(false)
         setIsTimeCreditsDropdownOpen(false)
         setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -153,7 +164,7 @@ const Navigation = () => {
   
   const handleHamburgerToggleClass = () => {
     if (window.innerWidth <= 1090) {
-      setFlag(prev => !prev)
+      toggleFlag()
       setIsTimeValueOfMoneyDropdownOpen(false)
       setIsTimeCreditsDropdownOpen(false)
       setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -178,8 +189,8 @@ const Navigation = () => {
     <NavLink className={`navigation__link `} to='/home'>
       <img className="navigation__logo" src={logo} alt="logo" />
     </NavLink>
-      <ul className={`navigation__list ${flag && 'navigation__list--show'}`}>{links}
-        {flag && <li><button onClick={handleHamburgerToggleClass} className="navigation__button--small" >
+      <ul className={`navigation__list ${flagState && 'navigation__list--show'}`}>{links}
+        {flagState && <li><button onClick={handleHamburgerToggleClass} className="navigation__button--small" >
       <NavLink to='/UserProfil' className="navigation__link">
         <span className="navigation__button--custom-text">Zaloguj</span> 
       </NavLink>
@@ -191,9 +202,9 @@ const Navigation = () => {
       </NavLink>
       </button>
       <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
-        <span className={`navigation__hamburger--component ${flag && 'navigation__hamburger--component--open45'}`}></span> 
-        <span className={`navigation__hamburger--component ${flag && 'navigation__hamburger--component--hidden'}`}></span> 
-        <span className={`navigation__hamburger--component ${flag && 'navigation__hamburger--component--open-45'}`}></span> 
+        <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open45'}`}></span> 
+        <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--hidden'}`}></span> 
+        <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open-45'}`}></span> 
       </button>
   </div>
   )
