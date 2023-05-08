@@ -1,25 +1,25 @@
 import { ChangeEvent, useState, MouseEvent } from "react"
 import PresentValueOfAnAnnuityForm from "./PresentValueOfAnAnnuityForm.tsx"
 import ResultPresentTimeValueOfMoney from "../ResultPresentTimeValueOfMoney.tsx"
-import PresentValueOfAnAnnuityFunction from "./FunctionForTest"
+import presentValueOfAnAnnuityResults from "./FunctionForTest/presentValueOfAnAnnuityResults.ts"
 
 const PresentValueOfAnAnnuityCalculator = () => {
  // Oczekiwana Renta
- const [expectedAnnuity, setExpectedAnnuity] = useState("")
+ const [expectedAnnuity, setExpectedAnnuity] = useState(0)
  // Czas Trwania
- const [duration, setDuration] = useState("")
+ const [duration, setDuration] = useState(0)
  // Wymagana Stopa Zwrotu
- const [requiredInterestRate, setRequiredInterestRate] = useState("")
+ const [requiredInterestRate, setRequiredInterestRate] = useState(0)
 
  const handleSetExpectedAnnuity = (e: ChangeEvent<HTMLInputElement>) => {
-  setExpectedAnnuity(e.target.value)
+  setExpectedAnnuity(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
  }
  const handleSetDuration = (e: ChangeEvent<HTMLInputElement>) => {
-   setDuration(e.target.value)
+   setDuration(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
  }
 
  const handleSetRequiredInterestRate = (e: ChangeEvent<HTMLInputElement>) => {
-  setRequiredInterestRate(e.target.value)
+  setRequiredInterestRate(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
  }
 
 
@@ -53,7 +53,7 @@ const PresentValueOfAnAnnuityCalculator = () => {
  
  const compoundInterestCalculateResults = (e: MouseEvent<HTMLButtonElement>) => {
   e.preventDefault()
-  PresentValueOfAnAnnuityFunction(
+  presentValueOfAnAnnuityResults(
     expectedAnnuity,
     duration,
     requiredInterestRate,

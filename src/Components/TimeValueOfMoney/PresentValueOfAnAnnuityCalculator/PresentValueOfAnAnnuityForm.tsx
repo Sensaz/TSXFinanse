@@ -3,9 +3,9 @@ import '../../../Styles/Form.sass'
 import { Input, SelectInput, SelectOption  } from '../../Global'
 
 interface PresentValueOfASingleFlowCalculatorProps {
-  expectedAnnuity: string;
-  duration: string;
-  requiredInterestRate: string;
+  expectedAnnuity: number;
+  duration: number;
+  requiredInterestRate: number;
   handleSetExpectedAnnuity: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetRequiredInterestRate: (value: ChangeEvent<HTMLInputElement>) => void;
@@ -33,7 +33,7 @@ const PresentValueOfAnAnnuityForm = ({
     <form className="form">
 
       <div className='form__group'>
-        <Input inputState={expectedAnnuity} handleSetInputState={handleSetExpectedAnnuity} content="Oczekiwana Renta" />
+        <Input inputState={`${expectedAnnuity <= 0 || Number.isNaN(expectedAnnuity) ? "" : expectedAnnuity}`} handleSetInputState={handleSetExpectedAnnuity} content="Oczekiwana Renta" />
         <SelectInput handleSetSelectState={handleSetAnnuityRecived}>
           <SelectOption value=''>Renta otrzymywana z</SelectOption>
           <SelectOption value='AnnuityPaidInAdvance'>Góry</SelectOption>
@@ -41,7 +41,7 @@ const PresentValueOfAnAnnuityForm = ({
         </SelectInput>
       </div>
       <div className='form__group'>
-        <Input inputState={duration} handleSetInputState={handleSetDuration} content="Czas trwania" />
+        <Input inputState={`${duration <= 0 || Number.isNaN(duration) ? "" : duration}`} handleSetInputState={handleSetDuration} content="Czas trwania" />
 
         <SelectInput handleSetSelectState={handleSetOptionDuration}>
           <SelectOption value=''>Podany</SelectOption>
@@ -60,7 +60,7 @@ const PresentValueOfAnAnnuityForm = ({
 
         <div className='form__group'>
         
-          <Input inputState={requiredInterestRate} handleSetInputState={handleSetRequiredInterestRate} content="Wymagana Stopa zwrotu w %" />
+          <Input inputState={`${requiredInterestRate <= 0 || Number.isNaN(requiredInterestRate) ? "" : requiredInterestRate}`} handleSetInputState={handleSetRequiredInterestRate} content="Wymagana Stopa zwrotu w %" />
 
         </div>
 
