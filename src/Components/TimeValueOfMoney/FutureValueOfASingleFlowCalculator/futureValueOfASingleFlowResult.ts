@@ -53,7 +53,7 @@ const futureValueOfASingleFlowResult = (
 
   let accruedInterest = investmentResult - startValue
 
-  if (capitalization === 2.7182818284590452353602874713527) {
+  if (capitalization === 2.718281828459045) {
     investmentResult =
       startValue *
       Math.pow(capitalization, (interestRate / 1200) * resultDurationInMonths)

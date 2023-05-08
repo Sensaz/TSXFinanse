@@ -193,7 +193,7 @@ describe('capitalizationInThePeriod should correct object', () => {
   test('number 100 and ContinuousCapitalization', () => {
     expect(capitalizationInThePeriod(100, 'ContinuousCapitalization')).toEqual({
       result: 0.36787944117144233,
-      capitalization: 2.7182818284590452353602874713527,
+      capitalization: 2.718281828459045,
     })
   })
 })

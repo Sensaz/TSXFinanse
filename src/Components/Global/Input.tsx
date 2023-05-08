@@ -34,7 +34,7 @@ const Input = ({ inputType = 'number', content, inputRequired = true, inputState
 
   const spanContent = !inputState && inputRequired ? <span className='form__help-text--warn'>WYMAGANE</span> : null
 
-  const minInNumberInput = inputType === 'number' ? "1" : null
+  const minInNumberInput = inputType === 'number' ? "0.01" : null
 
 
   return (

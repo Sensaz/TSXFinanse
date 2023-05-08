@@ -12,7 +12,7 @@ const capitalizationInThePeriod = (
     QuarterlyCapitalization: 4,
     MonthlyCapitalization: 12,
     DailyCapitalization: 365,
-    ContinuousCapitalization: 2.7182818284590452353602874713527,
+    ContinuousCapitalization: 2.718281828459045,
   }
 
   const chceckInterestCapitalization = !Object.keys(

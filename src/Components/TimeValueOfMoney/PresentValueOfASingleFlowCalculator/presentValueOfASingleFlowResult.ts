@@ -54,9 +54,9 @@ const presentValueOfASingleFlowResult = (
 
   let accruedInterest = expectedFinalValue - presentValue
 
-  if (capitalization === 2.7182818284590452353602874713527) {
+  if (capitalization === 2.718281828459045) {
     presentValueMultiplier = Math.pow(
-      2.7182818284590452353602874713527,
+      2.718281828459045,
       -(resultDurationInMonths * (interestRate / 1200))
     )
     presentValue = expectedFinalValue * presentValueMultiplier
