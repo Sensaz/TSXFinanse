@@ -1,4 +1,4 @@
-import presentValueOfAnAnnuityResults from '../FunctionForTest/presentValueOfAnAnnuityResults.ts'
+import presentValueOfAnAnnuityResults from '../presentValueOfAnAnnuityResults.ts'
 const setResultCompoundInterestCalculate = jest.fn()
 
 describe('presentValueOfAnAnnuityResults should return three zeros when', () => {

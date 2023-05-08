@@ -1,4 +1,4 @@
-import capitalizationInThePeriod from '../FunctionForTest/capitalizationInThePeriod.ts'
+import capitalizationInThePeriod from '../capitalizationInThePeriod.ts'
 
 describe('capitalizationInThePeriod should return an object with a capitalization of 1 and result of 0', () => {
   test('NaN and empty string', () => {
@@ -13,37 +13,37 @@ describe('capitalizationInThePeriod should return an object with a capitalizatio
       capitalization: 0,
     })
   })
-  test('NaN and key string: AnnualCapitalization', () => {
+  test('NaN and empty key string: AnnualCapitalization', () => {
     expect(capitalizationInThePeriod(NaN, 'AnnualCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('NaN and key string: SemiAnnualCapitalization', () => {
+  test('NaN and empty key string: SemiAnnualCapitalization', () => {
     expect(capitalizationInThePeriod(NaN, 'SemiAnnualCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('NaN and key string: QuarterlyCapitalization', () => {
+  test('NaN and empty key string: QuarterlyCapitalization', () => {
     expect(capitalizationInThePeriod(NaN, 'QuarterlyCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('NaN and key string: MonthlyCapitalization', () => {
+  test('NaN and empty key string: MonthlyCapitalization', () => {
     expect(capitalizationInThePeriod(NaN, 'MonthlyCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('NaN and key string: DailyCapitalization', () => {
+  test('NaN and empty key string: DailyCapitalization', () => {
     expect(capitalizationInThePeriod(NaN, 'DailyCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('NaN and key string: ContinuousCapitalization', () => {
+  test('NaN and empty key string: ContinuousCapitalization', () => {
     expect(capitalizationInThePeriod(NaN, 'ContinuousCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
@@ -61,37 +61,37 @@ describe('capitalizationInThePeriod should return an object with a capitalizatio
       capitalization: 0,
     })
   })
-  test('zero and key string: AnnualCapitalization', () => {
+  test('zero and empty key string: AnnualCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'AnnualCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('zero and key string: SemiAnnualCapitalization', () => {
+  test('zero and empty key string: SemiAnnualCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'SemiAnnualCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('zero and key string: QuarterlyCapitalization', () => {
+  test('zero and empty key string: QuarterlyCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'QuarterlyCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('zero and key string: MonthlyCapitalization', () => {
+  test('zero and empty key string: MonthlyCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'MonthlyCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('zero and key string: DailyCapitalization', () => {
+  test('zero and empty key string: DailyCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'DailyCapitalization')).toEqual({
       result: 0,
       capitalization: 0,
     })
   })
-  test('zero and key string: ContinuousCapitalization', () => {
+  test('zero and empty key string: ContinuousCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'ContinuousCapitalization')).toEqual({
       result: 0,
       capitalization: 0,

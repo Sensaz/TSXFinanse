@@ -1,4 +1,4 @@
-import futureValueOfASingleFlowResult from '../FunctionForTest/futureValueOfASingleFlowResult'
+import futureValueOfASingleFlowResult from '../futureValueOfASingleFlowResult'
 const setResultfutureValueOfASingleFlowResult = jest.fn()
 
 describe('futureValueOfASingleFlowResult should return three zeros when', () => {

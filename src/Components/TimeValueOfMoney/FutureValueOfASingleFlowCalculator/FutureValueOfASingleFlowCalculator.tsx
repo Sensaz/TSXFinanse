@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
 import CompoundInterestForm from "./FutureValueOfASingleFlowForm.tsx";
 import ResultFutureTimeValueOfMoney from "../ResultFutureTimeValueOfMoney.tsx"
-import futureValueOfASingleFlowResult from "./FunctionForTest/futureValueOfASingleFlowResult.ts"
+import futureValueOfASingleFlowResult from "./futureValueOfASingleFlowResult.ts"
 
 
 const FutureValueOfASingleFlowCalculator = () => {

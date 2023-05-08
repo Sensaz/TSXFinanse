@@ -1,4 +1,4 @@
-import presentValueOfASingleFlowResult from '../FunctionForTest/presentValueOfASingleFlowResult'
+import presentValueOfASingleFlowResult from '../presentValueOfASingleFlowResult'
 const setResultpresentValueOfASingleFlowResult = jest.fn()
 
 describe('presentValueOfASingleFlowResult should return three zeros when', () => {

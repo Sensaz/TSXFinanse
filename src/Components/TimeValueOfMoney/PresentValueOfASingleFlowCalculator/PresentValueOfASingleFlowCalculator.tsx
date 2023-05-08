@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
 import PresentValueOfASingleFlowForm from "./PresentValueOfASingleFlowForm.tsx";
 import ResultPresentTimeValueOfMoney from "../ResultPresentTimeValueOfMoney.tsx"
-import presentValueOfASingleFlowResult from "./FunctionForTest/presentValueOfASingleFlowResult.ts"
+import presentValueOfASingleFlowResult from "./presentValueOfASingleFlowResult.ts"
 
 
 const PresentValueOfASingleFlowCalculator = () => {

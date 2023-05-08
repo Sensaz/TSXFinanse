@@ -1,4 +1,4 @@
-import durationInvestmentInMonth from '../FunctionForTest/durationInvestmentInMonth.ts'
+import durationInvestmentInMonth from '../durationInvestmentInMonth.ts'
 
 describe('durationInvestmentInMonth should return 0', () => {
   test('zero and empty string', () => {

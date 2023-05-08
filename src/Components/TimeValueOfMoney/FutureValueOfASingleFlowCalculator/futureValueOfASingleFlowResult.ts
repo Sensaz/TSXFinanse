@@ -1,5 +1,5 @@
-import capitalizationInThePeriod from './capitalizationInThePeriod'
-import durationInvestmentInMonth from './durationInvestmentInMonth'
+import capitalizationInThePeriod from '../SingleFlowFunctions/capitalizationInThePeriod.ts'
+import durationInvestmentInMonth from '../SingleFlowFunctions/durationInvestmentInMonth.ts'
 
 type ResultCompoundInterestCalculateType = {
   startValue: number
@@ -34,10 +34,6 @@ const futureValueOfASingleFlowResult = (
   if (
     startValue <= 0 ||
     isNaN(startValue) ||
-    duration <= 0 ||
-    isNaN(duration) ||
-    interestRate <= 0 ||
-    isNaN(interestRate) ||
     resultCapitalizationInThePeriod <= 0 ||
     capitalization <= 0 ||
     resultDurationInMonths <= 0

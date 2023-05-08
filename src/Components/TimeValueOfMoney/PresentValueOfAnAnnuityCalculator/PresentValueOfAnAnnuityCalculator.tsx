@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, MouseEvent } from "react"
 import PresentValueOfAnAnnuityForm from "./PresentValueOfAnAnnuityForm.tsx"
 import ResultPresentTimeValueOfMoney from "../ResultPresentTimeValueOfMoney.tsx"
-import presentValueOfAnAnnuityResults from "./FunctionForTest/presentValueOfAnAnnuityResults.ts"
+import presentValueOfAnAnnuityResults from "./presentValueOfAnAnnuityResults.ts"
 
 const PresentValueOfAnAnnuityCalculator = () => {
  // Oczekiwana Renta
