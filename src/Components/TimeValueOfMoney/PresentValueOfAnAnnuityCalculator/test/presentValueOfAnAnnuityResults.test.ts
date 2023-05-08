@@ -10,7 +10,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -27,7 +27,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -44,7 +44,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -63,7 +63,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -80,7 +80,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -97,7 +97,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -116,7 +116,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         NaN,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -133,7 +133,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         -20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -150,7 +150,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         0,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -169,7 +169,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         '',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -186,7 +186,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'kebab',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -205,7 +205,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         '',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -222,7 +222,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
         20,
         'AnnuityPaidInAdvance',
         'pizza',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -272,15 +272,15 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 })
 
 describe('presentValueOfAnAnnuityResults should return results when', () => {
-  describe('annuityRecived equal AnnuityPaidInAdvance and optionDuration equal DurationInMonths', () => {
-    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
+  describe('Annuity equal AnnuityPaidInAdvance and optionDuration equal DurationInMonths', () => {
+    test('annuityCapitalization equal AnnuityAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -290,14 +290,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 0,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuitySemiAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -307,14 +307,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: -4.263256414560601e-14,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
+    test('annuityCapitalization equal AnnuityQuarterly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -324,14 +324,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 14.058956916099646,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
+    test('annuityCapitalization equal AnnuityMonthly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 
@@ -343,15 +343,15 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
     })
   })
 
-  describe('annuityRecived equal AnnuityPaidInAdvance and optionDuration equal DurationInYears', () => {
-    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
+  describe('Annuity equal AnnuityPaidInAdvance and optionDuration equal DurationInYears', () => {
+    test('annuityCapitalization equal AnnuityAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInYears',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -361,14 +361,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 496.9033497339074,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuitySemiAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInYears',
-        'AnnuityRecivedSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -378,14 +378,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 1063.5079908265577,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
+    test('annuityCapitalization equal AnnuityQuarterly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInYears',
-        'AnnuityRecivedQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -395,14 +395,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 2198.2959328305833,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
+    test('annuityCapitalization equal AnnuityMonthly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPaidInAdvance',
         'DurationInYears',
-        'AnnuityRecivedMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 
@@ -414,15 +414,15 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
     })
   })
 
-  describe('annuityRecived equal AnnuityPayableInAdvance and optionDuration equal DurationInMonths', () => {
-    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
+  describe('Annuity equal AnnuityPayableInAdvance and optionDuration equal DurationInMonths', () => {
+    test('annuityCapitalization equal AnnuityAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -432,14 +432,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 0,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuitySemiAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -449,14 +449,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 9.090909090909065,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
+    test('annuityCapitalization equal AnnuityQuarterly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -466,14 +466,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 27.67519706295201,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
+    test('annuityCapitalization equal AnnuityMonthly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInMonths',
-        'AnnuityRecivedMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 
@@ -485,15 +485,15 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
     })
   })
 
-  describe('annuityRecived equal AnnuityPayableInAdvance and optionDuration equal DurationInYears', () => {
-    test('annuityCapitalization equal AnnuityRecivedAnnually', () => {
+  describe('Annuity equal AnnuityPayableInAdvance and optionDuration equal DurationInYears', () => {
+    test('annuityCapitalization equal AnnuityAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInYears',
-        'AnnuityRecivedAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -503,14 +503,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 580.7527914449229,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedSemiAnnually', () => {
+    test('annuityCapitalization equal AnnuitySemiAnnually', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInYears',
-        'AnnuityRecivedSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -520,14 +520,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 1148.6436280241435,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedQuarterly', () => {
+    test('annuityCapitalization equal AnnuityQuarterly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInYears',
-        'AnnuityRecivedQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -537,14 +537,14 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
         accruedInterest: 2284.0913646005556,
       })
     })
-    test('annuityCapitalization equal AnnuityRecivedMonthyly', () => {
+    test('annuityCapitalization equal AnnuityMonthly', () => {
       presentValueOfAnAnnuityResults(
         100,
         10,
         20,
         'AnnuityPayableInAdvance',
         'DurationInYears',
-        'AnnuityRecivedMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 

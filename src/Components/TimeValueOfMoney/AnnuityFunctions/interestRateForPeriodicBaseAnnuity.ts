@@ -7,10 +7,10 @@ const interestRateForPeriodicBaseAnnuity = (
   annuityPaymentFrequency: string
 ) => {
   const annuityPaymentFrequencyOptions: annuityPaymentFrequencyInterface = {
-    AnnuityRecivedAnnually: 1,
-    AnnuityRecivedSemiAnnually: 2,
-    AnnuityRecivedQuarterly: 4,
-    AnnuityRecivedMonthyly: 12,
+    AnnuityAnnually: 1,
+    AnnuitySemiAnnually: 2,
+    AnnuityQuarterly: 4,
+    AnnuityMonthly: 12,
   }
 
   const propsAnnuityPaymentFrequencyOptions =

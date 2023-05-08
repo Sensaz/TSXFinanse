@@ -54,10 +54,10 @@ const FutureValueOfAnAnnuityForm = ({
           </SelectInput>
           <SelectInput handleSetSelectState={handleSetAnnuityPaymentFrequency}>
             <SelectOption value=''>Renta płatna co</SelectOption>
-            <SelectOption value='AnnuityPaidAnnually'>Rok</SelectOption>
-            <SelectOption value='AnnuityPaidSemiAnnually'>Pół roku</SelectOption>
-            <SelectOption value='AnnuityPaidQuarterly'>Kwartał</SelectOption>
-            <SelectOption value='AnnuityPaidMonthyly'>Miesiąc</SelectOption>
+            <SelectOption value='AnnuityAnnually'>Rok</SelectOption>
+            <SelectOption value='AnnuitySemiAnnually'>Pół roku</SelectOption>
+            <SelectOption value='AnnuityQuarterly'>Kwartał</SelectOption>
+            <SelectOption value='AnnuityMonthly'>Miesiąc</SelectOption>
           </SelectInput>
         </div>
         <div className='form__group'>

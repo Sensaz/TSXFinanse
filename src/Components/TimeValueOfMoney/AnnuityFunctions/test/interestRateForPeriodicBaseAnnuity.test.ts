@@ -1,5 +1,5 @@
 // Roczne oprocentowanie renty / Renta płatna co
-import interestRateForPeriodicBaseAnnuity from '../FunctionForTest/interestRateForPeriodicBaseAnnuity.ts'
+import interestRateForPeriodicBaseAnnuity from '../interestRateForPeriodicBaseAnnuity.ts'
 
 describe('Function should result zero when', () => {
   test('interestRate is NaN', () => {
@@ -26,24 +26,24 @@ describe('Function should result zero when', () => {
 })
 
 describe('Function should result positive number when', () => {
-  test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
-    expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidAnnually')
-    ).toEqual(1)
+  test('annuityPaymentFrequency equal AnnuityAnnually', () => {
+    expect(interestRateForPeriodicBaseAnnuity(100, 'AnnuityAnnually')).toEqual(
+      1
+    )
   })
-  test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+  test('annuityPaymentFrequency equal AnnuitySemiAnnually', () => {
     expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidSemiAnnually')
+      interestRateForPeriodicBaseAnnuity(100, 'AnnuitySemiAnnually')
     ).toEqual(0.5)
   })
-  test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
-    expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidQuarterly')
-    ).toEqual(0.25)
+  test('annuityPaymentFrequency equal AnnuityQuarterly', () => {
+    expect(interestRateForPeriodicBaseAnnuity(100, 'AnnuityQuarterly')).toEqual(
+      0.25
+    )
   })
-  test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
-    expect(
-      interestRateForPeriodicBaseAnnuity(100, 'AnnuityPaidMonthyly')
-    ).toEqual(0.08333333333333334)
+  test('annuityPaymentFrequency equal AnnuityMonthly', () => {
+    expect(interestRateForPeriodicBaseAnnuity(100, 'AnnuityMonthly')).toEqual(
+      0.08333333333333334
+    )
   })
 })

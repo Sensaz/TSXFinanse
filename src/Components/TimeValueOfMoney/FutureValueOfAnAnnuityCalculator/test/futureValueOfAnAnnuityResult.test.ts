@@ -273,14 +273,14 @@ describe('futureValueOfAnAnnuityResult should return three zeros when', () => {
 
 describe('futureValueOfAnAnnuityResult should return results when', () => {
   describe('optionDuration equal DurationInMonths and annuityPaymentOption equal AnnuityPaidInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuityAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -290,14 +290,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 31.000000000000227,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuitySemiAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -307,14 +307,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 80.19128125000077,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityPaymentFrequency equal AnnuityQuarterly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -324,14 +324,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 148.34663120506207,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityPaymentFrequency equal AnnuityMonthly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 
@@ -344,14 +344,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
   })
 
   describe('optionDuration equal DurationInYears and annuityPaymentOption equal AnnuityPaidInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuityAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -361,14 +361,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 15094.342495775094,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuitySemiAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -378,14 +378,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 31126.29037765829,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityPaymentFrequency equal AnnuityQuarterly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -396,14 +396,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
       })
     })
 
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityPaymentFrequency equal AnnuityMonthly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPaidInAdvance',
-        'AnnuityPaidMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 
@@ -416,14 +416,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
   })
 
   describe('optionDuration equal DurationInMonths and annuityPaymentOption equal AnnuityPayableInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuityAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -433,14 +433,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 10.000000000000199,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuitySemiAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -450,14 +450,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 52.563125000000696,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityPaymentFrequency equal AnnuityQuarterly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -467,14 +467,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 120.33817678542664,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityPaymentFrequency equal AnnuityMonthly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInMonths',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 
@@ -487,14 +487,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
   })
 
   describe('optionDuration equal DurationInYears and annuityPaymentOption equal AnnuityPayableInAdvance', () => {
-    test('annuityPaymentFrequency equal AnnuityPaidAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuityAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidAnnually',
+        'AnnuityAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -504,14 +504,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 13449.402268886446,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidSemiAnnually', () => {
+    test('annuityPaymentFrequency equal AnnuitySemiAnnually', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidSemiAnnually',
+        'AnnuitySemiAnnually',
         setResultCompoundInterestCalculate
       )
 
@@ -521,14 +521,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
         accruedInterest: 29358.37178824599,
       })
     })
-    test('annuityPaymentFrequency equal AnnuityPaidQuarterly', () => {
+    test('annuityPaymentFrequency equal AnnuityQuarterly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidQuarterly',
+        'AnnuityQuarterly',
         setResultCompoundInterestCalculate
       )
 
@@ -539,14 +539,14 @@ describe('futureValueOfAnAnnuityResult should return results when', () => {
       })
     })
 
-    test('annuityPaymentFrequency equal AnnuityPaidMonthyly', () => {
+    test('annuityPaymentFrequency equal AnnuityMonthly', () => {
       futureValueOfAnAnnuityResult(
         100,
         30,
         10,
         'DurationInYears',
         'AnnuityPayableInAdvance',
-        'AnnuityPaidMonthyly',
+        'AnnuityMonthly',
         setResultCompoundInterestCalculate
       )
 

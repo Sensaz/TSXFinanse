@@ -51,10 +51,10 @@ const PresentValueOfAnAnnuityForm = ({
 
         <SelectInput handleSetSelectState={handleSetAnnuityCapitalization}>
           <SelectOption value=''>Renta otrzymywana co</SelectOption>
-          <SelectOption value='AnnuityRecivedAnnually'>Rok</SelectOption>
-          <SelectOption value='AnnuityRecivedSemiAnnually'>Pół roku</SelectOption>
-          <SelectOption value='AnnuityRecivedQuarterly'>Kwartał</SelectOption>
-          <SelectOption value='AnnuityRecivedMonthyly'>Miesiąc</SelectOption>
+          <SelectOption value='AnnuityAnnually'>Rok</SelectOption>
+          <SelectOption value='AnnuitySemiAnnually'>Pół roku</SelectOption>
+          <SelectOption value='AnnuityQuarterly'>Kwartał</SelectOption>
+          <SelectOption value='AnnuityMonthly'>Miesiąc</SelectOption>
         </SelectInput>
         </div>
 

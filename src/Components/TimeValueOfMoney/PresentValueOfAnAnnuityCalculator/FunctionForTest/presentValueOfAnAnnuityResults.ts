@@ -1,8 +1,8 @@
-import interestRateForPeriodicBaseAnnuity from './interestRateForPeriodicBaseAnnuity'
+import interestRateForPeriodicBaseAnnuity from '../../AnnuityFunctions/interestRateForPeriodicBaseAnnuity.ts'
 // parseRequiredInterestRate: number,
 // annuityCapitalization: string
 
-import numberOfAnnuityPeriods from './numberOfAnnuityPeriods'
+import numberOfAnnuityPeriods from '../../AnnuityFunctions/numberOfAnnuityPeriods.ts'
 // parseDuration: number,
 // optionDuration: string,
 // annuityCapitalization: string
@@ -14,12 +14,12 @@ type ResultCompoundInterestCalculateType = {
 }
 
 const presentValueOfAnAnnuityResults = (
-  expectedAnnuity: number, // Oczekiwana renta
-  duration: number, // Czas Trwania
-  requiredInterestRate: number, // Wymagana Stopa zwrotu
-  annuityRecived: string, // Renta Otrzymywana z
-  optionDuration: string, // Czas Trwania podany w
-  annuityCapitalization: string, // Renta otrzymywana co
+  expectedAnnuity: number,
+  duration: number,
+  requiredInterestRate: number,
+  annuityRecived: string,
+  optionDuration: string,
+  annuityCapitalization: string,
   setResultCompoundInterestCalculate: (
     resultCompoundInterestCalculate: ResultCompoundInterestCalculateType
   ) => void
