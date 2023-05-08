@@ -3,9 +3,9 @@ import '../../../Styles/Form.sass'
 import { Input, SelectInput, SelectOption  } from '../../Global'
 
 interface PresentValueOfASingleFlowCalculatorProps {
-  expectedFinalValue: string;
-  duration: string;
-  interestRate: string;
+  expectedFinalValue: number;
+  duration: number;
+  interestRate: number;
   handleSetStartValue: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetInterestRate: (value: ChangeEvent<HTMLInputElement>) => void;
@@ -31,10 +31,10 @@ const PresentValueOfASingleFlowForm = ({
     <form className="form">
 
       <div className='form__group'>
-        <Input inputState={expectedFinalValue} handleSetInputState={handleSetStartValue} content="Oczekiwana Wartość Końcowa" />
+        <Input inputState={`${expectedFinalValue <= 0 || Number.isNaN(expectedFinalValue) ? "" : expectedFinalValue}`} handleSetInputState={handleSetStartValue} content="Oczekiwana Wartość Końcowa" />
       </div>
       <div className='form__group'>
-        <Input inputState={duration} handleSetInputState={handleSetDuration} content="Czas trwania" />
+        <Input inputState={`${duration <= 0 || Number.isNaN(duration) ? "" : duration}`} handleSetInputState={handleSetDuration} content="Czas trwania" />
 
         <SelectInput handleSetSelectState={handleSetOptionDuration}>
           <SelectOption value=''>Podany</SelectOption>
@@ -45,7 +45,7 @@ const PresentValueOfASingleFlowForm = ({
 
         <div className='form__group'>
         
-          <Input inputState={interestRate} handleSetInputState={handleSetInterestRate} content="Wymagana Stopa zwrotu w %" />
+          <Input inputState={`${interestRate <= 0 || Number.isNaN(interestRate) ? "" : interestRate}`} handleSetInputState={handleSetInterestRate} content="Wymagana Stopa zwrotu w %" />
 
           <SelectInput handleSetSelectState={handleSetInterestCapitalization}>
             <SelectOption value=''>Kapitalizacja Stopy Zwrotu</SelectOption>

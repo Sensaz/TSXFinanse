@@ -1,26 +1,26 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
 import PresentValueOfASingleFlowForm from "./PresentValueOfASingleFlowForm.tsx";
 import ResultPresentTimeValueOfMoney from "../ResultPresentTimeValueOfMoney.tsx"
-import presentValueCalculate from "./FunctionForTest/presentValueCalculate.ts"
+import presentValueOfASingleFlowResult from "./FunctionForTest/presentValueOfASingleFlowResult.ts"
 
 
 const PresentValueOfASingleFlowCalculator = () => {
   // Oczekiwana wartość końcowa
-  const [expectedFinalValue, setStartValue] = useState("")
+  const [expectedFinalValue, setStartValue] = useState(0)
   // Czas Trwania
-  const [duration, setDuration] = useState("")
+  const [duration, setDuration] = useState(0)
   // Oczekiwane oprocentowanie
-  const [interestRate, setInterestRate] = useState("")
+  const [interestRate, setInterestRate] = useState(0)
 
   const handleSetStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartValue(e.target.value)
+    setStartValue(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
   const handleSetDuration = (e: ChangeEvent<HTMLInputElement>) => {
-    setDuration(e.target.value)
+    setDuration(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
 
   const handleSetInterestRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setInterestRate(e.target.value)
+    setInterestRate(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
 
 
@@ -41,13 +41,13 @@ const PresentValueOfASingleFlowCalculator = () => {
   
   const [resultCompoundInterestCalculate, setResultCompoundInterestCalculate] = useState({
     presentValue: 0,
-    parsedExpectedFinalValue: 0,
+    expectedFinalValue: 0,
     accruedInterest: 0
   })
   
   const compoundInterestCalculateResults = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    presentValueCalculate(
+    presentValueOfASingleFlowResult(
       expectedFinalValue,
       duration,
       interestRate,
@@ -72,8 +72,8 @@ const PresentValueOfASingleFlowCalculator = () => {
         calculate={compoundInterestCalculateResults}
       />
       <ResultPresentTimeValueOfMoney
-        investmentResult={resultCompoundInterestCalculate.presentValue}
-        parsedExpectedFinalValue={resultCompoundInterestCalculate.parsedExpectedFinalValue}
+        presentValue={resultCompoundInterestCalculate.presentValue}
+        nominalValue={resultCompoundInterestCalculate.expectedFinalValue}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />
     </div>

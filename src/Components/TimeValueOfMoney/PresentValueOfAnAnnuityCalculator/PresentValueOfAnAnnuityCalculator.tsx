@@ -47,7 +47,7 @@ const PresentValueOfAnAnnuityCalculator = () => {
  
  const [resultCompoundInterestCalculate, setResultCompoundInterestCalculate] = useState({
    presentValue: 0,
-   parsedExpectedFinalValue: 0,
+   nominalValue: 0,
    accruedInterest: 0
  })
  
@@ -79,8 +79,8 @@ const PresentValueOfAnAnnuityCalculator = () => {
         calculate={compoundInterestCalculateResults}
       />
       <ResultPresentTimeValueOfMoney
-        investmentResult={resultCompoundInterestCalculate.presentValue}
-        parsedExpectedFinalValue={resultCompoundInterestCalculate.parsedExpectedFinalValue}
+        presentValue={resultCompoundInterestCalculate.presentValue}
+        nominalValue={resultCompoundInterestCalculate.nominalValue}
         accruedInterest={resultCompoundInterestCalculate.accruedInterest}
       />
     </div>

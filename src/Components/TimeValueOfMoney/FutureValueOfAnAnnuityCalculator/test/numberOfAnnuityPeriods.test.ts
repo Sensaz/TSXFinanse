@@ -3,6 +3,11 @@
 import numberOfAnnuityPeriods from '../FunctionForTest/numberOfAnnuityPeriods.ts'
 
 describe('Function should result zero when', () => {
+  test('duration is NaN', () => {
+    expect(
+      numberOfAnnuityPeriods(NaN, 'DurationInMonths', 'AnnuityPaidAnnually')
+    ).toEqual(0)
+  })
   test('duration equal 0', () => {
     expect(
       numberOfAnnuityPeriods(0, 'DurationInMonths', 'AnnuityPaidAnnually')

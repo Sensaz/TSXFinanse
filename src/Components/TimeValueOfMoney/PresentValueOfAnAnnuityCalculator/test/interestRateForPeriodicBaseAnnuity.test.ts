@@ -2,6 +2,11 @@
 import interestRateForPeriodicBaseAnnuity from '../FunctionForTest/interestRateForPeriodicBaseAnnuity.ts'
 
 describe('Function should result zero when', () => {
+  test('interestRate is NaN', () => {
+    expect(
+      interestRateForPeriodicBaseAnnuity(NaN, 'AnnuityPaidAnnually')
+    ).toEqual(0)
+  })
   test('interestRate equal 0', () => {
     expect(
       interestRateForPeriodicBaseAnnuity(0, 'AnnuityPaidAnnually')

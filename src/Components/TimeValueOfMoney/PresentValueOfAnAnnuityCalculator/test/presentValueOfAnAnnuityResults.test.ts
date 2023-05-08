@@ -16,7 +16,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -33,7 +33,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -50,7 +50,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -69,7 +69,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -86,7 +86,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -103,7 +103,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -122,7 +122,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -139,7 +139,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -156,7 +156,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -175,7 +175,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -192,7 +192,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -211,7 +211,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -228,7 +228,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -247,7 +247,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -264,7 +264,7 @@ describe('presentValueOfAnAnnuityResults should return three zeros when', () => 
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -286,7 +286,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -303,7 +303,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 100.00000000000004,
-        parsedExpectedFinalValue: 100,
+        nominalValue: 100,
         accruedInterest: -4.263256414560601e-14,
       })
     })
@@ -320,7 +320,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 285.94104308390035,
-        parsedExpectedFinalValue: 300,
+        nominalValue: 300,
         accruedInterest: 14.058956916099646,
       })
     })
@@ -337,7 +337,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 929.3637243806894,
-        parsedExpectedFinalValue: 1000,
+        nominalValue: 1000,
         accruedInterest: 70.6362756193106,
       })
     })
@@ -357,7 +357,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 503.0966502660926,
-        parsedExpectedFinalValue: 1000,
+        nominalValue: 1000,
         accruedInterest: 496.9033497339074,
       })
     })
@@ -374,7 +374,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 936.4920091734423,
-        parsedExpectedFinalValue: 2000,
+        nominalValue: 2000,
         accruedInterest: 1063.5079908265577,
       })
     })
@@ -391,7 +391,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 1801.704067169417,
-        parsedExpectedFinalValue: 4000,
+        nominalValue: 4000,
         accruedInterest: 2198.2959328305833,
       })
     })
@@ -408,7 +408,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 5260.733902899707,
-        parsedExpectedFinalValue: 12000,
+        nominalValue: 12000,
         accruedInterest: 6739.266097100293,
       })
     })
@@ -428,7 +428,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 0,
-        parsedExpectedFinalValue: 0,
+        nominalValue: 0,
         accruedInterest: 0,
       })
     })
@@ -445,7 +445,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 90.90909090909093,
-        parsedExpectedFinalValue: 100,
+        nominalValue: 100,
         accruedInterest: 9.090909090909065,
       })
     })
@@ -462,7 +462,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 272.324802937048,
-        parsedExpectedFinalValue: 300,
+        nominalValue: 300,
         accruedInterest: 27.67519706295201,
       })
     })
@@ -479,7 +479,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 914.1282534892027,
-        parsedExpectedFinalValue: 1000,
+        nominalValue: 1000,
         accruedInterest: 85.87174651079727,
       })
     })
@@ -499,7 +499,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 419.2472085550771,
-        parsedExpectedFinalValue: 1000,
+        nominalValue: 1000,
         accruedInterest: 580.7527914449229,
       })
     })
@@ -516,7 +516,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 851.3563719758565,
-        parsedExpectedFinalValue: 2000,
+        nominalValue: 2000,
         accruedInterest: 1148.6436280241435,
       })
     })
@@ -533,7 +533,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 1715.9086353994446,
-        parsedExpectedFinalValue: 4000,
+        nominalValue: 4000,
         accruedInterest: 2284.0913646005556,
       })
     })
@@ -550,7 +550,7 @@ describe('presentValueOfAnAnnuityResults should return results when', () => {
 
       expect(setResultCompoundInterestCalculate).toHaveBeenCalledWith({
         presentValue: 5174.4923635079085,
-        parsedExpectedFinalValue: 12000,
+        nominalValue: 12000,
         accruedInterest: 6825.5076364920915,
       })
     })

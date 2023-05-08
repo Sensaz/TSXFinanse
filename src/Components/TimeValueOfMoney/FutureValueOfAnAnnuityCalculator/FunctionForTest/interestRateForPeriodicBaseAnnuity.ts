@@ -16,7 +16,12 @@ const interestRateForPeriodicBaseAnnuity = (
   const propsAnnuityPaymentFrequencyOptions =
     annuityPaymentFrequencyOptions[annuityPaymentFrequency]
 
-  if (interestRate <= 0 || !propsAnnuityPaymentFrequencyOptions) return 0
+  if (
+    interestRate <= 0 ||
+    isNaN(interestRate) ||
+    !propsAnnuityPaymentFrequencyOptions
+  )
+    return 0
 
   return interestRate / propsAnnuityPaymentFrequencyOptions / 100
 }

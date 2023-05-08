@@ -1,112 +1,160 @@
 import capitalizationInThePeriod from '../FunctionForTest/capitalizationInThePeriod.ts'
 
 describe('capitalizationInThePeriod should return an object with a capitalization of 1 and result of 0', () => {
+  test('NaN and empty string', () => {
+    expect(capitalizationInThePeriod(NaN, '')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty random string', () => {
+    expect(capitalizationInThePeriod(NaN, '12fdsfs33')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty key string: AnnualCapitalization', () => {
+    expect(capitalizationInThePeriod(NaN, 'AnnualCapitalization')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty key string: SemiAnnualCapitalization', () => {
+    expect(capitalizationInThePeriod(NaN, 'SemiAnnualCapitalization')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty key string: QuarterlyCapitalization', () => {
+    expect(capitalizationInThePeriod(NaN, 'QuarterlyCapitalization')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty key string: MonthlyCapitalization', () => {
+    expect(capitalizationInThePeriod(NaN, 'MonthlyCapitalization')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty key string: DailyCapitalization', () => {
+    expect(capitalizationInThePeriod(NaN, 'DailyCapitalization')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
+  test('NaN and empty key string: ContinuousCapitalization', () => {
+    expect(capitalizationInThePeriod(NaN, 'ContinuousCapitalization')).toEqual({
+      result: 0,
+      capitalization: 0,
+    })
+  })
   test('zero and empty string', () => {
     expect(capitalizationInThePeriod(0, '')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty random string', () => {
     expect(capitalizationInThePeriod(0, '12fdsfs33')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty key string: AnnualCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'AnnualCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty key string: SemiAnnualCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'SemiAnnualCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty key string: QuarterlyCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'QuarterlyCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty key string: MonthlyCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'MonthlyCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty key string: DailyCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'DailyCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('zero and empty key string: ContinuousCapitalization', () => {
     expect(capitalizationInThePeriod(0, 'ContinuousCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and empty string', () => {
     expect(capitalizationInThePeriod(-55, '')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and random string', () => {
     expect(capitalizationInThePeriod(-55, 'fdsafsfdsa')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and key string: AnnualCapitalization', () => {
     expect(capitalizationInThePeriod(-55, 'AnnualCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and key string: SemiAnnualCapitalization', () => {
     expect(capitalizationInThePeriod(-55, 'SemiAnnualCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and key string: QuarterlyCapitalization', () => {
     expect(capitalizationInThePeriod(-55, 'QuarterlyCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and key string: MonthlyCapitalization', () => {
     expect(capitalizationInThePeriod(-55, 'MonthlyCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and key string: DailyCapitalization', () => {
     expect(capitalizationInThePeriod(-55, 'DailyCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('negative number and key string: ContinuousCapitalization', () => {
     expect(capitalizationInThePeriod(-55, 'ContinuousCapitalization')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('positive number and empty string', () => {
     expect(capitalizationInThePeriod(42, '')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
   test('positive number and random string', () => {
     expect(capitalizationInThePeriod(42, 'fdfasfasff')).toEqual({
       result: 0,
-      capitalization: 1,
+      capitalization: 0,
     })
   })
 })

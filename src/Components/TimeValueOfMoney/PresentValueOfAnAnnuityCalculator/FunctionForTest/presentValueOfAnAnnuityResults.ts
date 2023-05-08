@@ -9,7 +9,7 @@ import numberOfAnnuityPeriods from './numberOfAnnuityPeriods'
 
 type ResultCompoundInterestCalculateType = {
   presentValue: number
-  parsedExpectedFinalValue: number
+  nominalValue: number
   accruedInterest: number
 }
 
@@ -20,7 +20,7 @@ const presentValueOfAnAnnuityResults = (
   annuityRecived: string, // Renta Otrzymywana z
   optionDuration: string, // Czas Trwania podany w
   annuityCapitalization: string, // Renta otrzymywana co
-  propsSetResultCompoundInterestCalculate: (
+  setResultCompoundInterestCalculate: (
     resultCompoundInterestCalculate: ResultCompoundInterestCalculateType
   ) => void
 ) => {
@@ -43,9 +43,9 @@ const presentValueOfAnAnnuityResults = (
     (annuityRecived !== 'AnnuityPaidInAdvance' &&
       annuityRecived !== 'AnnuityPayableInAdvance')
   )
-    return propsSetResultCompoundInterestCalculate({
+    return setResultCompoundInterestCalculate({
       presentValue: 0,
-      parsedExpectedFinalValue: 0,
+      nominalValue: 0,
       accruedInterest: 0,
     })
 
@@ -60,7 +60,7 @@ const presentValueOfAnAnnuityResults = (
 
   let presentValue = expectedAnnuity * presentValueOfAnAnnuityMultiplier
 
-  let parsedExpectedFinalValue = expectedAnnuity * numberOfAnnuityPeriodsResult
+  let nominalValue = expectedAnnuity * numberOfAnnuityPeriodsResult
 
   let accruedInterest =
     expectedAnnuity * numberOfAnnuityPeriodsResult - presentValue
@@ -71,21 +71,21 @@ const presentValueOfAnAnnuityResults = (
       (1 + interestRateForPeriodicBaseAnnuityResult) *
       presentValueOfAnAnnuityMultiplier
 
-    parsedExpectedFinalValue = expectedAnnuity * numberOfAnnuityPeriodsResult
+    nominalValue = expectedAnnuity * numberOfAnnuityPeriodsResult
 
     accruedInterest =
       expectedAnnuity * numberOfAnnuityPeriodsResult - presentValue
 
-    return propsSetResultCompoundInterestCalculate({
+    return setResultCompoundInterestCalculate({
       presentValue,
-      parsedExpectedFinalValue,
+      nominalValue,
       accruedInterest,
     })
   }
 
-  return propsSetResultCompoundInterestCalculate({
+  return setResultCompoundInterestCalculate({
     presentValue,
-    parsedExpectedFinalValue,
+    nominalValue,
     accruedInterest,
   })
 }

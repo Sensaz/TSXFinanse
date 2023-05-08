@@ -28,8 +28,6 @@ const futureValueOfAnnuityFunction = (
   )
   if (
     propsPensionAmount <= 0 ||
-    duration <= 0 ||
-    interestRate <= 0 ||
     annuityPaymentOption === '' ||
     resultInterestRateForPeriodicBaseAnnuity <= 0 ||
     resultNumberOfAnnuityPeriods <= 0

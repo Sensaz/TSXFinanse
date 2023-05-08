@@ -3,8 +3,8 @@ type annuityPaymentFrequencyInterface = {
 }
 
 function isValidDurationOption(
-  optionDuration: string,
   duration: number,
+  optionDuration: string,
   annuityPaymentFrequency: string
 ) {
   const validDurationOptions = ['DurationInMonths', 'DurationInYears']
@@ -17,6 +17,7 @@ function isValidDurationOption(
 
   return (
     duration > 0 &&
+    !isNaN(duration) &&
     validDurationOptions.includes(optionDuration) &&
     validAnnuityPaymentFrequencies.includes(annuityPaymentFrequency)
   )
@@ -27,7 +28,7 @@ const numberOfAnnuityPeriods = (
   optionDuration: string,
   annuityPaymentFrequency: string
 ) => {
-  if (!isValidDurationOption(optionDuration, duration, annuityPaymentFrequency))
+  if (!isValidDurationOption(duration, optionDuration, annuityPaymentFrequency))
     return 0
 
   let propertiesDuration = duration
