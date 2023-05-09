@@ -32,7 +32,6 @@ const Navigation = () => {
       setFlagFalse();
     }
 
-    console.log(target.className);
     setIsTimeCreditsDropdownOpen(false);
     setIsFinancialInstrumentsValuationDropdownOpen(false);
     setIsKnowledgeBaseDropdownOpen(false);
@@ -165,13 +164,16 @@ const Navigation = () => {
       setIsKnowledgeBaseDropdownOpen(false)
       setShowPhoneButton(false)
     } else setShowPhoneButton(true)
-    
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [window.innerWidth]);
+  }, [window.innerWidth, flagState]);
   
+  flagState ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
+  
+
   const handleHamburgerToggleClass = () => {
     if (window.innerWidth <= 1090) toggleFlag()
     setIsTimeValueOfMoneyDropdownOpen(false)

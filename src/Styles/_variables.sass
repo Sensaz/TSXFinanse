@@ -7,7 +7,8 @@ $primary: ("normal": #2196f3, "hover": #228fe9)
 $fontColor: ("normal": #2e2e2e, "hover": #010101, "light": #eeeeee, "lightHover": #ee9828)
 
 
-$smallDevice: 1090px
+$tablet: 1090px
+$phone: 400px
 
 @mixin flexCenter($justify: flex-start, $align: stretch,$direction: row)
   display: flex
@@ -15,6 +16,10 @@ $smallDevice: 1090px
   align-items: $align
   flex-direction: $direction
   
-@mixin smallDevice
-  @media (max-width: $smallDevice)
+@mixin tablet
+  @media (max-width: $tablet)
+    @content
+
+@mixin phone
+  @media (max-width: $phone)
     @content

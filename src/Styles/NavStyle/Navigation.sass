@@ -27,21 +27,24 @@
     list-style-type: none
     margin: 0
     padding: 0
-    @include smallDevice
+    @include tablet
       @include flexCenter($align: flex-start, $direction: column)
-      position: absolute
+      position: fixed
       background: $hamburgerMenuBG
-      min-height: 100vh
+      height: 100%
       top: 0
       transition: .3s ease-out left
       z-index: 100
       left: -400px
-      min-width: 300px
+      min-width: 310px
+      overflow-y: auto
       &--show
         left: 0
+      @include phone 
+        width: 100vw
   &__item
     margin-left: 15px
-    @include smallDevice
+    @include tablet
       margin: 7px 30px
       &:nth-child(1)
         margin-top: 25px
@@ -54,29 +57,31 @@
       color: map-get($fontColor, hover)
     &:focus-visible
       padding: 3px
-    @include smallDevice
+    @include tablet
       color: map-get($fontColor, light)
       transition: .1s linear color
       &:hover
         color: map-get($fontColor, lightHover)
   &__button
     @include mainButton
-    @include smallDevice
+    @include tablet
       display: none
       &--small
         @include mainButton('--small')
   &__hamburger
     @include flexCenter($justify: center, $direction: column)
     display: none
-    margin: 0 5% 0 auto
+    margin: 0 30px 0 auto
     width: 60px
     background: $navBG
     border: none
     cursor: pointer
-    @include smallDevice
+    @include tablet
       @include flexCenter($direction: column)
       z-index: 100
       background: none
+      @include phone 
+        margin: 0 20px 0 auto
     &--component
       width: 100%
       background-color: map-get($fontColor, hover)
@@ -97,7 +102,7 @@
   &__logo
     width: 50px
     margin-left: 40px
-    @include smallDevice
+    @include tablet
       width: 60px
   &__dropdown 
     position: relative
@@ -110,7 +115,7 @@
       &--top
         border-bottom: 5px solid map-get($fontColor, hover)
         transform: rotateX(180deg)
-      @include smallDevice
+      @include tablet
         border-bottom: 5px solid map-get($fontColor, light)
         &--top
           border-bottom: 5px solid map-get($fontColor, lightHover)
@@ -129,7 +134,7 @@
           color: map-get($fontColor, hover)
       &:hover .navigation__dropdown-arrow
           border-bottom: 5px solid map-get($fontColor, hover)
-      @include smallDevice
+      @include tablet
         background: none
         color: map-get($fontColor, light)
         &:hover
@@ -147,7 +152,7 @@
       top: 25px
       left: 0
       border-radius: 5px
-      @include smallDevice
+      @include tablet
         position: relative
         max-width: 230px
         top: 10px
