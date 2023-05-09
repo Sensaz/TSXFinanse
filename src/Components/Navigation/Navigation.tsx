@@ -165,13 +165,17 @@ const Navigation = () => {
       setShowPhoneButton(false)
     } else setShowPhoneButton(true)
 
+    if (windowWidth <= 1090) {
+      flagState ? document.body.style.overflow = 'hidden' : document.body.style.overflowY = 'auto'
+      console.log('mamy to');
+    }
+    
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [window.innerWidth, flagState]);
   
-  flagState ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
   
 
   const handleHamburgerToggleClass = () => {
