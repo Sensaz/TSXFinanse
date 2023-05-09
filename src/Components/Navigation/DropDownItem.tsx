@@ -1,20 +1,20 @@
-import { MouseEventHandler, ReactNode } from 'react'
+import { ReactNode, MouseEvent } from 'react'
 import { NavLink, To } from 'react-router-dom'
 
 
 interface MyComponentProps {
-  click: MouseEventHandler<HTMLAnchorElement>;
+  click: (value: MouseEvent<HTMLButtonElement>) => void;
   path: To;
   children: ReactNode;
 }
 
 
 const DropDownItem = ({ click, path, children }: MyComponentProps) => {
-  
+
 
   return (
-    <li className="dropdown__item">
-      <NavLink onClick={click} className="dropdown__item--lowerLevel" to={path}>{children}</NavLink>
+    <li className="navigation__dropdown-item">
+      <NavLink onClick={click} className="navigation__dropdown-link" to={path}>{children}</NavLink>
     </li>
   )
 }

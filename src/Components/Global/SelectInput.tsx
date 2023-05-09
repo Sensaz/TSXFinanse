@@ -19,7 +19,7 @@ const SelectOption = ({ value = '', children }: SelectOptionProps) => {
   const isTitle = value === ''
 
   return (
-    <option value={value} selected={isTitle} disabled={isTitle} className='form__option'>
+    <option value={value} className={`form__option ${isTitle ? 'form__option--disabled': ''}`}>
       {children}
     </option>
   );

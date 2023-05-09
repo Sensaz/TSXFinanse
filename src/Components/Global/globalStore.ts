@@ -1,8 +1,12 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
+interface NavigationTogglerState {
+  flag: boolean
+}
+
 const navigationToggler = createSlice({
   name: 'navigationToggler',
-  initialState: { flag: false },
+  initialState: { flag: false } as NavigationTogglerState,
   reducers: {
     setFalseFlag(state) {
       state.flag = false

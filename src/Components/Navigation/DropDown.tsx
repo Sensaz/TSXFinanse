@@ -1,10 +1,8 @@
-import { MouseEventHandler, ReactElement, ReactNode } from 'react';
-import arrowDropDown from '../../Img/arrow_drop_down.svg'
-import arrowDropUp from '../../Img/arrow_drop_up.svg'
+import { ReactElement, ReactNode, MouseEvent } from 'react';
 
 
 interface MyComponentProps {
-  click: MouseEventHandler<HTMLButtonElement>;
+  click: (value: MouseEvent<HTMLButtonElement>) => void;
   isOpen: boolean;
   title: ReactNode;
   children: ReactElement<any>;
@@ -12,12 +10,17 @@ interface MyComponentProps {
 
 const Dropdown = ({ isOpen, click, title, children }:MyComponentProps) => {
 
-  const swapArrow = isOpen ? <img className="dropdown__arrow" src={arrowDropUp} alt="Arrow Drop Up" /> : <img className="dropdown__arrow" src={arrowDropDown} alt="Arrow Drop Down" /> 
+  const swapArrow = isOpen ? 'navigation__dropdown-arrow--top' : ''
+
+  const checkButtonToggleMenu = isOpen ? 'navigation__dropdown-button--open' : ''
 
   return (
-    <div className="dropdown">
-      <button className="dropdown__button" onClick={click}>{title} {swapArrow}</button>
-      {isOpen && <ul className="dropdown__menu">{children}</ul>}
+    <div className="navigation__dropdown">
+      <button className={`navigation__dropdown-button ${checkButtonToggleMenu}`}onClick={click}>
+        {title}
+        <span className={`navigation__dropdown-arrow ${swapArrow}`}></span>
+      </button>
+      {isOpen && <ul className="navigation__dropdown-menu">{children}</ul>}
     </div>
   );
 };

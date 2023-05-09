@@ -1,0 +1,170 @@
+@import '../_variables.sass'
+
+@mixin mainButton($size: '--nomrmal')
+  padding: 10px 16px
+  font-weight: bold
+  background: map-get($primary, normal)
+  border: none
+  border-radius: 6px
+  transition: .1s linear background
+  box-shadow: 1px 1px 2px .2px rgba(12, 12, 12, 0.301)
+  cursor: pointer
+  margin-left: 50px
+  &:hover
+    background: map-get($primary, hover)
+  &--custom-text
+    color: map-get($fontColor, light)
+  @if $size == '--small'
+    margin: 20px 30px
+  
+.navigation
+  @include flexCenter($justify: center, $align: center)
+  width: 100vw
+  min-height: 65px
+  padding: 10px 0
+  &__list
+    @include flexCenter($align: center)
+    list-style-type: none
+    margin: 0
+    padding: 0
+    @include smallDevice
+      @include flexCenter($align: flex-start, $direction: column)
+      position: absolute
+      background: $hamburgerMenuBG
+      min-height: 100vh
+      top: 0
+      transition: .3s ease-out left
+      z-index: 100
+      left: -400px
+      min-width: 300px
+      &--show
+        left: 0
+  &__item
+    margin-left: 15px
+    @include smallDevice
+      margin: 7px 30px
+      &:nth-child(1)
+        margin-top: 25px
+  &__link
+    text-decoration: none
+    color: map-get($fontColor, normal)
+    &--hidden
+      display: none
+    &:hover
+      color: map-get($fontColor, hover)
+    &:focus-visible
+      padding: 3px
+    @include smallDevice
+      color: map-get($fontColor, light)
+      transition: .1s linear color
+      &:hover
+        color: map-get($fontColor, lightHover)
+  &__button
+    @include mainButton
+    @include smallDevice
+      display: none
+      &--small
+        @include mainButton('--small')
+  &__hamburger
+    @include flexCenter($justify: center, $direction: column)
+    display: none
+    margin: 0 5% 0 auto
+    width: 60px
+    background: $navBG
+    border: none
+    cursor: pointer
+    @include smallDevice
+      @include flexCenter($direction: column)
+      z-index: 100
+      background: none
+    &--component
+      width: 100%
+      background-color: map-get($fontColor, hover)
+      padding: 4px 0
+      margin: 4px
+      border-radius: 4px
+      transition: .2s linear transform
+      &--hidden
+        display: none
+      &--open45
+        position: relative
+        top: 8px
+        transform: rotate(45deg)
+      &--open-45
+        position: relative
+        top: -8px
+        transform: rotate(-45deg)
+  &__logo
+    width: 50px
+    margin-left: 40px
+    @include smallDevice
+      width: 60px
+  &__dropdown 
+    position: relative
+    z-index: 99
+    &-arrow
+      border-left: 5px solid transparent
+      border-right: 5px solid transparent
+      border-bottom: 5px solid map-get($fontColor, normal)
+      transition: border-bottom .1s linear, transform .1s linear
+      &--top
+        border-bottom: 5px solid map-get($fontColor, hover)
+        transform: rotateX(180deg)
+      @include smallDevice
+        border-bottom: 5px solid map-get($fontColor, light)
+        &--top
+          border-bottom: 5px solid map-get($fontColor, lightHover)
+    &-button
+      @include flexCenter($align: center)
+      width: 100%
+      gap: 5px
+      position: relative
+      cursor: pointer
+      border: none
+      background: $navBG
+      color: map-get($fontColor, normal)
+      font-size: 1em
+      transition: .1s linear color
+      &:hover
+          color: map-get($fontColor, hover)
+      &:hover .navigation__dropdown-arrow
+          border-bottom: 5px solid map-get($fontColor, hover)
+      @include smallDevice
+        background: none
+        color: map-get($fontColor, light)
+        &:hover
+          color: map-get($fontColor, lightHover)
+        &:hover .navigation__dropdown-arrow
+          border-bottom: 5px solid map-get($fontColor, lightHover)
+        &--open
+          color: map-get($fontColor, lightHover)
+    &-menu 
+      @include flexCenter($align: flex-start, $direction: column)
+      background: $drobDownMenuBG
+      list-style-type: none
+      position: absolute
+      padding: 10px 15px
+      top: 25px
+      left: 0
+      border-radius: 5px
+      @include smallDevice
+        position: relative
+        max-width: 230px
+        top: 10px
+        margin-bottom: 20px
+    &-divider
+      width: 100%
+      padding: 1px 0
+      background: map-get($fontColor, normal)
+    &-item
+      padding: 10px 5px
+    &-link
+      width: 100%
+      color:  map-get($fontColor, normal)
+      text-decoration: none
+      transition: .1s linear color
+      &:hover
+        color: map-get($fontColor, hover)
+
+.active 
+  color: $activeLink

@@ -1,17 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import Dropdown from "./DropDown.tsx";
 import DropDownItem from "./DropDownItem.tsx";
-import "../../Styles/Navigation.sass";
+import "../../Styles/NavStyle/Navigation.sass";
 import logo from '../../Img/logo.png'
 import {actions} from '../Global/globalStore.ts'
 import { useDispatch, useSelector } from "react-redux";
 
 const Navigation = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isTimeValueOfMoneyDropdownOpen, setIsTimeValueOfMoneyDropdownOpen] = useState(false);
   const [isTimeCreditsDropdownOpen, setIsTimeCreditsDropdownOpen] = useState(false);
   const [isFinancialInstrumentsValuationDropdownOpen, setIsFinancialInstrumentsValuationDropdownOpen] = useState(false);
   const [isKnowledgeBaseDropdownOpen, setIsKnowledgeBaseDropdownOpen] = useState(false);
+  const [showPhonButton, setShowPhoneButton] = useState(true)
   const flagState = useSelector((state: any) => state.flag)
   const dispatch = useDispatch()
   
@@ -23,33 +25,42 @@ const Navigation = () => {
     dispatch(actions.setFalseFlag())
   }
   
-  const handleTimeValueOfMoneyDropdownOpen = (e: any) => {
-    setIsTimeValueOfMoneyDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
-    setIsTimeCreditsDropdownOpen(false)
-    setIsFinancialInstrumentsValuationDropdownOpen(false)
-    setIsKnowledgeBaseDropdownOpen(false)
-  }
+  const handleTimeValueOfMoneyDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
+    setIsTimeValueOfMoneyDropdownOpen(prev => !prev);
+    const target = e.target as HTMLAnchorElement;
+    if (target.className === "navigation__dropdown-link") {
+      setFlagFalse();
+    }
 
-  const handleTimeCreditsDropdownOpen = (e: any) => {
+    console.log(target.className);
+    setIsTimeCreditsDropdownOpen(false);
+    setIsFinancialInstrumentsValuationDropdownOpen(false);
+    setIsKnowledgeBaseDropdownOpen(false);
+  };
+  
+
+  const handleTimeCreditsDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsTimeCreditsDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
+    const target = e.target as HTMLAnchorElement;
+    if(target.className === "navigation__dropdown-link") setFlagFalse()
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
   }
 
-  const handleFinancialInstrumentsValuationDropdownOpen = (e: any) => {
+  const handleFinancialInstrumentsValuationDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsFinancialInstrumentsValuationDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
+    const target = e.target as HTMLAnchorElement;
+    if(target.className === "navigation__dropdown-link") setFlagFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
   }
 
-  const handleKnowledgeBaseDropdownOpen = (e: any) => {
+  const handleKnowledgeBaseDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsKnowledgeBaseDropdownOpen(prev => !prev)
-    if(e.target.className === "dropdown__item--lowerLevel") setFlagFalse()
+    const target = e.target as HTMLAnchorElement;
+    if(target.className === "navigation__dropdown-link") setFlagFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -76,7 +87,7 @@ const Navigation = () => {
           </DropDownItem>
         
 
-          <li className="dropdown__divider"></li>
+          <li className="navigation__dropdown-divider"></li>
 
           <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="KnowledgeBase/FinancialInstruments">
             Jak to działa?
@@ -92,7 +103,7 @@ const Navigation = () => {
 
           <DropDownItem click={handleTimeCreditsDropdownOpen} path="Credits/CreditCalculator"> Kalkulator Zdolności Kredytowej</DropDownItem>
           
-          <li className="dropdown__divider"></li>
+          <li className="navigation__dropdown-divider"></li>
           
           <DropDownItem click={handleTimeCreditsDropdownOpen} path="KnowledgeBase/FinancialInstruments">Jak to działa?</DropDownItem>
       </>
@@ -112,7 +123,7 @@ const Navigation = () => {
 
           <DropDownItem click={handleFinancialInstrumentsValuationDropdownOpen} path="FinancialInstrumentsValuation/SwapPricingCalculator">Kontraktu Swap</DropDownItem>
           
-          <li className="dropdown__divider"></li>
+          <li className="navigation__dropdown-divider"></li>
           
           <DropDownItem click={handleFinancialInstrumentsValuationDropdownOpen} path="KnowledgeBase/FinancialInstruments">Jak to działa?</DropDownItem>
       </>
@@ -144,32 +155,29 @@ const Navigation = () => {
   ];
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1091) {
-        setFlagFalse()
-        setIsTimeValueOfMoneyDropdownOpen(false)
-        setIsTimeCreditsDropdownOpen(false)
-        setIsFinancialInstrumentsValuationDropdownOpen(false)
-        setIsKnowledgeBaseDropdownOpen(false)
-      }
-    }
+    const handleResize = () => setWindowWidth(window.innerWidth);
 
-    window.addEventListener('resize', handleResize)
-    
-    
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [window.innerWidth])
-  
-  const handleHamburgerToggleClass = () => {
-    if (window.innerWidth <= 1090) {
-      toggleFlag()
+    if (windowWidth >= 1091) {
+      setFlagFalse()
       setIsTimeValueOfMoneyDropdownOpen(false)
       setIsTimeCreditsDropdownOpen(false)
       setIsFinancialInstrumentsValuationDropdownOpen(false)
       setIsKnowledgeBaseDropdownOpen(false)
-    }
+      setShowPhoneButton(false)
+    } else setShowPhoneButton(true)
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [window.innerWidth]);
+  
+  const handleHamburgerToggleClass = () => {
+    if (window.innerWidth <= 1090) toggleFlag()
+    setIsTimeValueOfMoneyDropdownOpen(false)
+    setIsTimeCreditsDropdownOpen(false)
+    setIsFinancialInstrumentsValuationDropdownOpen(false)
+    setIsKnowledgeBaseDropdownOpen(false)
   }
 
   const links = nav.map((link) => (
@@ -185,28 +193,35 @@ const Navigation = () => {
   ));
   
   return(
-  <div className="navigation">
-    <NavLink className={`navigation__link `} to='/home'>
-      <img className="navigation__logo" src={logo} alt="logo" />
-    </NavLink>
-      <ul className={`navigation__list ${flagState && 'navigation__list--show'}`}>{links}
-        {flagState && <li><button onClick={handleHamburgerToggleClass} className="navigation__button--small" >
-      <NavLink to='/UserProfil' className="navigation__link">
-        <span className="navigation__button--custom-text">Zaloguj</span> 
+    <div className="navigation">
+      <NavLink className={`navigation__link `} to='/home'>
+        <img className="navigation__logo" src={logo} alt="logo" />
       </NavLink>
-      </button></li>}
-      </ul>
-    <button className="navigation__button" >
-      <NavLink to='/UserProfil' className="navigation__link">
-        <span className="navigation__button--custom-text">Zaloguj</span> 
-      </NavLink>
-      </button>
-      <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
-        <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open45'}`}></span> 
-        <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--hidden'}`}></span> 
-        <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open-45'}`}></span> 
-      </button>
-  </div>
+        <ul className={`navigation__list ${flagState && 'navigation__list--show'}`}>
+          {links}
+          {showPhonButton &&
+            <li>
+              <NavLink to='/UserProfil' className="navigation__link">
+                <button onClick={handleHamburgerToggleClass} className="navigation__button--small" >
+                  <span className="navigation__button--custom-text">Zaloguj</span>
+                </button>
+              </NavLink>
+            </li>
+          }
+        </ul>
+        <NavLink to='/UserProfil' className="navigation__link">
+          <button className="navigation__button" >
+            <span className="navigation__button--custom-text">Zaloguj</span> 
+          </button>
+        </NavLink>
+        {showPhonButton &&
+          <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
+            <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open45'}`}></span>
+            <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--hidden'}`}></span>
+            <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open-45'}`}></span>
+          </button>
+        }
+    </div>
   )
 };
 
