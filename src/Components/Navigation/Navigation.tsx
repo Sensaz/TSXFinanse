@@ -196,36 +196,34 @@ const Navigation = () => {
       )}
     </li>
   ));
+
+  const hamburgerButton = showPhonButton &&
+  <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
+    <span className={`navigation__hamburger--component ${flagState ? 'navigation__hamburger--component-open45 navigation__hamburger--component-light': ''}`}></span>
+    <span className={`navigation__hamburger--component ${flagState ? 'navigation__hamburger--component-hidden navigation__hamburger--component-light': ''}`}></span>
+    <span className={`navigation__hamburger--component ${flagState ? 'navigation__hamburger--component-open-45 navigation__hamburger--component-light' : ''}`}></span>
+  </button>
   
+  const phoneLoginButton = showPhonButton &&
+  <li>
+    <NavLink onClick={handleHamburgerToggleClass} to='/UserProfil' className="navigation__button--small">
+      <span className="navigation__button--custom-text">Zaloguj</span>
+    </NavLink>
+  </li>
+
   return(
     <div className="navigation">
-      <NavLink className={`navigation__link `} to='/home'>
+      <NavLink className='navigation__link' to='/home'>
         <img className="navigation__logo" src={logo} alt="logo" />
       </NavLink>
         <ul className={`navigation__list ${flagState && 'navigation__list--show'}`}>
           {links}
-          {showPhonButton &&
-            <li>
-              <NavLink to='/UserProfil' className="navigation__link">
-                <button onClick={handleHamburgerToggleClass} className="navigation__button--small" >
-                  <span className="navigation__button--custom-text">Zaloguj</span>
-                </button>
-              </NavLink>
-            </li>
-          }
+          {phoneLoginButton}
         </ul>
-        <NavLink to='/UserProfil' className="navigation__link">
-          <button className="navigation__button" >
+        <NavLink to='/UserProfil' className="navigation__button">
             <span className="navigation__button--custom-text">Zaloguj</span> 
-          </button>
         </NavLink>
-        {showPhonButton &&
-          <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
-            <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open45'}`}></span>
-            <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--hidden'}`}></span>
-            <span className={`navigation__hamburger--component ${flagState && 'navigation__hamburger--component--open-45'}`}></span>
-          </button>
-        }
+        {hamburgerButton}
     </div>
   )
 };

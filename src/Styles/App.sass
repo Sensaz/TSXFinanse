@@ -1,9 +1,12 @@
+@use 'Variable/colors'
+
 .app
   display: flex
   flex-wrap: wrap
   &__navigation
     width: 100vw
-    background: #fefefe
+    background: colors.$navBG
+    box-shadow: 0 .2px 6px -3px map-get(colors.$fontColor, "hover")
   &__main
     margin: 30px
     width: 100%
@@ -12,9 +15,9 @@
   position: fixed
   top: 0
   left: 0
-  z-index: 90
   width: 100vw
   min-height: 100vh
+  z-index: 90
   backdrop-filter: blur(1px)
 
 @media screen and ( max-width: 350px )

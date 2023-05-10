@@ -1,5 +1,10 @@
-$pageBG: #fafafa
-$navBG: #fcfcfc
+$navBG: #fafafa
+$pageBG: #f5f5f5
 
-$primary: ("normal": #2196f3, "hover": #228fe9)
-$fontColor: ("normal": #2e2e2e, "hover": #010101, "light": #eeeeee, "lightHover": #ee9828, "warn": #d89b17, "disabled": #777777)
+$primary: ("dark": #0A72C7, "light": #249CFF)
+
+$primaryHover: ("dark": darken(map-get($primary, "dark"), 10%), "light": lighten(map-get($primary, "dark"), 10%))
+
+$fontColor: ("normal": #2e2e2e, "light": #eeeeee, "warn": #8f6200, "disabled": #a3a3a3)
+
+$fontColorHover: ("normal": darken(map-get($fontColor, "normal"), 30%), "light": #ffbd66)

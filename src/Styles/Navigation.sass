@@ -1,48 +1,75 @@
 @use 'Variable/mixins'
 @use 'Variable/colors'
+@use 'Variable/functions'
 
 
 $hamburgerMenuBG: #383838
 $drobDownMenuBG: #dadada
-$activeLink: #ec7709
+$activeLink: #004747
+
+$fullSize: 100%
+$arrowBorder: 5px solid
+
+$radius: 5px
+$paddingSize: 10px 15px
+
+%focusBtn
+  border: none
+  cursor: pointer
+
+%animateColor
+  width: $fullSize
+  color: map-get(colors.$fontColor, "normal")
+  transition: .1s linear color
+
+@mixin arrow-styles($direction) 
+  position: relative
+  &-open#{$direction} 
+    top: if($direction == 45, 8px, -8px)
+    transform: rotate(#{$direction}deg)
+
 
 @mixin mainButton($size: '--nomrmal')
-  padding: 10px 16px
-  font-weight: bold
-  background: map-get(colors.$primary, normal)
-  border: none
-  border-radius: 6px
-  transition: .1s linear background
-  box-shadow: 1px 1px 2px .2px rgba(12, 12, 12, 0.301)
+  position: relative
+  left: 50px
+  font-weight: 600
+  padding: 8px 10px
+  border-radius: $radius
+  background: map-get(colors.$primary, "dark")
   cursor: pointer
-  margin-left: 50px
+  text-decoration: none
+  transition: .1s linear background
+  font-size: .8em
   &:hover
-    background: map-get(colors.$primary, hover)
+    background: map-get(colors.$primaryHover, "dark")
   &--custom-text
-    color: map-get(colors.$fontColor, light)
+    color: map-get(colors.$fontColor, "light")
   @if $size == '--small'
-    margin: 20px 30px
-  
+    top: 20px
+    left: 30px
+    background: map-get(colors.$primary, "light")
+    &:hover
+      color: map-get(colors.$primary, "textOnLight")
+      background: map-get(colors.$primaryHover, "light")
+
 .navigation
   @include mixins.flexCenter($justify: center, $align: center)
   width: 100vw
   min-height: 65px
-  padding: 10px 0
+  padding: $paddingSize
   &__list
     @include mixins.flexCenter($align: center)
     list-style-type: none
-    margin: 0
-    padding: 0
     @include mixins.tablet
       @include mixins.flexCenter($align: flex-start, $direction: column)
       position: fixed
-      background: $hamburgerMenuBG
-      height: 100%
-      top: 0
-      transition: .3s ease-out left
-      z-index: 100
-      left: -400px
+      height: $fullSize
       min-width: 310px
+      top: 0
+      left: -400px
+      z-index: 100
+      background: $hamburgerMenuBG
+      transition: .3s ease-out left
       overflow-y: auto
       &--show
         left: 0
@@ -51,23 +78,21 @@ $activeLink: #ec7709
   &__item
     margin-left: 15px
     @include mixins.tablet
-      margin: 7px 30px
+      margin: 5px 30px
       &:nth-child(1)
         margin-top: 25px
   &__link
+    color: map-get(colors.$fontColor, "normal")
     text-decoration: none
-    color: map-get(colors.$fontColor, normal)
     &--hidden
       display: none
     &:hover
-      color: map-get(colors.$fontColor, hover)
-    &:focus-visible
-      padding: 3px
+      color: map-get(colors.$fontColorHover, "normal")
     @include mixins.tablet
-      color: map-get(colors.$fontColor, light)
+      color: map-get(colors.$fontColor, "light")
       transition: .1s linear color
       &:hover
-        color: map-get(colors.$fontColor, lightHover)
+        color: map-get(colors.$fontColorHover, "light")
   &__button
     @include mainButton
     @include mixins.tablet
@@ -76,35 +101,29 @@ $activeLink: #ec7709
         @include mainButton('--small')
   &__hamburger
     @include mixins.flexCenter($justify: center, $direction: column)
+    @extend %focusBtn
     display: none
-    margin: 0 30px 0 auto
+    margin: 0 20px 0 auto
     width: 60px
     background: colors.$navBG
-    border: none
-    cursor: pointer
     @include mixins.tablet
       @include mixins.flexCenter($direction: column)
       z-index: 100
       background: none
-      @include mixins.phone 
-        margin: 0 20px 0 auto
     &--component
-      width: 100%
-      background-color: map-get(colors.$fontColor, hover)
-      padding: 4px 0
+      width: $fullSize
       margin: 4px
-      border-radius: 4px
-      transition: .2s linear transform
-      &--hidden
+      padding: 4px
+      border-radius: $radius
+      background: map-get(colors.$fontColorHover, "normal")
+      transition: functions.transition-repeat(.2s, transform, background)
+      @include mixins.phone
+        &-light
+          background: map-get(colors.$fontColor, "light")
+      &-hidden
         display: none
-      &--open45
-        position: relative
-        top: 8px
-        transform: rotate(45deg)
-      &--open-45
-        position: relative
-        top: -8px
-        transform: rotate(-45deg)
+      @include arrow-styles(45)
+      @include arrow-styles(-45)
   &__logo
     width: 50px
     margin-left: 40px
@@ -114,68 +133,65 @@ $activeLink: #ec7709
     position: relative
     z-index: 99
     &-arrow
-      border-left: 5px solid transparent
-      border-right: 5px solid transparent
-      border-bottom: 5px solid map-get(colors.$fontColor, normal)
-      transition: border-bottom .1s linear, transform .1s linear
+      border-left: $arrowBorder transparent
+      border-right: $arrowBorder transparent
+      border-bottom: $arrowBorder map-get(colors.$fontColor, "normal")
+      transition: functions.transition-repeat(.1s, border-bottom, transform)
       &--top
-        border-bottom: 5px solid map-get(colors.$fontColor, hover)
+        border-bottom: $arrowBorder map-get(colors.$fontColor, "hover")
         transform: rotateX(180deg)
       @include mixins.tablet
-        border-bottom: 5px solid map-get(colors.$fontColor, light)
+        border-bottom: $arrowBorder map-get(colors.$fontColor, "light")
         &--top
-          border-bottom: 5px solid map-get(colors.$fontColor, lightHover)
+          border-bottom: $arrowBorder map-get(colors.$fontColorHover, "light")
     &-button
       @include mixins.flexCenter($align: center)
-      width: 100%
-      gap: 5px
+      @extend %focusBtn
+      @extend %animateColor
       position: relative
-      cursor: pointer
-      border: none
-      background: colors.$navBG
-      color: map-get(colors.$fontColor, normal)
       font-size: 1em
-      transition: .1s linear color
+      gap: 5px
+      background: colors.$navBG
       &:hover
-          color: map-get(colors.$fontColor, hover)
+          color: map-get(colors.$fontColorHover, "normal")
       &:hover .navigation__dropdown-arrow
-          border-bottom: 5px solid map-get(colors.$fontColor, hover)
+          border-bottom: $arrowBorder map-get(colors.$fontColorHover, "normal")
       @include mixins.tablet
+        color: map-get(colors.$fontColor, "light")
         background: none
-        color: map-get(colors.$fontColor, light)
         &:hover
-          color: map-get(colors.$fontColor, lightHover)
+          color: map-get(colors.$fontColorHover, "light")
         &:hover .navigation__dropdown-arrow
-          border-bottom: 5px solid map-get(colors.$fontColor, lightHover)
+          border-bottom: $arrowBorder map-get(colors.$fontColorHover, "light")
         &--open
-          color: map-get(colors.$fontColor, lightHover)
+          color: map-get(colors.$fontColorHover, "light")
     &-menu 
       @include mixins.flexCenter($align: flex-start, $direction: column)
-      background: $drobDownMenuBG
-      list-style-type: none
       position: absolute
-      padding: 10px 15px
       top: 25px
       left: 0
-      border-radius: 5px
+      padding: $paddingSize
+      border-radius: $radius
+      list-style-type: none
+      background: $drobDownMenuBG
       @include mixins.tablet
         position: relative
-        max-width: 230px
         top: 10px
+        max-width: 230px
         margin-bottom: 20px
     &-divider
-      width: 100%
+      width: $fullSize
       padding: 1px 0
-      background: map-get(colors.$fontColor, normal)
+      background: map-get(colors.$fontColor, "normal")
     &-item
-      padding: 10px 5px
+      padding: 10px 0
     &-link
-      width: 100%
-      color:  map-get(colors.$fontColor, normal)
+      @extend %animateColor
       text-decoration: none
-      transition: .1s linear color
       &:hover
-        color: map-get(colors.$fontColor, hover)
+        color: map-get(colors.$fontColorHover, "normal")
 
 .active 
   color: $activeLink
+  &:hover
+    color: lighten($activeLink, 10%)

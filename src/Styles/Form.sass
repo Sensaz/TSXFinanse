@@ -3,7 +3,7 @@
 @use 'Variable/functions'
 @use 'Variable/colors'
 
-$positiveBorderColor: #31db3f
+$positiveBorderColor: #1CA027
 
 $border: 1px solid map-get(colors.$fontColor, "normal")
 $borderWarn: 1px solid map-get(colors.$fontColor, "warn")
@@ -11,7 +11,7 @@ $validBorder: 1px solid $positiveBorderColor
 $focusBorder: 2px solid $positiveBorderColor
 
 
-$focusButtonBG: map-get(colors.$fontColor, "hover")
+$focusButtonBG: map-get(colors.$fontColorHover, "normal")
 
 %inputHelpText
   position: absolute
@@ -60,7 +60,7 @@ $focusButtonBG: map-get(colors.$fontColor, "hover")
       font-size: 0.8em
       padding: 0 15px
       margin: 0
-      color: map-get(colors.$primary, "normal")
+      color: map-get(colors.$primary, "dark")
       border-left: $validBorder
       border-right: $validBorder
       transform: translateX(10px) translateY(-7px)
