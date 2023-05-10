@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { MouseEvent, useEffect, useState } from "react";
 import Dropdown from "./DropDown.tsx";
 import DropDownItem from "./DropDownItem.tsx";
-import "../../Styles/NavStyle/Navigation.sass";
+import "../../Styles/Navigation.sass";
 import logo from '../../Img/logo.png'
 import {actions} from '../Global/globalStore.ts'
 import { useDispatch, useSelector } from "react-redux";

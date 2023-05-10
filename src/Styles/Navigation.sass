@@ -1,7 +1,7 @@
-@use '../Variable/mixins'
-@use '../Variable/colors'
+@use 'Variable/mixins'
+@use 'Variable/colors'
 
-$navBG: #fcfcfc
+
 $hamburgerMenuBG: #383838
 $drobDownMenuBG: #dadada
 $activeLink: #ec7709
@@ -79,7 +79,7 @@ $activeLink: #ec7709
     display: none
     margin: 0 30px 0 auto
     width: 60px
-    background: $navBG
+    background: colors.$navBG
     border: none
     cursor: pointer
     @include mixins.tablet
@@ -132,7 +132,7 @@ $activeLink: #ec7709
       position: relative
       cursor: pointer
       border: none
-      background: $navBG
+      background: colors.$navBG
       color: map-get(colors.$fontColor, normal)
       font-size: 1em
       transition: .1s linear color

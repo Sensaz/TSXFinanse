@@ -24,14 +24,15 @@ $focusButtonBG: map-get(colors.$fontColor, "hover")
 
 
 .form
-  @include mixins.flexCenter()
+  @include mixins.flexCenter($gap: 30px)
   flex-wrap: wrap
   width: 100%
-  gap: 30px
+  @include mixins.smallTablet($width: min-width, $center: true)
   &__group
-    @include mixins.flexCenter($direction: column)
+    @include mixins.flexCenter($direction: column, $gap: 20px)
     width: 100%
-    gap: 20px
+    @include mixins.smallTablet(min-width)
+      width: 300px
     &--button
       @include mixins.flexCenter()
       width: 100%
@@ -105,10 +106,4 @@ $focusButtonBG: map-get(colors.$fontColor, "hover")
       color: colors.$pageBG
       background: $focusButtonBG
 
-      
-@media screen and ( min-width: 749px )
-  .form
-    width: 650px
-    margin: 0 auto
-    &__group
-      width: 300px
+    
