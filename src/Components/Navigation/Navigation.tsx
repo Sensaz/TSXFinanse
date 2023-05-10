@@ -167,7 +167,6 @@ const Navigation = () => {
 
     if (windowWidth <= 1090) {
       flagState ? document.body.style.overflow = 'hidden' : document.body.style.overflowY = 'auto'
-      console.log('mamy to');
     }
     
     window.addEventListener('resize', handleResize);

@@ -1,45 +1,51 @@
-$primary: #2196f3
-$fontColor: #1b1b1b
-$fontColorWarn: #d89b17
-$fontColorOptional: #6d6d6d
-$border: 1px solid #1d1d1d
-$borderOptional: 1px solid #6d6d6d
-$focusBorderOptional: 2px solid #6d6d6d
-$borderWarn: 1px solid #d89b17
-$focusBorder: 2px solid #31db3f
-$validBorder: 1px solid #31db3f
-$pageBG: #fafafa
-$focusButtonBG: #1b1b1b
-  
+// @import './_variables.sass' 
+@use 'Variable/mixins'
+@use 'Variable/functions'
+@use 'Variable/colors'
+
+$positiveBorderColor: #31db3f
+
+$border: 1px solid map-get(colors.$fontColor, "normal")
+$borderWarn: 1px solid map-get(colors.$fontColor, "warn")
+$validBorder: 1px solid $positiveBorderColor
+$focusBorder: 2px solid $positiveBorderColor
+
+
+$focusButtonBG: map-get(colors.$fontColor, "hover")
+
+%inputHelpText
+  position: absolute
+  left: 0
+  background: colors.$pageBG
+
+%borderWithRadius
+  border: $border
+  border-radius: 5px
+
+
 .form
-  margin: 0
-  padding: 0
-  display: flex
-  min-height: auto
-  flex-direction: column
+  @include mixins.flexCenter()
+  flex-wrap: wrap
+  width: 100%
   gap: 30px
   &__group
-    display: flex
-    flex-direction: column
-    gap: 15px
+    @include mixins.flexCenter($direction: column)
+    width: 100%
+    gap: 20px
     &--button
-      display: flex
+      @include mixins.flexCenter()
       width: 100%
-      gap: 20px
   &__label
     position: relative
     min-width: 300px
-    max-width: auto
   &__input
-    box-sizing: border-box
+    @extend %borderWithRadius
     width: 100%
     max-height: 40px
     padding: 10px
-    border: $border
-    background: none
-    border-radius: 5px
-    outline: none
     font-size: 1em
+    background: none
+    outline: none
     &::-webkit-outer-spin-button, 
     &::-webkit-inner-spin-button
       -webkit-appearance: none
@@ -50,116 +56,59 @@ $focusButtonBG: #1b1b1b
       border: $focusBorder
     &:valid ~ .form__help-text,
     &:focus ~ .form__help-text
-      color: $primary
-      transform: translateX(10px) translateY(-7px)
       font-size: 0.8em
       padding: 0 15px
       margin: 0
+      color: map-get(colors.$primary, "normal")
       border-left: $validBorder
       border-right: $validBorder
-    &:valid ~ .form__help-text--optional
-      transform: translateX(10px) translateY(-30px)
-      font-size: 0.8em
-      padding: 0 15px
-      margin: 0
-      border-left: $borderOptional
-      border-right: $borderOptional
-    &:focus ~ .form__help-text--optional,
-    &:focus ~ .form__help-text--optional::before
-      color: $fontColor
-      border-left: $border
-      border-right: $border
+      transform: translateX(10px) translateY(-7px)
     &--warning
       border: $borderWarn
-    &--optional
-      &:valid
-        border: $borderOptional
-      &:focus
-        border: $focusBorderOptional
   &__help-text
-    position: absolute
-    left: 0
+    @extend %inputHelpText
     margin: 10px
-    pointer-events: none
     font-size: 1em
-    color: $fontColor
+    color: map-get(colors.$fontColor, "normal")
+    pointer-events: none
     text-transform: uppercase
-    background: $pageBG
-    transition: .3s
+    transition: functions.transition-repeat(.2s, color, transform, font-size, padding, margin)
     &--warn
-      position: absolute
-      color: $fontColorWarn
+      @extend %inputHelpText
+      bottom: 0
+      padding: 0 5px
       font-size: .6em
+      color: map-get(colors.$fontColor, "warn")
       border-left: $borderWarn
       border-right: $borderWarn
-      padding: 0 5px
-      left: 0
-      bottom: 0
-      background-color: $pageBG
       transform: translateX(15px) translateY(3px)
-    &--optional 
-      position: absolute
-      left: 0
-      bottom: 0
-      background: $pageBG
-      color: $fontColorOptional
-      text-transform: uppercase
-      margin: 10px
-      transition: .3s
-      &::before
-        content: "OPCJONALNE"
-        position: absolute
-        bottom: 0
-        left: 0
-        padding: 0 5px
-        background: $pageBG
-        border-left: $borderOptional
-        border-right: $borderOptional
-        font-size: .6em
-        transform: translateY(33px)
   &__select
-    width: auto
     padding: 7px
     border: $borderWarn
     &:valid
       border: $validBorder
     &--required
       border: $borderWarn
-    &--optional:valid
-      color: $fontColorOptional
-      border: $borderOptional
   &__option
-    padding: 7px
+    padding: 50px 0
     &--disabled
-      color: gray
+      color: map-get(colors.$fontColor, "disabled")
   &__button
-    border: $border
-    background: $pageBG
-    color: $fontColor
+    @extend %borderWithRadius
     width: 80px
     height: 35px
+    color: map-get(colors.$fontColor, "normal")
+    background: colors.$pageBG
     cursor: pointer
-    border-radius: 5px
-    transition: .1s linear color, background
+    transition: functions.transition-repeat(.1s, color, background)
     &:active
-      color: $pageBG
+      color: colors.$pageBG
       background: $focusButtonBG
 
       
-@media screen and ( max-width: 350px )
-  .form
-    width: 100%
-    &__label
-      width: 100%
-
-@media screen and ( min-width: 399px )
-  .form
-    flex-direction: row
-    flex-wrap: wrap
-
 @media screen and ( min-width: 749px )
   .form
-    position: relative
-    width: 700px
-    left: 50%
-    transform: translate(-50%)
+    width: 650px
+    margin: 0 auto
+    &__group
+      width: 300px
