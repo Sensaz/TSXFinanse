@@ -4,8 +4,9 @@ import Page from "./Page";
 import './Styles/App.sass'
 import { useSelector } from "react-redux";
 function App() {
-  const flagState = useSelector((state: any) => state.flag)
-  const checkAppIsBlur = `${flagState ? 'blur' : ''}`
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+
+  const checkAppIsBlur = navigationForSmallDeviceState ? 'blur' : ''
   return (
     <>
       <Router>
@@ -15,10 +16,9 @@ function App() {
               <Navigation />
             </nav>
             <main className='app__main'>
-             <Page />
+              <Page />
             </main>
           </div>
-
       </Router>
     </>
   )

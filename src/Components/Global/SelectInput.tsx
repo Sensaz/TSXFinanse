@@ -1,5 +1,6 @@
 import { ReactNode, ChangeEvent } from 'react';
 import '../../Styles/Form.sass';
+import { useSelector } from 'react-redux';
 
 interface SelectInputProps {
   children: ReactNode;
@@ -32,7 +33,8 @@ const SelectInput = ({
   // handleSwapOptionalState,
   // swapOptionalState
 }: SelectInputProps) => {
-
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  
   const handleOptionChange = (e: any) => {
     const newEvent = {
       target: {
@@ -46,12 +48,14 @@ const SelectInput = ({
   // const swapOptionalInput = swapOptionalState !== '' ? 'form__input--warning' : 'form__input--optional'
 
   // const swapOptionalSpan = swapOptionalState !== '' ? 'form__help-text' : 'form__help-text--optional'
+  
+  const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
 
   const requiredClass = isRequired ? 'form__select--required' : 'form__select--optional'
 
   return (
     <label className='form__label'>
-      <select className={`form__select ${requiredClass}`} required={isRequired} onChange={handleOptionChange}>
+      <select tabIndex={checkAppIsBlur} className={`form__select ${requiredClass}`} required={isRequired} onChange={handleOptionChange}>
         <>
           {children}
         </>

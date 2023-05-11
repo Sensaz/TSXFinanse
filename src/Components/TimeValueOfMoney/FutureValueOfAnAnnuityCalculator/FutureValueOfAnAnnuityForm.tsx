@@ -33,7 +33,6 @@ const FutureValueOfAnAnnuityForm = ({
 }: CompoundInterestFormProps) => {
 
 
-  
   return (
     <form className="form">
       <div className='form__group'>

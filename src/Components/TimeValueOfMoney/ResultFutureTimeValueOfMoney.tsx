@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import "../../Styles/Result.sass"
 
 interface CompoundInterestCalculateResult {
@@ -8,14 +9,18 @@ interface CompoundInterestCalculateResult {
 
 
 const ResultFutureTimeValueOfMoney = ({ investmentResult, investedAmountValue, accruedInterest }: CompoundInterestCalculateResult) => {
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  
   const jsxInvestmentResult = investmentResult.toFixed(2)
   const jsxParsedExpectedFinalValue = investedAmountValue.toFixed(2)
   const jsxAccruedInterest = accruedInterest.toFixed(2)
+
+  const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
   return (
     <div className='result'>
-      <p className='result__item'>Efektem inwestycji Będzie kwota: {jsxInvestmentResult}</p>
-      <p className='result__item'>Zainwestowana Kwota wynosi: {jsxParsedExpectedFinalValue}</p>
-      <p className='result__item'>Narosłe odsetki wynoszą: {jsxAccruedInterest}</p>
+      <h2 tabIndex={checkAppIsBlur}  className='result__item'>Efektem inwestycji Będzie kwota: {jsxInvestmentResult}</h2>
+      <h2 tabIndex={checkAppIsBlur} className='result__item'>Zainwestowana Kwota wynosi: {jsxParsedExpectedFinalValue}</h2>
+      <h2 tabIndex={checkAppIsBlur} className='result__item'>Narosłe odsetki wynoszą: {jsxAccruedInterest}</h2>
     </div>
   )
 }

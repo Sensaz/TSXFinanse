@@ -4,7 +4,7 @@ import Dropdown from "./DropDown.tsx";
 import DropDownItem from "./DropDownItem.tsx";
 import "../../Styles/Navigation.sass";
 import logo from '../../Img/logo.png'
-import {actions} from '../Global/globalStore.ts'
+import {navigationForSmallDeviceValue, phoneButtonValue} from '../Global/globalStore.ts'
 import { useDispatch, useSelector } from "react-redux";
 
 const Navigation = () => {
@@ -13,23 +13,34 @@ const Navigation = () => {
   const [isTimeCreditsDropdownOpen, setIsTimeCreditsDropdownOpen] = useState(false);
   const [isFinancialInstrumentsValuationDropdownOpen, setIsFinancialInstrumentsValuationDropdownOpen] = useState(false);
   const [isKnowledgeBaseDropdownOpen, setIsKnowledgeBaseDropdownOpen] = useState(false);
-  const [showPhonButton, setShowPhoneButton] = useState(true)
-  const flagState = useSelector((state: any) => state.flag)
+
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+
+  const showPhonButtonState = useSelector((state: any) => state.phoneButton.flag)
   const dispatch = useDispatch()
   
-  const toggleFlag = () => {
-    dispatch(actions.toggledFlag())
+  const checkTabIndex = showPhonButtonState && navigationForSmallDeviceState ? 1 : -1
+
+
+  const toggleNavigationForSmallDevice  = () => {
+    dispatch(navigationForSmallDeviceValue.toggledFlag());
   }
 
-  const setFlagFalse = () => {
-    dispatch(actions.setFalseFlag())
+  const setNavigationForSmallDeviceFalse = () => {
+    dispatch(navigationForSmallDeviceValue.setFalseFlag())
+  }
+  const setShowPhoneButtonFalse = () => {
+    dispatch(phoneButtonValue.setFalseFlag())
+  }
+  const setShowPhoneButtonTrue = () => {
+    dispatch(phoneButtonValue.setTrueFlag())
   }
   
   const handleTimeValueOfMoneyDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsTimeValueOfMoneyDropdownOpen(prev => !prev);
     const target = e.target as HTMLAnchorElement;
     if (target.className === "navigation__dropdown-link") {
-      setFlagFalse();
+      setNavigationForSmallDeviceFalse();
     }
 
     setIsTimeCreditsDropdownOpen(false);
@@ -41,7 +52,7 @@ const Navigation = () => {
   const handleTimeCreditsDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsTimeCreditsDropdownOpen(prev => !prev)
     const target = e.target as HTMLAnchorElement;
-    if(target.className === "navigation__dropdown-link") setFlagFalse()
+    if(target.className === "navigation__dropdown-link") setNavigationForSmallDeviceFalse()
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
@@ -50,7 +61,7 @@ const Navigation = () => {
   const handleFinancialInstrumentsValuationDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsFinancialInstrumentsValuationDropdownOpen(prev => !prev)
     const target = e.target as HTMLAnchorElement;
-    if(target.className === "navigation__dropdown-link") setFlagFalse()
+    if(target.className === "navigation__dropdown-link") setNavigationForSmallDeviceFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsKnowledgeBaseDropdownOpen(false)
@@ -59,7 +70,7 @@ const Navigation = () => {
   const handleKnowledgeBaseDropdownOpen = (e: MouseEvent<HTMLButtonElement>) => {
     setIsKnowledgeBaseDropdownOpen(prev => !prev)
     const target = e.target as HTMLAnchorElement;
-    if(target.className === "navigation__dropdown-link") setFlagFalse()
+    if(target.className === "navigation__dropdown-link") setNavigationForSmallDeviceFalse()
     setIsTimeCreditsDropdownOpen(false)
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -68,7 +79,7 @@ const Navigation = () => {
   const nav = [
     {
       id: 0,
-      content: <Dropdown isOpen={isTimeValueOfMoneyDropdownOpen} click={handleTimeValueOfMoneyDropdownOpen} title="Wartość Pieniądza w czasie">
+      content: <Dropdown  isOpen={isTimeValueOfMoneyDropdownOpen} click={handleTimeValueOfMoneyDropdownOpen} title="Wartość Pieniądza w czasie">
         <>
           <DropDownItem click={handleTimeValueOfMoneyDropdownOpen} path="TimeValueOfMoney/FutureValueOfASingleFlowCalculator">
             Wartość przyszła pojedynczego przepływu
@@ -157,28 +168,28 @@ const Navigation = () => {
     const handleResize = () => setWindowWidth(window.innerWidth);
 
     if (windowWidth >= 1091) {
-      setFlagFalse()
+      setNavigationForSmallDeviceFalse()
       setIsTimeValueOfMoneyDropdownOpen(false)
       setIsTimeCreditsDropdownOpen(false)
       setIsFinancialInstrumentsValuationDropdownOpen(false)
       setIsKnowledgeBaseDropdownOpen(false)
-      setShowPhoneButton(false)
-    } else setShowPhoneButton(true)
+      setShowPhoneButtonFalse()
+    } else setShowPhoneButtonTrue()
 
     if (windowWidth <= 1090) {
-      flagState ? document.body.style.overflow = 'hidden' : document.body.style.overflowY = 'auto'
+      navigationForSmallDeviceState ? document.body.style.overflow = 'hidden' : document.body.style.overflowY = 'auto'
     }
     
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [window.innerWidth, flagState]);
+  }, [window.innerWidth, navigationForSmallDeviceState]);
   
   
 
   const handleHamburgerToggleClass = () => {
-    if (window.innerWidth <= 1090) toggleFlag()
+    if (window.innerWidth <= 1090) toggleNavigationForSmallDevice ()
     setIsTimeValueOfMoneyDropdownOpen(false)
     setIsTimeCreditsDropdownOpen(false)
     setIsFinancialInstrumentsValuationDropdownOpen(false)
@@ -188,25 +199,25 @@ const Navigation = () => {
   const links = nav.map((link) => (
     <li className="navigation__item" key={link.id}>
       {typeof link.content === "string" ? (
-        <NavLink onClick={handleHamburgerToggleClass} className="navigation__link" to={link.path}>
+        <NavLink tabIndex={checkTabIndex} onClick={handleHamburgerToggleClass} className="navigation__link" to={link.path}>
           {link.content}
         </NavLink>
-      ) : (
+      ) : (   
         link.content
       )}
     </li>
   ));
 
-  const hamburgerButton = showPhonButton &&
+  const hamburgerButton = showPhonButtonState &&
   <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
-    <span className={`navigation__hamburger--component ${flagState ? 'navigation__hamburger--component-open45 navigation__hamburger--component-light': ''}`}></span>
-    <span className={`navigation__hamburger--component ${flagState ? 'navigation__hamburger--component-hidden navigation__hamburger--component-light': ''}`}></span>
-    <span className={`navigation__hamburger--component ${flagState ? 'navigation__hamburger--component-open-45 navigation__hamburger--component-light' : ''}`}></span>
+    <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-open45 navigation__hamburger--component-light': ''}`}></span>
+    <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-hidden navigation__hamburger--component-light': ''}`}></span>
+    <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-open-45 navigation__hamburger--component-light' : ''}`}></span>
   </button>
   
-  const phoneLoginButton = showPhonButton &&
+  const phoneLoginButton = showPhonButtonState &&
   <li>
-    <NavLink onClick={handleHamburgerToggleClass} to='/UserProfil' className="navigation__button--small">
+    <NavLink tabIndex={checkTabIndex} onClick={handleHamburgerToggleClass} to='/UserProfil' className="navigation__button--small">
       <span className="navigation__button--custom-text">Zaloguj</span>
     </NavLink>
   </li>
@@ -216,7 +227,7 @@ const Navigation = () => {
       <NavLink className='navigation__link' to='/home'>
         <img className="navigation__logo" src={logo} alt="logo" />
       </NavLink>
-        <ul className={`navigation__list ${flagState && 'navigation__list--show'}`}>
+        <ul className={`navigation__list ${navigationForSmallDeviceState && 'navigation__list--show'}`}>
           {links}
           {phoneLoginButton}
         </ul>

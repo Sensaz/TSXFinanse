@@ -1,12 +1,12 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
-interface NavigationTogglerState {
+interface FlagStateType {
   flag: boolean
 }
 
-const navigationToggler = createSlice({
-  name: 'navigationToggler',
-  initialState: { flag: false } as NavigationTogglerState,
+const navigationForSmallDevice = createSlice({
+  name: 'navigationForSmallDevice',
+  initialState: { flag: false } as FlagStateType,
   reducers: {
     setFalseFlag(state) {
       state.flag = false
@@ -20,9 +20,30 @@ const navigationToggler = createSlice({
   },
 })
 
-export const actions = navigationToggler.actions
+const phoneButton = createSlice({
+  name: 'phoneButton',
+  initialState: { flag: false } as FlagStateType,
+  reducers: {
+    setFalseFlag(state) {
+      state.flag = false
+    },
+    setTrueFlag(state) {
+      state.flag = true
+    },
+    toggledFlag(state) {
+      state.flag = !state.flag
+    },
+  },
+})
+
+export const navigationForSmallDeviceValue = navigationForSmallDevice.actions
+export const phoneButtonValue = phoneButton.actions
+
 const store = configureStore({
-  reducer: navigationToggler.reducer,
+  reducer: {
+    navigationForSmallDevice: navigationForSmallDevice.reducer,
+    phoneButton: phoneButton.reducer,
+  },
 })
 
 export default store
