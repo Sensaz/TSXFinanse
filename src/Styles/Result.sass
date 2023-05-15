@@ -6,7 +6,9 @@ $resultItemBorder: 1px solid map-get(colors.$fontColor, "disabled")
 .result
   display: flex
   flex-direction: column
-  margin: 40px auto 
+  min-width: 300px
+  width: 100%
+  max-width: 650px
   gap: 15px
   @include mixins.smallTablet($width: min-width, $center: true)
   &__item

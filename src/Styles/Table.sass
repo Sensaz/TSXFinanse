@@ -1,0 +1,51 @@
+@import 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lobster&family=Montserrat:wght@400;700&display=swap'
+  
+// @use "sass:math"
+$tablePadding: 12px
+
+%circle
+  display: inline-block
+  width: 20px
+  height: 20px
+  border-radius: 50%
+  cursor: pointer
+  text-align: center
+
+.table
+  display: block
+  position: relative
+  min-width: 300px
+  width: 100%
+  max-width: fit-content
+  max-height: 250px
+  margin: 40px auto
+  border-spacing: 0
+  border-collapse: collapse
+  overflow-y: auto
+  @media only screen and (max-width: 749px)
+    display: block
+    margin: 40px 0
+  &__header
+    position: sticky
+    top: 0
+    &-column
+      padding: $tablePadding
+      color: #fff
+      background-color: #16a085
+    &--info
+      @extend %circle
+      margin-left: 10%
+      color: #16a085
+      background: white
+      font-family: 'Lobster', cursive
+      &:hover, &:focus
+        color: white
+        background: #004e3f
+  &__body
+    &-short
+      padding: $tablePadding
+      border-bottom: 1px solid #ddd
+    &-row 
+      transition: all .1s ease-in
+      &:hover
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, .2), -1px -1px 8px rgb(0, 0, 0, .2)
