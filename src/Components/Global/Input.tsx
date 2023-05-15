@@ -25,7 +25,7 @@ const Input = ({ inputType = 'number', content, inputRequired = true, inputState
     handleSetInputState(newEvent);
     // handleSwapOptionalState(newEvent)
   };
-  
+
   const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
   
   const swapOptionalInput = swapOptionalState !== '' ? 'form__input--warning' : 'form__input--optional'

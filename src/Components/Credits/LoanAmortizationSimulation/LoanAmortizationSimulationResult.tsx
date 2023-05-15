@@ -1,26 +1,51 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {modalStoreValue} from '../../Global/globalStore.ts'
 import '../../../Styles/Table.sass'
 import '../../../Styles/Result.sass'
+import Modal from '../../Global/Modal.tsx'
 const LoanAmortizationSimulationResult = () => {
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
-  
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+  const dispatch = useDispatch()
+
   const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
+
+  const handleToggleModal = (e: any) => {
+    dispatch(modalStoreValue.setTrueFlag());
+    console.log(e.target.getAttribute("data-info"));
+  }
 
   return (
     <>
+      {modalStoreState && <Modal />}
       <table className='table'>
         <thead className='table__header'>
           <th className='table__header-column'>
             #
           </th>
-          <th className='table__header-column'>SPD <span tabIndex={checkAppIsBlur} className='table__header--info'>i</span></th>
-          <th className='table__header-column'>ODS <span tabIndex={checkAppIsBlur} className='table__header--info'>i</span></th>
-          <th className='table__header-column'>RK <span tabIndex={checkAppIsBlur} className='table__header--info'>i</span></th>
-          <th className='table__header-column'>RPK <span tabIndex={checkAppIsBlur} className='table__header--info'>i</span></th>
-          <th className='table__header-column'>SKD <span tabIndex={checkAppIsBlur} className='table__header--info'>i</span></th>
+          <th className='table__header-column'>
+            SPD
+            <span data-info="SPD" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+          </th>
+          <th className='table__header-column'>
+            ODS
+            <span data-info="ODS" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+          </th>
+          <th className='table__header-column'>
+            RK
+            <span data-info="RK" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+          </th>
+          <th className='table__header-column'>
+            RPK
+            <span data-info="RPK" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+          </th>
+          <th className='table__header-column'>
+            SKD
+            <span data-info="SKD" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+          </th>
         </thead>
         <tbody className='table__body'>
-        <tr className='table__body-row'>
+          <tr className='table__body-row'>
             <td className='table__body-short'>1</td>
             <td className='table__body-short'>100000000000000</td>
             <td className='table__body-short'>100000000000000</td>
@@ -31,379 +56,11 @@ const LoanAmortizationSimulationResult = () => {
           <tr className='table__body-row'>
             <td className='table__body-short'>2</td>
             <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
             <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
             <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
             <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
             <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
           </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>   
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>   
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>   
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-        </tr>
-        <tr className='table__body-row'>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>2</td>
-            <td className='table__body-short'>1</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-            <td className='table__body-short'>10</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>3</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>
-          <tr className='table__body-row'>
-            <td className='table__body-short'>4</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-            <td className='table__body-short'>100000000000000</td>
-          </tr>   
         </tbody>
       </table>
 

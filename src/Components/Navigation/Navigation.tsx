@@ -13,14 +13,15 @@ const Navigation = () => {
   const [isTimeCreditsDropdownOpen, setIsTimeCreditsDropdownOpen] = useState(false);
   const [isFinancialInstrumentsValuationDropdownOpen, setIsFinancialInstrumentsValuationDropdownOpen] = useState(false);
   const [isKnowledgeBaseDropdownOpen, setIsKnowledgeBaseDropdownOpen] = useState(false);
-
+  
+  
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
-
-  const showPhonButtonState = useSelector((state: any) => state.phoneButton.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
   const dispatch = useDispatch()
   
-  const checkTabIndex = showPhonButtonState && navigationForSmallDeviceState ? 1 : -1
-
+  const showPhonButtonState = useSelector((state: any) => state.phoneButton.flag)
+  
+  const checkTabIndex = showPhonButtonState  && navigationForSmallDeviceState ? 1 : -1
 
   const toggleNavigationForSmallDevice  = () => {
     dispatch(navigationForSmallDeviceValue.toggledFlag());
@@ -209,7 +210,7 @@ const Navigation = () => {
   ));
 
   const hamburgerButton = showPhonButtonState &&
-  <button onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
+  <button tab onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
     <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-open45 navigation__hamburger--component-light': ''}`}></span>
     <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-hidden navigation__hamburger--component-light': ''}`}></span>
     <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-open-45 navigation__hamburger--component-light' : ''}`}></span>
@@ -224,7 +225,7 @@ const Navigation = () => {
 
   return(
     <div className="navigation">
-      <NavLink className='navigation__link' to='/home'>
+      <NavLink tabIndex={checkTabIndex} className='navigation__link' to='/home'>
         <img className="navigation__logo" src={logo} alt="logo" />
       </NavLink>
         <ul className={`navigation__list ${navigationForSmallDeviceState && 'navigation__list--show'}`}>

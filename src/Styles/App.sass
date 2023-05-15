@@ -1,6 +1,14 @@
 @use 'Variable/colors'
 @use 'Variable/mixins'
 
+%blurProperty
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  min-height: 100vh
+  backdrop-filter: blur(1px)
+
 .app
   display: flex
   flex-wrap: wrap
@@ -10,16 +18,15 @@
     background: colors.$navBG
     box-shadow: 0 .2px 6px -3px map-get(colors.$fontColor, "hover")
   &__main
-    width: 96vw
+    width: 96vws
+    min-height: 70vh
     margin: 30px auto
     @include mixins.phone
       margin: 30px 2%
 
 .blur
-  position: fixed
-  top: 0
-  left: 0
-  width: 100vw
-  min-height: 100vh
+  @extend %blurProperty
   z-index: 90
-  backdrop-filter: blur(1px)
+  &--modal
+      @extend %blurProperty
+      z-index: 120    

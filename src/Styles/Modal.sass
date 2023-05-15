@@ -1,0 +1,59 @@
+.modal
+  position: fixed
+  left: 50%
+  top: 50%
+  max-width: 700px
+  width: 90vw
+  min-height: 40vh
+  max-height: 80vh
+  ////
+  ////
+  ////
+  display: grid
+  grid-template-columns: repeat(6, 1fr)
+  grid-rows: 50px 1fr
+  row-gap: 30px
+  justify-content: center
+  align-items: center
+  ////
+  ////
+  ////
+  padding: 0 20px
+  background: red
+  border-radius: 20px
+  transform: translate(-50%, -50%)
+  z-index: 150
+  overflow: hidden auto
+  &__navigation
+    display: flex
+    width: 90%
+    justify-content: space-between
+    align-items: center
+    margin: 0 auto
+    grid-column: 1 / -1
+    &-btn-close
+      position: relative
+      bottom: 1px
+      width: 40px
+      height: 40px
+      border: none
+      background: none
+      cursor: pointer
+      &--element
+        display: flex
+        width: 40px
+        padding: 2px
+        border-radius: 5px
+        background: black
+        transform: rotate(-45deg)
+        &:first-child
+          position: relative
+          top: 4px
+          transform: rotate(45deg)
+  &__content
+    display: flex
+    width: 90%
+    justify-content: center
+    align-items: center
+    margin: 0 auto
+    grid-column: 1 / -1

@@ -5,13 +5,16 @@ import './Styles/App.sass'
 import { useSelector } from "react-redux";
 function App() {
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  // const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
 
+  const checkShowModal = modalStoreState ? 'blur--modal' : ''
   const checkAppIsBlur = navigationForSmallDeviceState ? 'blur' : ''
   return (
     <>
       <Router>
           <div className='app'>
-            <span className={checkAppIsBlur}></span>
+            <span className={checkAppIsBlur || checkShowModal}></span>
             <nav className="app__navigation">
               <Navigation />
             </nav>

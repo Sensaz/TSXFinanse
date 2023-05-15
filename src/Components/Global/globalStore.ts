@@ -36,13 +36,31 @@ const phoneButton = createSlice({
   },
 })
 
+const modalStore = createSlice({
+  name: 'modalStore',
+  initialState: { flag: false } as FlagStateType,
+  reducers: {
+    setFalseFlag(state) {
+      state.flag = false
+    },
+    setTrueFlag(state) {
+      state.flag = true
+    },
+    toggledFlag(state) {
+      state.flag = !state.flag
+    },
+  },
+})
+
 export const navigationForSmallDeviceValue = navigationForSmallDevice.actions
 export const phoneButtonValue = phoneButton.actions
+export const modalStoreValue = modalStore.actions
 
 const store = configureStore({
   reducer: {
     navigationForSmallDevice: navigationForSmallDevice.reducer,
     phoneButton: phoneButton.reducer,
+    modalStore: modalStore.reducer,
   },
 })
 
