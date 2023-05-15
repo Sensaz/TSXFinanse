@@ -34,6 +34,7 @@ const SelectInput = ({
   // swapOptionalState
 }: SelectInputProps) => {
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
   
   const handleOptionChange = (e: any) => {
     const newEvent = {
@@ -48,14 +49,13 @@ const SelectInput = ({
   // const swapOptionalInput = swapOptionalState !== '' ? 'form__input--warning' : 'form__input--optional'
 
   // const swapOptionalSpan = swapOptionalState !== '' ? 'form__help-text' : 'form__help-text--optional'
-  
-  const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
+  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
   const requiredClass = isRequired ? 'form__select--required' : 'form__select--optional'
 
   return (
     <label className='form__label'>
-      <select tabIndex={checkAppIsBlur} className={`form__select ${requiredClass}`} required={isRequired} onChange={handleOptionChange}>
+      <select tabIndex={checkTabIndex} className={`form__select ${requiredClass}`} required={isRequired} onChange={handleOptionChange}>
         <>
           {children}
         </>

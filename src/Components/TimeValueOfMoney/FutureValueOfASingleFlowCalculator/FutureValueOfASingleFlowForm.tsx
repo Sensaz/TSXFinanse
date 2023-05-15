@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react'
 import '../../../Styles/Form.sass'
 import { Input, SelectInput, SelectOption  } from '../../Global'
+import { useSelector } from 'react-redux';
 
 interface CompoundInterestFormProps {
   startValue: number;
@@ -25,6 +26,11 @@ const CompoundInterestForm = ({
   handleSetInterestCapitalization,
   calculate
 }: CompoundInterestFormProps) => {  
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+
+  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
+  
   return (
     <form className="form">
       <div className='form__group'>
@@ -57,7 +63,7 @@ const CompoundInterestForm = ({
         </div>
 
       <div className='form__group--button'>
-        <button className='form__button' onClick={calculate}>Oblicz</button>
+        <button tabIndex={checkTabIndex} className='form__button' onClick={calculate}>Oblicz</button>
       </div>
     </form>
   );

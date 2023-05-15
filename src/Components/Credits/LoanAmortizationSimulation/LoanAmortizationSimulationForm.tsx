@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { ChangeEvent, MouseEvent, useEffect } from 'react'
 import '../../../Styles/Form.sass'
 import { Input, SelectInput, SelectOption  } from '../../Global'
@@ -40,7 +41,10 @@ const LoanAmortizationSimulationForm = ({
   useEffect(() => {
     setCommisionAmmoutn(0)
   }, [doesTheBankChargeACommission])
-  
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+
+  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
   return (
     <form className="form">
 
@@ -89,7 +93,7 @@ const LoanAmortizationSimulationForm = ({
       </div>
 
       <div className='form__group--button'>
-        <button className='form__button' onClick={calculate}>Oblicz</button>
+        <button tabIndex={checkTabIndex} className='form__button' onClick={calculate}>Oblicz</button>
       </div>
     </form>
   );

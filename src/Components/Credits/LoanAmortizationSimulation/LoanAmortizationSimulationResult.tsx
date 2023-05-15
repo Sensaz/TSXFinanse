@@ -8,11 +8,11 @@ const LoanAmortizationSimulationResult = () => {
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
   const dispatch = useDispatch()
 
-  const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
+  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
   const handleToggleModal = (e: any) => {
     dispatch(modalStoreValue.setTrueFlag());
-    console.log(e.target.getAttribute("data-info"));
+    // console.log(e.target.getAttribute("data-info"));
   }
 
   return (
@@ -25,23 +25,23 @@ const LoanAmortizationSimulationResult = () => {
           </th>
           <th className='table__header-column'>
             SPD
-            <span data-info="SPD" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+            <span data-info="SPD" onClick={handleToggleModal} tabIndex={checkTabIndex} className='table__header--info'>i</span>
           </th>
           <th className='table__header-column'>
             ODS
-            <span data-info="ODS" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+            <span data-info="ODS" onClick={handleToggleModal} tabIndex={checkTabIndex} className='table__header--info'>i</span>
           </th>
           <th className='table__header-column'>
             RK
-            <span data-info="RK" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+            <span data-info="RK" onClick={handleToggleModal} tabIndex={checkTabIndex} className='table__header--info'>i</span>
           </th>
           <th className='table__header-column'>
             RPK
-            <span data-info="RPK" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+            <span data-info="RPK" onClick={handleToggleModal} tabIndex={checkTabIndex} className='table__header--info'>i</span>
           </th>
           <th className='table__header-column'>
             SKD
-            <span data-info="SKD" onClick={handleToggleModal} tabIndex={checkAppIsBlur} className='table__header--info'>i</span>
+            <span data-info="SKD" onClick={handleToggleModal} tabIndex={checkTabIndex} className='table__header--info'>i</span>
           </th>
         </thead>
         <tbody className='table__body'>
@@ -65,12 +65,12 @@ const LoanAmortizationSimulationResult = () => {
       </table>
 
       <div className='result'>
-        <h2 tabIndex={checkAppIsBlur}  className='result__item'>Wysokość kredytu: </h2>
-        <h2 tabIndex={checkAppIsBlur} className='result__item'>Kwota którą otrzymasz: </h2>
-        <h2 tabIndex={checkAppIsBlur} className='result__item'>Prowizja wyniesie:</h2>
-        <h2 tabIndex={checkAppIsBlur} className='result__item'>Nominalna wartość odsetek: </h2>
-        <h2 tabIndex={checkAppIsBlur} className='result__item'>Nominalnie łącznie oddasz bankowi: </h2>
-        <h2 tabIndex={checkAppIsBlur} className='result__item'>RRSO wyniesie: </h2>
+        <h2 tabIndex={checkTabIndex}  className='result__item'>Wysokość kredytu: </h2>
+        <h2 tabIndex={checkTabIndex} className='result__item'>Kwota którą otrzymasz: </h2>
+        <h2 tabIndex={checkTabIndex} className='result__item'>Prowizja wyniesie:</h2>
+        <h2 tabIndex={checkTabIndex} className='result__item'>Nominalna wartość odsetek: </h2>
+        <h2 tabIndex={checkTabIndex} className='result__item'>Nominalnie łącznie oddasz bankowi: </h2>
+        <h2 tabIndex={checkTabIndex} className='result__item'>RRSO wyniesie: </h2>
     </div>
     </>
   )

@@ -12,10 +12,9 @@ interface MyComponentProps {
 const Dropdown = ({ isOpen, click, title, children }:MyComponentProps) => {
 
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
-
-  const showPhonButtonState = useSelector((state: any) => state.phoneButton.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
  
-  const checkTabIndex = showPhonButtonState && navigationForSmallDeviceState ? 1 : -1
+  const checkTabIndex = navigationForSmallDeviceState && (!modalStoreState && window.innerWidth >= 1091 ) ? 1 : -1
 
   const swapArrow = isOpen ? 'navigation__dropdown-arrow--top' : ''
 

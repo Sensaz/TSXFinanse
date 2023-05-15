@@ -15,6 +15,7 @@ interface InputProps {
 const Input = ({ inputType = 'number', content, inputRequired = true, inputState, swapOptionalState, handleSetInputState, /*handleSwapOptionalState*/ }: InputProps) => {
   
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEvent = {
@@ -25,8 +26,7 @@ const Input = ({ inputType = 'number', content, inputRequired = true, inputState
     handleSetInputState(newEvent);
     // handleSwapOptionalState(newEvent)
   };
-
-  const checkAppIsBlur = navigationForSmallDeviceState ? -1 : 0
+  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
   
   const swapOptionalInput = swapOptionalState !== '' ? 'form__input--warning' : 'form__input--optional'
 
@@ -42,7 +42,7 @@ const Input = ({ inputType = 'number', content, inputRequired = true, inputState
 
   return (
     <label className='form__label'>
-      <input tabIndex={checkAppIsBlur} min={minInNumberInput ?? undefined} step={"0.01" ?? undefined}  className={inputClassName} type={inputType} required={inputRequired} onChange={handleInputChange} value={inputState} />
+      <input tabIndex={checkTabIndex} min={minInNumberInput ?? undefined} step={"0.01" ?? undefined}  className={inputClassName} type={inputType} required={inputRequired} onChange={handleInputChange} value={inputState} />
       <span className={spanClassName}>{content}</span>
       {spanContent}
     </label>

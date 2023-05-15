@@ -1,6 +1,8 @@
 import { ChangeEvent, MouseEvent } from 'react'
+
 import '../../../Styles/Form.sass'
 import { Input, SelectInput, SelectOption  } from '../../Global'
+import { useSelector } from 'react-redux';
 
 interface CompoundInterestFormProps {
   pensionAmount: number;
@@ -31,7 +33,10 @@ const FutureValueOfAnAnnuityForm = ({
   handleSetOptionDuration,
   calculate
 }: CompoundInterestFormProps) => {
+  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
 
+  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
   return (
     <form className="form">
@@ -64,7 +69,7 @@ const FutureValueOfAnAnnuityForm = ({
         </div>
 
       <div className='form__group--button'>
-        <button className='form__button' onClick={calculate}>Oblicz</button>
+        <button tabIndex={checkTabIndex} className='form__button' onClick={calculate}>Oblicz</button>
       </div>
     </form>
   );

@@ -21,7 +21,10 @@ const Navigation = () => {
   
   const showPhonButtonState = useSelector((state: any) => state.phoneButton.flag)
   
-  const checkTabIndex = showPhonButtonState  && navigationForSmallDeviceState ? 1 : -1
+
+
+  const reverseCheckTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
+
 
   const toggleNavigationForSmallDevice  = () => {
     dispatch(navigationForSmallDeviceValue.toggledFlag());
@@ -165,9 +168,11 @@ const Navigation = () => {
     },
   ];
 
+  const checkTabIndex = navigationForSmallDeviceState && (!modalStoreState && window.innerWidth >= 1091 ) ? 1 : -1
+
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
-
+    
     if (windowWidth >= 1091) {
       setNavigationForSmallDeviceFalse()
       setIsTimeValueOfMoneyDropdownOpen(false)
@@ -176,17 +181,14 @@ const Navigation = () => {
       setIsKnowledgeBaseDropdownOpen(false)
       setShowPhoneButtonFalse()
     } else setShowPhoneButtonTrue()
-
     if (windowWidth <= 1090) {
       navigationForSmallDeviceState ? document.body.style.overflow = 'hidden' : document.body.style.overflowY = 'auto'
     }
-    
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [window.innerWidth, navigationForSmallDeviceState]);
-  
   
 
   const handleHamburgerToggleClass = () => {
@@ -210,7 +212,7 @@ const Navigation = () => {
   ));
 
   const hamburgerButton = showPhonButtonState &&
-  <button tab onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
+  <button tabIndex={modalStoreState ? -1 : 1} onClick={handleHamburgerToggleClass} className='navigation__hamburger'>
     <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-open45 navigation__hamburger--component-light': ''}`}></span>
     <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-hidden navigation__hamburger--component-light': ''}`}></span>
     <span className={`navigation__hamburger--component ${navigationForSmallDeviceState ? 'navigation__hamburger--component-open-45 navigation__hamburger--component-light' : ''}`}></span>
@@ -225,14 +227,14 @@ const Navigation = () => {
 
   return(
     <div className="navigation">
-      <NavLink tabIndex={checkTabIndex} className='navigation__link' to='/home'>
+      <NavLink tabIndex={reverseCheckTabIndex} className='navigation__link' to='/home'>
         <img className="navigation__logo" src={logo} alt="logo" />
       </NavLink>
         <ul className={`navigation__list ${navigationForSmallDeviceState && 'navigation__list--show'}`}>
           {links}
           {phoneLoginButton}
         </ul>
-        <NavLink to='/UserProfil' className="navigation__button">
+        <NavLink tabIndex={checkTabIndex} to='/UserProfil' className="navigation__button">
             <span className="navigation__button--custom-text">Zaloguj</span> 
         </NavLink>
         {hamburgerButton}
