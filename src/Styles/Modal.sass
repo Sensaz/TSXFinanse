@@ -1,32 +1,27 @@
 .modal
-  position: fixed
-  left: 50%
-  top: 50%
-  max-width: 700px
-  width: 90vw
-  min-height: 40vh
-  max-height: 80vh
-  ////
-  ////
-  ////
   display: grid
+  position: fixed
   grid-template-columns: repeat(6, 1fr)
-  grid-rows: 50px 1fr
-  row-gap: 30px
+  grid-template-rows: minmax(100px, auto) 1fr
+  min-height: 40vh
+  height: fit-content
+  max-height: 80vh
+  width: 90vw
+  max-width: 700px
   justify-content: center
   align-items: center
-  ////
-  ////
-  ////
-  padding: 0 20px
-  background: red
-  border-radius: 20px
+  left: 50%
+  top: 50%
   transform: translate(-50%, -50%)
+  padding: 0 30px 10px
+  border-radius: 20px
+  background: #f3f3f3
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, .2), -1px -1px 8px rgb(0, 0, 0, .2)
   z-index: 150
   overflow: hidden auto
   &__navigation
     display: flex
-    width: 90%
+    width: 100%
     justify-content: space-between
     align-items: center
     margin: 0 auto
@@ -51,9 +46,7 @@
           top: 4px
           transform: rotate(45deg)
   &__content
-    display: flex
-    width: 90%
-    justify-content: center
-    align-items: center
+    width: 100%
     margin: 0 auto
     grid-column: 1 / -1
+    font-size: 1.1em

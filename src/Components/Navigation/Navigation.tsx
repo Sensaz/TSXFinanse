@@ -168,7 +168,8 @@ const Navigation = () => {
     },
   ];
 
-  const checkTabIndex = navigationForSmallDeviceState && (!modalStoreState && window.innerWidth >= 1091 ) ? 1 : -1
+  const checkTabIndex = navigationForSmallDeviceState || (!modalStoreState && window.innerWidth >= 1091) ? 1 : -1
+  
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);

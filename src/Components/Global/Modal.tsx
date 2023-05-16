@@ -3,12 +3,13 @@ import '../../Styles/Modal.sass'
 import { useDispatch } from 'react-redux'
 
 type propsForModal = {
-  children: string | JSX.Element | JSX.Element[] 
+  children?: string | JSX.Element | JSX.Element[]  | any
+  modalTitle?: string | JSX.Element | JSX.Element[]  | any
 }
 
 
 
-const Modal = () => {
+const Modal = ({modalTitle, children}:propsForModal) => {
   const dispatch = useDispatch()
   const handleOffModal = () => {
     dispatch(modalStoreValue.setFalseFlag());
@@ -19,7 +20,7 @@ const Modal = () => {
     <div className='modal'>
       <div className='modal__navigation'>
         <h1 className='modal__navigation-title'>
-          Czym Jest SPD?
+          Co oznacza {modalTitle}?
         </h1>
         <button onClick={handleOffModal} className='modal__navigation-btn-close'>
           <span className='modal__navigation-btn-close--element'></span>
@@ -27,7 +28,7 @@ const Modal = () => {
         </button>
       </div>
       <div className='modal__content'>
-        <h1>JOŁ JOŁ JOŁ JOŁ</h1>
+        {children}
       </div>
     </div>
   )
