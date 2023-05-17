@@ -1,14 +1,16 @@
 import { ChangeEvent, MouseEvent, useState } from 'react'
 import LoanAmortizationSimulationForm from './LoanAmortizationSimulationForm'
 import LoanAmortizationSimulationResult from './LoanAmortizationSimulationResult'
+import loanAmortizationCalc from './FunctionForTest/loanAmortizationCalc'
 
 const LoanAmortizationSimulation = () => {
   const [loanValue, setLoanValue] = useState(0)
   const [duration, setDuration] = useState(0)
   const [marginOfTheBank, setMarginOfTheBank] = useState(0)
-  const [commisionAmmoutn, setCommisionAmmoutn] = useState(0)
+  const [commisionFee, setCommisionFee] = useState(0)
 
   const [optionDuration, setOptionDuration] = useState("")
+  const [paymentPeriodOfInstallment, setPaymentPeriodOfInstallment] = useState("")
   const [interestAccrualMethod, setInterestAccrualMethod] = useState("")
   const [doesTheBankChargeACommission, setDoesTheBankChargeACommission] = useState("")
   const [loanRepaymentMethod, setLoanRepaymentMethod] = useState("")
@@ -21,15 +23,18 @@ const LoanAmortizationSimulation = () => {
   const handleSetDuration = (e: ChangeEvent<HTMLInputElement>) => {
     setDuration(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
-  const hnadleSetMarginOfTheBank = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSetMarginOfTheBank = (e: ChangeEvent<HTMLInputElement>) => {
     setMarginOfTheBank(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
-  const hnadleSetCommisionAmmoutn = (e: ChangeEvent<HTMLInputElement>) => {
-    setCommisionAmmoutn(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
+  const handleSetCommisionFee = (e: ChangeEvent<HTMLInputElement>) => {
+    setCommisionFee(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
   
   const handleSetOptionDuration = (e: ChangeEvent<HTMLInputElement>) => {
     setOptionDuration(e.target.value)
+  }
+  const handleSetPaymentPeriodOfInstallment = (e: ChangeEvent<HTMLInputElement>) => {
+    setPaymentPeriodOfInstallment(e.target.value)
   }
   const handleSetInterestAccrualMethod = (e: ChangeEvent<HTMLInputElement>) => {
     setInterestAccrualMethod(e.target.value)
@@ -43,14 +48,28 @@ const LoanAmortizationSimulation = () => {
 
   const calculate = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    // console.log("Wysokość Kredytu: ", loanValue)
-    // console.log("Czas Trwania: ", duration)
-    // console.log("Marża Banku: ", marginOfTheBank)
-    // console.log("Czas Trwania podany w: ", optionDuration)
-    // console.log("Metoda Pobierania Odsetek Prez Bank: ", interestAccrualMethod)
-    // console.log("Czy bank pobiera prowizje: ", doesTheBankChargeACommission)
-    console.log("Wysokość Prowizji: ", commisionAmmoutn)
-    // console.log("Metoda Spłacania kredytu: ", loanRepaymentMethod)
+    loanAmortizationCalc(
+      loanValue,
+      duration,
+      marginOfTheBank,
+      commisionFee,
+      optionDuration,
+      paymentPeriodOfInstallment,
+      interestAccrualMethod,
+      doesTheBankChargeACommission,
+      loanRepaymentMethod
+    )
+    console.log( loanAmortizationCalc(
+      loanValue,
+      duration,
+      marginOfTheBank,
+      commisionFee,
+      optionDuration,
+      paymentPeriodOfInstallment,
+      interestAccrualMethod,
+      doesTheBankChargeACommission,
+      loanRepaymentMethod
+    ))
   }
 
 
@@ -60,14 +79,15 @@ const LoanAmortizationSimulation = () => {
         loanValue={loanValue}
         duration={duration}
         marginOfTheBank={marginOfTheBank}
-        commisionAmmoutn={commisionAmmoutn}
-        setCommisionAmmoutn={setCommisionAmmoutn}
+        commisionFee={commisionFee}
+        setCommisionFee={setCommisionFee}
         doesTheBankChargeACommission={doesTheBankChargeACommission}
         handleSetLoanValue={handleSetLoanValue}
         handleSetDuration={handleSetDuration}
-        hnadleSetMarginOfTheBank={hnadleSetMarginOfTheBank}
-        hnadleSetCommisionAmmoutn={hnadleSetCommisionAmmoutn}
+        handleSetMarginOfTheBank={handleSetMarginOfTheBank}
+        handleSetCommisionFee={handleSetCommisionFee}
         handleSetOptionDuration={handleSetOptionDuration}
+        handleSetPaymentPeriodOfInstallment={handleSetPaymentPeriodOfInstallment}
         handleSetInterestAccrualMethod={handleSetInterestAccrualMethod}
         handleSetDoesTheBankChargeACommission={handleSetDoesTheBankChargeACommission}
         handleSetLoanRepaymentMethod={handleSetLoanRepaymentMethod}

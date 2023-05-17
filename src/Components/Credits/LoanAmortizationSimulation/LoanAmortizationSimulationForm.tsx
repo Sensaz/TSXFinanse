@@ -7,14 +7,15 @@ interface LoanAmortizationSimulationFormProps {
   loanValue: number;
   duration: number;
   marginOfTheBank: number;
-  commisionAmmoutn: number;
+  commisionFee: number;
   doesTheBankChargeACommission: string;
-  setCommisionAmmoutn: (value: number) => void;
+  setCommisionFee: (value: number) => void;
   handleSetLoanValue: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void;
-  hnadleSetMarginOfTheBank: (value: ChangeEvent<HTMLInputElement>) => void;
-  hnadleSetCommisionAmmoutn: (value: ChangeEvent<HTMLInputElement>) => void;
+  handleSetMarginOfTheBank: (value: ChangeEvent<HTMLInputElement>) => void;
+  handleSetCommisionFee: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetOptionDuration: (value: ChangeEvent<HTMLInputElement>) => void; 
+  handleSetPaymentPeriodOfInstallment: (value: ChangeEvent<HTMLInputElement>) => void; 
   handleSetInterestAccrualMethod: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetDoesTheBankChargeACommission: (value: ChangeEvent<HTMLInputElement>) => void;
   handleSetLoanRepaymentMethod: (value: ChangeEvent<HTMLInputElement>) => void;
@@ -25,21 +26,22 @@ const LoanAmortizationSimulationForm = ({
   loanValue,
   duration,
   marginOfTheBank,
-  commisionAmmoutn,
+  commisionFee,
   doesTheBankChargeACommission,
-  setCommisionAmmoutn,
+  setCommisionFee,
   handleSetLoanValue,
   handleSetDuration,
-  hnadleSetMarginOfTheBank,
-  hnadleSetCommisionAmmoutn,
+  handleSetMarginOfTheBank,
+  handleSetCommisionFee,
   handleSetOptionDuration,
+  handleSetPaymentPeriodOfInstallment,
   handleSetInterestAccrualMethod,
   handleSetDoesTheBankChargeACommission,
   handleSetLoanRepaymentMethod,
   calculate
 }: LoanAmortizationSimulationFormProps) => {
   useEffect(() => {
-    setCommisionAmmoutn(0)
+    setCommisionFee(0)
   }, [doesTheBankChargeACommission])
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
@@ -59,27 +61,34 @@ const LoanAmortizationSimulationForm = ({
             <SelectOption value='DurationInMonths'>W Miesiącach</SelectOption>
             <SelectOption value='DurationInYears'>W Latach</SelectOption>
           </SelectInput>
+          <SelectInput handleSetSelectState={handleSetPaymentPeriodOfInstallment}>
+            <SelectOption value=''>Okres Płatności Raty Występuje co</SelectOption>
+            <SelectOption value='DurationInYears'>Rok</SelectOption>
+            <SelectOption value='DurationInHalfYears'>Pół roku</SelectOption>
+            <SelectOption value='DurationInQarters'>Kwartał</SelectOption>
+            <SelectOption value='DurationInMonths'>Miesiąc</SelectOption>
+          </SelectInput>
         </div>
 
         <div className='form__group'>
         
-        <Input inputState={`${marginOfTheBank <= 0 || Number.isNaN(marginOfTheBank) ? "" : marginOfTheBank}`} handleSetInputState={hnadleSetMarginOfTheBank} content="Marża banku w %" />
+        <Input inputState={`${marginOfTheBank <= 0 || Number.isNaN(marginOfTheBank) ? "" : marginOfTheBank}`} handleSetInputState={handleSetMarginOfTheBank} content="Marża banku w %" />
         
           <SelectInput handleSetSelectState={handleSetInterestAccrualMethod}>
             <SelectOption value=''>Metoda Pobierania Odsetek Przez Bank</SelectOption>
-            <SelectOption value='ZGóry'>Z Góry</SelectOption>
-            <SelectOption value='ZDołu'>Z Dołu</SelectOption>
+            <SelectOption value='InterestPaidInAdvance'>Z Góry</SelectOption>
+            <SelectOption value='InterestPaidInArrears'>Z Dołu</SelectOption>
           </SelectInput>
         
       </div>
       <div className='form__group'>
-        {doesTheBankChargeACommission === 'Tak' &&
-          <Input inputState={`${commisionAmmoutn <= 0 || Number.isNaN(commisionAmmoutn) ? "" : commisionAmmoutn}`} handleSetInputState={hnadleSetCommisionAmmoutn} content="Wysokość Prowizji w %" />
+        {doesTheBankChargeACommission === 'ChargesAFee' &&
+          <Input inputState={`${commisionFee <= 0 || Number.isNaN(commisionFee) ? "" : commisionFee}`} handleSetInputState={handleSetCommisionFee} content="Wysokość Prowizji w %" />
         }
           <SelectInput handleSetSelectState={handleSetDoesTheBankChargeACommission}>
             <SelectOption value=''>Czy Bank Pobiera Prowizje</SelectOption>
-            <SelectOption value='Tak'>Tak</SelectOption>
-            <SelectOption value='Nie'>Nie</SelectOption>
+            <SelectOption value='ChargesAFee'>Tak</SelectOption>
+            <SelectOption value='DoesNotChargeAFee'>Nie</SelectOption>
           </SelectInput>
 
 
@@ -87,8 +96,8 @@ const LoanAmortizationSimulationForm = ({
       <div className='form__group'>
           <SelectInput handleSetSelectState={handleSetLoanRepaymentMethod}>
             <SelectOption value=''>Metoda Spłacania kredytu</SelectOption>
-            <SelectOption value='RatyMalejące'>Równe Raty Kapitałowe (Malejące)</SelectOption>
-            <SelectOption value='RatyStałe'>Równe Raty Płatności Kredytu (Stałe)</SelectOption>
+            <SelectOption value='DecreasingInstallments'>Równe Raty Kapitałowe (Rata Malejąca)</SelectOption>
+            <SelectOption value='FixedInstallments'>Równe Raty Płatności Kredytu (Rata Stała)</SelectOption>
           </SelectInput>
       </div>
 

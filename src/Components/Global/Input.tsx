@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 interface InputProps {
   inputType?: string;
+  max? : number
   content: string;
   inputRequired?: boolean;
   inputState: string;
