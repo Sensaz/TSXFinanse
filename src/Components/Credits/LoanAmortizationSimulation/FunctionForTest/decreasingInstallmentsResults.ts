@@ -7,18 +7,22 @@ const decreasingInstallmentsResults = (
   interestForBasePeriod: number,
   dispatch: Dispatch<Action>
 ) => {
-  // Odsetki
-  let interest = loanValue * interestForBasePeriod * totalPaymentPeriods
-  dispatch(resetArray('interestArr'))
   // Saldo Początkowe Długu
-  let initialDebtBalance = loanValue - interest
+  let initialDebtBalance = loanValue
   dispatch(resetArray('initialDebtBalanceArr'))
+
+  // Odsetki
+  let interest = initialDebtBalance * interestForBasePeriod
+  dispatch(resetArray('interestArr'))
+
   // Rata Kapitałowa
-  let principalPayment = initialDebtBalance / totalPaymentPeriods
+  let principalPayment = loanValue / totalPaymentPeriods
   dispatch(resetArray('principalPaymentArr'))
+
   // Rata Płatności Kredytu
-  let loanPayment = initialDebtBalance / totalPaymentPeriods
+  let loanPayment = principalPayment + interest
   dispatch(resetArray('loanPaymentArr'))
+
   // Saldo Końcowe Długu
   let finalDebtBalance = initialDebtBalance - principalPayment
   dispatch(resetArray('finalDebtBalanceArr'))
@@ -29,7 +33,7 @@ const decreasingInstallmentsResults = (
       value: initialDebtBalance,
     })
   )
-  dispatch(updateArray({ arrayType: 'interestArr', value: 0 }))
+  dispatch(updateArray({ arrayType: 'interestArr', value: interest }))
   dispatch(
     updateArray({ arrayType: 'principalPaymentArr', value: principalPayment })
   )
@@ -50,7 +54,8 @@ const decreasingInstallmentsResults = (
     )
     // ---------------------------------
     // -- Odsetki ----------------------
-    dispatch(updateArray({ arrayType: 'interestArr', value: 0 }))
+    interest = initialDebtBalance * interestForBasePeriod
+    dispatch(updateArray({ arrayType: 'interestArr', value: interest }))
     // ---------------------------------
     // -- Rata Kapitałowa --------------
     dispatch(
@@ -58,6 +63,7 @@ const decreasingInstallmentsResults = (
     )
     // ---------------------------------
     // -- Rata Płatności Kredytu -------
+    loanPayment = principalPayment + interest
     dispatch(updateArray({ arrayType: 'loanPaymentArr', value: loanPayment }))
     // ---------------------------------
     // -- Saldo Końcowe Długu ----------

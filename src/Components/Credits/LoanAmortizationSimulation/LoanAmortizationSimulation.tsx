@@ -3,14 +3,14 @@ import LoanAmortizationSimulationForm from './LoanAmortizationSimulationForm'
 import LoanAmortizationSimulationResult from './LoanAmortizationSimulationResult'
 import loanAmortizationCalc from './FunctionForTest/loanAmortizationCalc'
 import { useDispatch } from 'react-redux'
+import numberOfBasePeriodsResult from './FunctionForTest/numberOfBasePeriodsResult'
+import creditDurationInMonths from './FunctionForTest/creditDurationInMonths'
 
 const LoanAmortizationSimulation = () => {
-  const [loanValue, setLoanValue] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [marginOfTheBank, setMarginOfTheBank] = useState(0)
+  const [loanValue, setLoanValue] = useState(10000)
+  const [duration, setDuration] = useState(20)
+  const [marginOfTheBank, setMarginOfTheBank] = useState(5)
   const [commisionFee, setCommisionFee] = useState(0)
-
-  const dispatch = useDispatch()
 
   const [optionDuration, setOptionDuration] = useState('')
   const [paymentPeriodOfInstallment, setPaymentPeriodOfInstallment] =
@@ -19,6 +19,8 @@ const LoanAmortizationSimulation = () => {
   const [doesTheBankChargeACommission, setDoesTheBankChargeACommission] =
     useState('')
   const [loanRepaymentMethod, setLoanRepaymentMethod] = useState('')
+
+  const dispatch = useDispatch()
 
   const handleSetLoanValue = (e: ChangeEvent<HTMLInputElement>) => {
     setLoanValue(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
@@ -58,33 +60,28 @@ const LoanAmortizationSimulation = () => {
     setLoanRepaymentMethod(e.target.value)
   }
 
+  // Czas Trwania w miesiącach
+  const durationInMonths = creditDurationInMonths(duration, optionDuration)
+
+  // Liczba okresów bazowych
+  const { totalPaymentPeriods, basePeriodsPerYear } = numberOfBasePeriodsResult(
+    paymentPeriodOfInstallment,
+    durationInMonths
+  )
+  // Oprocentowanie w okresie bazowym
+  const interestForBasePeriod = marginOfTheBank / basePeriodsPerYear / 100
+
   const calculate = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     loanAmortizationCalc(
       loanValue,
-      duration,
-      marginOfTheBank,
-      commisionFee,
-      optionDuration,
-      paymentPeriodOfInstallment,
+      durationInMonths,
+      totalPaymentPeriods,
+      basePeriodsPerYear,
+      interestForBasePeriod,
       interestAccrualMethod,
-      doesTheBankChargeACommission,
       loanRepaymentMethod,
       dispatch
-    )
-    console.log(
-      loanAmortizationCalc(
-        loanValue,
-        duration,
-        marginOfTheBank,
-        commisionFee,
-        optionDuration,
-        paymentPeriodOfInstallment,
-        interestAccrualMethod,
-        doesTheBankChargeACommission,
-        loanRepaymentMethod,
-        dispatch
-      )
     )
   }
 
@@ -112,7 +109,14 @@ const LoanAmortizationSimulation = () => {
         handleSetLoanRepaymentMethod={handleSetLoanRepaymentMethod}
         calculate={calculate}
       />
-      <LoanAmortizationSimulationResult />
+      <LoanAmortizationSimulationResult
+        loanValue={loanValue}
+        commisionFee={commisionFee}
+        interestForBasePeriod={interestForBasePeriod}
+        totalPaymentPeriods={totalPaymentPeriods}
+        doesTheBankChargeACommission={doesTheBankChargeACommission}
+        interestAccrualMethod={interestAccrualMethod}
+      />
     </>
   )
 }

@@ -51,7 +51,6 @@ const LoanAmortizationSimulationForm = ({
     (state: any) => state.navigationForSmallDevice.flag
   )
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
-
   const checkTabIndex =
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
   return (

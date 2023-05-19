@@ -4,20 +4,18 @@ import { updateArray, resetArray } from '../simulationAmortizationState.ts'
 const interestInstallmentsInAdvance = (
   loanValue: number,
   totalPaymentPeriods: number,
-  interestForBasePeriod: number,
   dispatch: Dispatch<Action>
 ) => {
+  // Odsetki
+  dispatch(resetArray('interestArr'))
   // Saldo Początkowe Długu
   let initialDebtBalance = loanValue
   dispatch(resetArray('initialDebtBalanceArr'))
-  // Odsetki
-  let interest = initialDebtBalance * interestForBasePeriod
-  dispatch(resetArray('interestArr'))
   // Rata Kapitałowa
   let principalPayment = loanValue / totalPaymentPeriods
   dispatch(resetArray('principalPaymentArr'))
   // Rata Płatności Kredytu
-  let loanPayment = principalPayment + interest
+  let loanPayment = loanValue / totalPaymentPeriods
   dispatch(resetArray('loanPaymentArr'))
   // Saldo Końcowe Długu
   let finalDebtBalance = initialDebtBalance - principalPayment
@@ -29,7 +27,7 @@ const interestInstallmentsInAdvance = (
       value: initialDebtBalance,
     })
   )
-  dispatch(updateArray({ arrayType: 'interestArr', value: interest }))
+  dispatch(updateArray({ arrayType: 'interestArr', value: 0 }))
   dispatch(
     updateArray({ arrayType: 'principalPaymentArr', value: principalPayment })
   )
@@ -50,8 +48,7 @@ const interestInstallmentsInAdvance = (
     )
     // ---------------------------------
     // -- Odsetki ----------------------
-    interest = initialDebtBalance * interestForBasePeriod
-    dispatch(updateArray({ arrayType: 'interestArr', value: interest }))
+    dispatch(updateArray({ arrayType: 'interestArr', value: 0 }))
     // ---------------------------------
     // -- Rata Kapitałowa --------------
     dispatch(
@@ -59,7 +56,6 @@ const interestInstallmentsInAdvance = (
     )
     // ---------------------------------
     // -- Rata Płatności Kredytu -------
-    loanPayment = principalPayment + interest
     dispatch(updateArray({ arrayType: 'loanPaymentArr', value: loanPayment }))
     // ---------------------------------
     // -- Saldo Końcowe Długu ----------
