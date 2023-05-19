@@ -16,12 +16,11 @@ const Navigation = () => {
   
   
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
   const dispatch = useDispatch()
   
   const showPhonButtonState = useSelector((state: any) => state.phoneButton.flag)
-  
-
 
   const reverseCheckTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
 

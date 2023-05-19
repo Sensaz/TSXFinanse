@@ -3,7 +3,7 @@ import {modalStoreValue} from '../../Global/globalStore.ts'
 import '../../../Styles/Table.sass'
 import '../../../Styles/Result.sass'
 import Modal from '../../Global/Modal.tsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type modalContentType = {
   [key: string]: string
@@ -36,6 +36,25 @@ const LoanAmortizationSimulationResult = () => {
     })
     dispatch(modalStoreValue.setTrueFlag())
   }
+
+  const {initialDebtBalanceArr, interestArr,
+    loanPaymentArr,
+    principalPaymentArr,
+    finalDebtBalanceArr} = useSelector((state: any) => state.arraySlice)
+
+  console.log(initialDebtBalanceArr)
+  console.log(interestArr)
+  console.log(loanPaymentArr)
+  console.log(principalPaymentArr)
+  console.log(finalDebtBalanceArr)
+    let result;
+    useEffect(()=>{
+
+    }, [initialDebtBalanceArr,
+      interestArr,
+      loanPaymentArr,
+      principalPaymentArr,
+      finalDebtBalanceArr])
 
   return (
     <>

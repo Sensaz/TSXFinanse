@@ -1,5 +1,8 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
+import arraySlice from '../Credits/LoanAmortizationSimulation/simulationAmortizationState.ts'
+
+
 interface FlagStateType {
   flag: boolean
 }
@@ -61,6 +64,7 @@ const store = configureStore({
     navigationForSmallDevice: navigationForSmallDevice.reducer,
     phoneButton: phoneButton.reducer,
     modalStore: modalStore.reducer,
+    arraySlice,
   },
 })
 

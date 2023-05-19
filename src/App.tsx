@@ -5,7 +5,6 @@ import './Styles/App.sass'
 import { useSelector } from "react-redux";
 function App() {
   const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
-  // const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
 
   const checkShowModal = modalStoreState ? 'blur--modal' : ''

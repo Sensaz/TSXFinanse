@@ -4,6 +4,7 @@ import numberOfBasePeriodsResult from './numberOfBasePeriodsResult.ts'
 import decreasingInstallmentsResults from './decreasingInstallmentsResults.ts'
 import fixedInstallmentsResults from './fixedInstallmentsResults.ts'
 import interestInstallmentsInAdvance from './interestInstallmentsInAdvance.ts'
+import { Action, Dispatch } from '@reduxjs/toolkit'
 
 const loanAmortizationCalc = (
   loanValue: number, // Wysokość Kredytu
@@ -14,8 +15,10 @@ const loanAmortizationCalc = (
   paymentPeriodOfInstallment: string, // Okres Płatności Raty Występuje co
   interestAccrualMethod: string, // Metoda Pobierania Odsetek Przez Bank
   doesTheBankChargeACommission: string, // Czy Bank Pobiera Prowizje
-  loanRepaymentMethod: string // Metoda Spłacania Kredytu
-) => {
+  loanRepaymentMethod: string, // Metoda Spłacania Kredytu
+  dispatch: Dispatch<Action>
+  ) => {
+  
   // Czas Trwania w miesiącach
   const durationInMonths = creditDurationInMonths(duration, optionDuration)
 
@@ -38,7 +41,7 @@ const loanAmortizationCalc = (
     return 0
   // Oprocentowanie na początek okresu bazowego
   const interestForBasePeriod = marginOfTheBank / basePeriodsPerYear / 100
-
+  
   // Wartość prowizji
   const valueOfFee = nominalCommisionFee(
     loanValue,
@@ -46,24 +49,29 @@ const loanAmortizationCalc = (
     doesTheBankChargeACommission
   )
 
+  console.log(loanRepaymentMethod)
+
   if (interestAccrualMethod === 'InterestPaidInAdvance')
     return interestInstallmentsInAdvance(
       loanValue,
       totalPaymentPeriods,
-      interestForBasePeriod
+      interestForBasePeriod,
+      dispatch
     )
 
   if (loanRepaymentMethod === 'DecreasingInstallments')
     return decreasingInstallmentsResults(
       loanValue,
       totalPaymentPeriods,
-      interestForBasePeriod
+      interestForBasePeriod,
+      dispatch
     )
-
+  
   return fixedInstallmentsResults(
     loanValue,
     totalPaymentPeriods,
-    interestForBasePeriod
+    interestForBasePeriod,
+    dispatch
   )
 
   //Info 1: Wysokość kredytu = loanValue

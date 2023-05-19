@@ -1,7 +1,11 @@
+import { updateArray, resetArray } from '../simulationAmortizationState.ts'
+import { Action, Dispatch } from '@reduxjs/toolkit'
+
 const fixedInstallmentsResults = (
   loanValue: number,
   totalPaymentPeriods: number,
-  interestForBasePeriod: number
+  interestForBasePeriod: number,
+  dispatch: Dispatch<Action>
 ) => {
   // Mnożnik Wartości Bierzącej Renty
   const presentValueAnnuityFactor =
@@ -10,60 +14,54 @@ const fixedInstallmentsResults = (
 
   // Saldo Początkowe Długu
   let initialDebtBalance = loanValue
-  let initialDebtBalanceArr: number[] = []
+  dispatch(resetArray("initialDebtBalanceArr"))
 
   // Odsetki
   let interest = initialDebtBalance * interestForBasePeriod
-  let interestArr: number[] = []
+  dispatch(resetArray("interestArr"))
 
   // Rata Płatności Kredytu
   let loanPayment = loanValue / presentValueAnnuityFactor
-  let loanPaymentArr: number[] = []
+  dispatch(resetArray("loanPaymentArr"))
 
   // Rata Kapitałowa
   let principalPayment = loanPayment - interest
-  let principalPaymentArr: number[] = []
+  dispatch(resetArray("principalPaymentArr"))
 
   // Saldo Końcowe Długu
   let finalDebtBalance = initialDebtBalance - principalPayment
-  let finalDebtBalanceArr: number[] = []
+  dispatch(resetArray("finalDebtBalanceArr"))
 
-  initialDebtBalanceArr.push(initialDebtBalance)
-  interestArr.push(interest)
-  principalPaymentArr.push(principalPayment)
-  loanPaymentArr.push(loanPayment)
-  finalDebtBalanceArr.push(finalDebtBalance)
+  dispatch(updateArray({ arrayType: "initialDebtBalanceArr", value: initialDebtBalance }));
+  dispatch(updateArray({ arrayType: "interestArr", value: interest }));
+  dispatch(updateArray({ arrayType: "principalPaymentArr", value: principalPayment }));
+  dispatch(updateArray({ arrayType: "loanPaymentArr", value: loanPayment }));
+  dispatch(updateArray({ arrayType: "finalDebtBalanceArr", value: finalDebtBalance }));
+
 
   for (let n = 1; n < totalPaymentPeriods; n++) {
     // ---------------------------------
     // -- Saldo Początkowe Długu -------
     initialDebtBalance = initialDebtBalance - principalPayment
-    initialDebtBalanceArr = [...initialDebtBalanceArr, initialDebtBalance]
+    dispatch(updateArray({ arrayType: "initialDebtBalanceArr", value: initialDebtBalance }));
     // ---------------------------------
     // -- Odsetki ----------------------
     interest = initialDebtBalance * interestForBasePeriod
-    interestArr = [...interestArr, interest]
+    dispatch(updateArray({ arrayType: "interestArr", value: interest }));
     // ---------------------------------
     // -- Rata Płatności Kredytu -------
-    principalPayment = loanPayment - interest
-    principalPaymentArr = [...principalPaymentArr, principalPayment]
+    dispatch(updateArray({ arrayType: "loanPaymentArr", value: loanPayment }));
     // ---------------------------------
     // -- Rata Kapitałowa --------------
-    loanPaymentArr = [...loanPaymentArr, loanPayment]
+    principalPayment = loanPayment - interest
+    dispatch(updateArray({ arrayType: "principalPaymentArr", value: principalPayment }));
     // ---------------------------------
     // -- Saldo Końcowe Długu ----------
     finalDebtBalance = initialDebtBalance - principalPayment
-    finalDebtBalanceArr = [...finalDebtBalanceArr, finalDebtBalance]
+    dispatch(updateArray({ arrayType: "finalDebtBalanceArr", value: finalDebtBalance }));
   }
-  const loanAmortizationCreditData = [
-    initialDebtBalanceArr,
-    interestArr,
-    principalPaymentArr,
-    loanPaymentArr,
-    finalDebtBalanceArr,
-  ]
-
-  return loanAmortizationCreditData
+  
+  return 1
 }
 
 export default fixedInstallmentsResults

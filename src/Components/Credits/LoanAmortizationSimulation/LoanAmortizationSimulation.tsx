@@ -2,12 +2,15 @@ import { ChangeEvent, MouseEvent, useState } from 'react'
 import LoanAmortizationSimulationForm from './LoanAmortizationSimulationForm'
 import LoanAmortizationSimulationResult from './LoanAmortizationSimulationResult'
 import loanAmortizationCalc from './FunctionForTest/loanAmortizationCalc'
+import { useDispatch } from 'react-redux'
 
 const LoanAmortizationSimulation = () => {
   const [loanValue, setLoanValue] = useState(0)
   const [duration, setDuration] = useState(0)
   const [marginOfTheBank, setMarginOfTheBank] = useState(0)
   const [commisionFee, setCommisionFee] = useState(0)
+
+  const dispatch = useDispatch()
 
   const [optionDuration, setOptionDuration] = useState("")
   const [paymentPeriodOfInstallment, setPaymentPeriodOfInstallment] = useState("")
@@ -57,7 +60,8 @@ const LoanAmortizationSimulation = () => {
       paymentPeriodOfInstallment,
       interestAccrualMethod,
       doesTheBankChargeACommission,
-      loanRepaymentMethod
+      loanRepaymentMethod,
+      dispatch
     )
     console.log( loanAmortizationCalc(
       loanValue,
@@ -68,10 +72,10 @@ const LoanAmortizationSimulation = () => {
       paymentPeriodOfInstallment,
       interestAccrualMethod,
       doesTheBankChargeACommission,
-      loanRepaymentMethod
+      loanRepaymentMethod,
+      dispatch
     ))
   }
-
 
   return (
     <>
