@@ -1,8 +1,4 @@
-import {
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { Route, Routes, Navigate } from 'react-router-dom'
 
 import {
   AboutMe,
@@ -23,7 +19,7 @@ import {
   PresentValueOfASingleFlowCalculator,
   PresentValueOfAnAnnuityCalculator,
   UserProfil,
-  ErrorPage
+  ErrorPage,
 } from './Components'
 
 const Page = () => {
@@ -32,24 +28,45 @@ const Page = () => {
       <Route exact path="/" element={<Navigate to="/home" replace />} />
 
       <Route path="/home" element={<HomePage />} />
-      
+
       <Route path="/AboutMe" element={<AboutMe />} />
-      
+
       <Route path="/Credits">
         <Route path="CreditCalculator" element={<CreditCalculator />} />
-        <Route path="LoanAmortizationSimulation" element={<LoanAmortizationSimulation />} />
+        <Route
+          path="LoanAmortizationSimulation"
+          element={<LoanAmortizationSimulation />}
+        />
       </Route>
 
       <Route path="/FinancialInstrumentsValuation">
-        <Route path="BondValuationCalculator" element={<BondValuationCalculator />} />
-        <Route path="EquitiesValuationCalculator" element={<EquitiesValuationCalculator />} />
-        <Route path="FuturesAndForwardsCalculator" element={<FuturesAndForwardsCalculator />} />
-        <Route path="OptionValutionCalculator" element={<OptionValutionCalculator />} />
-        <Route path="SwapPricingCalculator" element={<SwapPricingCalculator />} />
+        <Route
+          path="BondValuationCalculator"
+          element={<BondValuationCalculator />}
+        />
+        <Route
+          path="EquitiesValuationCalculator"
+          element={<EquitiesValuationCalculator />}
+        />
+        <Route
+          path="FuturesAndForwardsCalculator"
+          element={<FuturesAndForwardsCalculator />}
+        />
+        <Route
+          path="OptionValutionCalculator"
+          element={<OptionValutionCalculator />}
+        />
+        <Route
+          path="SwapPricingCalculator"
+          element={<SwapPricingCalculator />}
+        />
       </Route>
 
-      <Route path="/InvestmentStrategyHelper" element={<InvestmentStrategyHelper />} />
-      
+      <Route
+        path="/InvestmentStrategyHelper"
+        element={<InvestmentStrategyHelper />}
+      />
+
       {/* <Route path="/KnowledgeBase" element={<KnowledgeBase />} /> */}
 
       <Route path="/KnowledgeBase">
@@ -59,18 +76,30 @@ const Page = () => {
       </Route>
 
       <Route path="/TimeValueOfMoney">
-        <Route path="FutureValueOfASingleFlowCalculator" element={<FutureValueOfASingleFlowCalculator />} />
-        <Route path="FutureValueOfAnAnnuityCalculator" element={<FutureValueOfAnAnnuityCalculator />} />
-        <Route path="PresentValueOfASingleFlowCalculator" element={<PresentValueOfASingleFlowCalculator />} />
-        <Route path="PresentValueOfAnAnnuityCalculator" element={<PresentValueOfAnAnnuityCalculator />} />
+        <Route
+          path="FutureValueOfASingleFlowCalculator"
+          element={<FutureValueOfASingleFlowCalculator />}
+        />
+        <Route
+          path="FutureValueOfAnAnnuityCalculator"
+          element={<FutureValueOfAnAnnuityCalculator />}
+        />
+        <Route
+          path="PresentValueOfASingleFlowCalculator"
+          element={<PresentValueOfASingleFlowCalculator />}
+        />
+        <Route
+          path="PresentValueOfAnAnnuityCalculator"
+          element={<PresentValueOfAnAnnuityCalculator />}
+        />
       </Route>
-      
+
       <Route path="/UserProfil" element={<UserProfil />} />
 
       <Route path="/error" element={<ErrorPage />} />
 
       <Route path="*" element={<Navigate to="/error" replace />} />
-  </Routes>
+    </Routes>
   )
 }
 

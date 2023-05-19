@@ -1,7 +1,7 @@
 @use 'sass:list'
 
-@function transition-repeat($duration, $args...) 
+@function transition-repeat($duration, $args...)
   $transitions: ()
-  @each $property in $args 
-    $transitions: append($transitions, $property + " #{$duration} ease-out",  $separator: comma)
+  @each $property in $args
+    $transitions: append($transitions, $property + " #{$duration} ease-out", $separator: comma)
   @return ($transitions)

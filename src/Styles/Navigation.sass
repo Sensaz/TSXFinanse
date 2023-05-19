@@ -2,7 +2,6 @@
 @use 'Variable/colors'
 @use 'Variable/functions'
 
-
 $hamburgerMenuBG: #383838
 $drobDownMenuBG: #dadada
 $activeLink: #004747
@@ -22,12 +21,11 @@ $paddingSize: 10px 15px
   color: map-get(colors.$fontColor, "normal")
   transition: .1s linear color
 
-@mixin arrow-styles($direction) 
+@mixin arrow-styles($direction)
   position: relative
-  &-open#{$direction} 
+  &-open#{$direction}
     top: if($direction == 45, 8px, -8px)
     transform: rotate(#{$direction}deg)
-
 
 @mixin mainButton($size: '--nomrmal')
   position: relative
@@ -73,7 +71,7 @@ $paddingSize: 10px 15px
       overflow-y: auto
       &--show
         left: 0
-      @include mixins.phone 
+      @include mixins.phone
         width: 100vw
   &__item
     margin-left: 15px
@@ -130,7 +128,7 @@ $paddingSize: 10px 15px
       width: 60px
     @include mixins.phone
       margin-left: 2%
-  &__dropdown 
+  &__dropdown
     position: relative
     z-index: 99
     &-arrow
@@ -154,9 +152,9 @@ $paddingSize: 10px 15px
       gap: 5px
       background: colors.$navBG
       &:hover
-          color: map-get(colors.$fontColorHover, "normal")
+        color: map-get(colors.$fontColorHover, "normal")
       &:hover .navigation__dropdown-arrow
-          border-bottom: $arrowBorder map-get(colors.$fontColorHover, "normal")
+        border-bottom: $arrowBorder map-get(colors.$fontColorHover, "normal")
       @include mixins.tablet
         color: map-get(colors.$fontColor, "light")
         background: none
@@ -166,7 +164,7 @@ $paddingSize: 10px 15px
           border-bottom: $arrowBorder map-get(colors.$fontColorHover, "light")
         &--open
           color: map-get(colors.$fontColorHover, "light")
-    &-menu 
+    &-menu
       @include mixins.flexCenter($align: flex-start, $direction: column)
       position: absolute
       top: 25px
@@ -192,7 +190,7 @@ $paddingSize: 10px 15px
       &:hover
         color: map-get(colors.$fontColorHover, "normal")
 
-.active 
+.active
   color: $activeLink
   &:hover
     color: lighten($activeLink, 10%)

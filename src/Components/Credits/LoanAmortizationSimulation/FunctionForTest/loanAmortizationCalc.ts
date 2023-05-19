@@ -17,8 +17,7 @@ const loanAmortizationCalc = (
   doesTheBankChargeACommission: string, // Czy Bank Pobiera Prowizje
   loanRepaymentMethod: string, // Metoda Spłacania Kredytu
   dispatch: Dispatch<Action>
-  ) => {
-  
+) => {
   // Czas Trwania w miesiącach
   const durationInMonths = creditDurationInMonths(duration, optionDuration)
 
@@ -41,7 +40,7 @@ const loanAmortizationCalc = (
     return 0
   // Oprocentowanie na początek okresu bazowego
   const interestForBasePeriod = marginOfTheBank / basePeriodsPerYear / 100
-  
+
   // Wartość prowizji
   const valueOfFee = nominalCommisionFee(
     loanValue,
@@ -66,7 +65,7 @@ const loanAmortizationCalc = (
       interestForBasePeriod,
       dispatch
     )
-  
+
   return fixedInstallmentsResults(
     loanValue,
     totalPaymentPeriods,

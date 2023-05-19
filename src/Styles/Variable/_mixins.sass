@@ -1,6 +1,6 @@
 $tablet: 1090px
 $smallTablet: 749px
-$phone: 400px  
+$phone: 400px
 
 @mixin flexCenter($justify: flex-start, $align: stretch,$direction: row ,$gap: 0)
   display: flex
@@ -8,7 +8,7 @@ $phone: 400px
   align-items: $align
   flex-direction: $direction
   gap: $gap
-  
+
 @mixin tablet
   @media (max-width: $tablet)
     @content
@@ -17,7 +17,7 @@ $phone: 400px
   @media ($width: $smallTablet)
     @content
     @if $center
-      width: 650px 
+      width: 650px
       margin: 20px auto
 
 @mixin phone

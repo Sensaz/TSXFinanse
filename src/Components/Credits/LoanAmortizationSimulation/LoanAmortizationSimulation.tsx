@@ -12,12 +12,13 @@ const LoanAmortizationSimulation = () => {
 
   const dispatch = useDispatch()
 
-  const [optionDuration, setOptionDuration] = useState("")
-  const [paymentPeriodOfInstallment, setPaymentPeriodOfInstallment] = useState("")
-  const [interestAccrualMethod, setInterestAccrualMethod] = useState("")
-  const [doesTheBankChargeACommission, setDoesTheBankChargeACommission] = useState("")
-  const [loanRepaymentMethod, setLoanRepaymentMethod] = useState("")
-
+  const [optionDuration, setOptionDuration] = useState('')
+  const [paymentPeriodOfInstallment, setPaymentPeriodOfInstallment] =
+    useState('')
+  const [interestAccrualMethod, setInterestAccrualMethod] = useState('')
+  const [doesTheBankChargeACommission, setDoesTheBankChargeACommission] =
+    useState('')
+  const [loanRepaymentMethod, setLoanRepaymentMethod] = useState('')
 
   const handleSetLoanValue = (e: ChangeEvent<HTMLInputElement>) => {
     setLoanValue(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
@@ -27,22 +28,30 @@ const LoanAmortizationSimulation = () => {
     setDuration(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
   }
   const handleSetMarginOfTheBank = (e: ChangeEvent<HTMLInputElement>) => {
-    setMarginOfTheBank(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
+    setMarginOfTheBank(
+      !Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0
+    )
   }
   const handleSetCommisionFee = (e: ChangeEvent<HTMLInputElement>) => {
-    setCommisionFee(!Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0)
+    setCommisionFee(
+      !Number.isNaN(e.target.value) ? parseFloat(e.target.value) : 0
+    )
   }
-  
+
   const handleSetOptionDuration = (e: ChangeEvent<HTMLInputElement>) => {
     setOptionDuration(e.target.value)
   }
-  const handleSetPaymentPeriodOfInstallment = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSetPaymentPeriodOfInstallment = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     setPaymentPeriodOfInstallment(e.target.value)
   }
   const handleSetInterestAccrualMethod = (e: ChangeEvent<HTMLInputElement>) => {
     setInterestAccrualMethod(e.target.value)
   }
-  const handleSetDoesTheBankChargeACommission = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSetDoesTheBankChargeACommission = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     setDoesTheBankChargeACommission(e.target.value)
   }
   const handleSetLoanRepaymentMethod = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,18 +72,20 @@ const LoanAmortizationSimulation = () => {
       loanRepaymentMethod,
       dispatch
     )
-    console.log( loanAmortizationCalc(
-      loanValue,
-      duration,
-      marginOfTheBank,
-      commisionFee,
-      optionDuration,
-      paymentPeriodOfInstallment,
-      interestAccrualMethod,
-      doesTheBankChargeACommission,
-      loanRepaymentMethod,
-      dispatch
-    ))
+    console.log(
+      loanAmortizationCalc(
+        loanValue,
+        duration,
+        marginOfTheBank,
+        commisionFee,
+        optionDuration,
+        paymentPeriodOfInstallment,
+        interestAccrualMethod,
+        doesTheBankChargeACommission,
+        loanRepaymentMethod,
+        dispatch
+      )
+    )
   }
 
   return (
@@ -91,9 +102,13 @@ const LoanAmortizationSimulation = () => {
         handleSetMarginOfTheBank={handleSetMarginOfTheBank}
         handleSetCommisionFee={handleSetCommisionFee}
         handleSetOptionDuration={handleSetOptionDuration}
-        handleSetPaymentPeriodOfInstallment={handleSetPaymentPeriodOfInstallment}
+        handleSetPaymentPeriodOfInstallment={
+          handleSetPaymentPeriodOfInstallment
+        }
         handleSetInterestAccrualMethod={handleSetInterestAccrualMethod}
-        handleSetDoesTheBankChargeACommission={handleSetDoesTheBankChargeACommission}
+        handleSetDoesTheBankChargeACommission={
+          handleSetDoesTheBankChargeACommission
+        }
         handleSetLoanRepaymentMethod={handleSetLoanRepaymentMethod}
         calculate={calculate}
       />

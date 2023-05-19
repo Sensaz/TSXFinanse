@@ -10,7 +10,6 @@ $borderWarn: 1px solid map-get(colors.$fontColor, "warn")
 $validBorder: 1px solid $positiveBorderColor
 $focusBorder: 2px solid $positiveBorderColor
 
-
 $focusButtonBG: map-get(colors.$fontColorHover, "normal")
 
 %inputHelpText
@@ -21,7 +20,6 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
 %borderWithRadius
   border: $border
   border-radius: 5px
-
 
 .form
   @include mixins.flexCenter($gap: 30px)
@@ -48,7 +46,7 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
     font-size: 1em
     background: none
     outline: none
-    &::-webkit-outer-spin-button, 
+    &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button
       -webkit-appearance: none
       margin: 0
@@ -106,5 +104,3 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
     &:active
       color: colors.$pageBG
       background: $focusButtonBG
-
-    
