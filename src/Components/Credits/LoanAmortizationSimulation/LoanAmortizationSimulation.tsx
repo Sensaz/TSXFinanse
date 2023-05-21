@@ -7,8 +7,6 @@ import numberOfBasePeriodsResult from './FunctionForTest/numberOfBasePeriodsResu
 import creditDurationInMonths from './FunctionForTest/creditDurationInMonths'
 import LoanAmortizationSimulationTable from './LoanAmortizationSimulationTable'
 
-import loanAmortizationResult from './FunctionForTest/loanAmortizationResult'
-
 const LoanAmortizationSimulation = () => {
   const [loanValue, setLoanValue] = useState(10000)
   const [duration, setDuration] = useState(20)
@@ -89,7 +87,6 @@ const LoanAmortizationSimulation = () => {
       loanRepaymentMethod,
       dispatch
     )
-    console.log(initialDebtBalanceArr)
   }
 
   return (

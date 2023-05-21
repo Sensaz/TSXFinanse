@@ -15,6 +15,7 @@ const loanAmortizationResult = (
   initialDebtBalanceArr: number[],
   dispatch: Dispatch<Action>
 ) => {
+  console.log(initialDebtBalanceArr)
   if (!initialDebtBalanceArr.length) {
     dispatch(resetResult('loanAmount'))
     dispatch(resetResult('amountYouWillReceive'))
@@ -30,8 +31,6 @@ const loanAmortizationResult = (
     commisionFee,
     doesTheBankChargeACommission
   )
-
-  console.log(initialDebtBalanceArr)
 
   let totalInterestInInterestPaidInAdvance = 0
   let totalInterest = 0

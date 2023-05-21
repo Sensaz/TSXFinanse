@@ -78,7 +78,6 @@ const LoanAmortizationSimulationResult = ({
 
   const jsxAnnualPercentageRate =
     annualPercentageRate <= 0 ? 0 : annualPercentageRate
-
   return (
     <>
       <div className="result">

@@ -2,6 +2,7 @@ import { Action, Dispatch } from '@reduxjs/toolkit'
 import decreasingInstallmentsResults from './decreasingInstallmentsResults.ts'
 import fixedInstallmentsResults from './fixedInstallmentsResults.ts'
 import interestInstallmentsInAdvance from './interestInstallmentsInAdvance.ts'
+import { resetArray } from '../loanSimulationAmortizationTableState.ts'
 
 const loanAmortizationCalc = (
   loanValue: number, // Wysokość Kredytu
@@ -15,15 +16,25 @@ const loanAmortizationCalc = (
 ) => {
   if (
     loanValue <= 0 ||
+    isNaN(loanValue) ||
     durationInMonths <= 0 ||
+    isNaN(durationInMonths) ||
     totalPaymentPeriods <= 0 ||
+    isNaN(totalPaymentPeriods) ||
     basePeriodsPerYear <= 0 ||
+    isNaN(basePeriodsPerYear) ||
     (interestAccrualMethod !== 'InterestPaidInAdvance' &&
       interestAccrualMethod !== 'InterestPaidInArrears') ||
     (loanRepaymentMethod !== 'DecreasingInstallments' &&
       loanRepaymentMethod !== 'FixedInstallments')
-  )
-    return 0
+  ) {
+    dispatch(resetArray('interestArr'))
+    dispatch(resetArray('initialDebtBalanceArr'))
+    dispatch(resetArray('principalPaymentArr'))
+    dispatch(resetArray('loanPaymentArr'))
+    dispatch(resetArray('finalDebtBalanceArr'))
+    return
+  }
 
   if (interestAccrualMethod === 'InterestPaidInAdvance')
     return interestInstallmentsInAdvance(
