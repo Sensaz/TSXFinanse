@@ -5,6 +5,7 @@ import loanAmortizationCalc from './FunctionForTest/loanAmortizationCalc'
 import { useDispatch } from 'react-redux'
 import numberOfBasePeriodsResult from './FunctionForTest/numberOfBasePeriodsResult'
 import creditDurationInMonths from './FunctionForTest/creditDurationInMonths'
+import LoanAmortizationSimulationTable from './LoanAmortizationSimulationTable'
 
 const LoanAmortizationSimulation = () => {
   const [loanValue, setLoanValue] = useState(10000)
@@ -109,6 +110,7 @@ const LoanAmortizationSimulation = () => {
         handleSetLoanRepaymentMethod={handleSetLoanRepaymentMethod}
         calculate={calculate}
       />
+      <LoanAmortizationSimulationTable />
       <LoanAmortizationSimulationResult
         loanValue={loanValue}
         commisionFee={commisionFee}
