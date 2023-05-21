@@ -1,7 +1,8 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
-import arraySlice from '../Credits/LoanAmortizationSimulation/simulationAmortizationState.ts'
+import arraySlice from '../Credits/LoanAmortizationSimulation/loanSimulationAmortizationTableState.ts'
 
+import initialResult from '../Credits/LoanAmortizationSimulation/loanSimulationAmortizationResultState.ts'
 
 interface FlagStateType {
   flag: boolean
@@ -65,11 +66,8 @@ const store = configureStore({
     phoneButton: phoneButton.reducer,
     modalStore: modalStore.reducer,
     arraySlice,
+    initialResult,
   },
 })
 
 export default store
-
-// export type RootState = ReturnType<typeof navigationToggler.getState>
-// // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-// export type AppDispatch = typeof navigationToggler.dispatch

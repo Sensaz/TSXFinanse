@@ -1,5 +1,8 @@
 import { Action, Dispatch } from '@reduxjs/toolkit'
-import { updateArray, resetArray } from '../simulationAmortizationState.ts'
+import {
+  updateArray,
+  resetArray,
+} from '../loanSimulationAmortizationTableState.ts'
 
 const interestInstallmentsInAdvance = (
   loanValue: number,

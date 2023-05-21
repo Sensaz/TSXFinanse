@@ -1,4 +1,7 @@
-import { updateArray, resetArray } from '../simulationAmortizationState.ts'
+import {
+  updateArray,
+  resetArray,
+} from '../loanSimulationAmortizationTableState.ts'
 import { Action, Dispatch } from '@reduxjs/toolkit'
 
 const decreasingInstallmentsResults = (

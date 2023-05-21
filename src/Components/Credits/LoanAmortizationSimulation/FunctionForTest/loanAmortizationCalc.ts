@@ -1,7 +1,7 @@
+import { Action, Dispatch } from '@reduxjs/toolkit'
 import decreasingInstallmentsResults from './decreasingInstallmentsResults.ts'
 import fixedInstallmentsResults from './fixedInstallmentsResults.ts'
 import interestInstallmentsInAdvance from './interestInstallmentsInAdvance.ts'
-import { Action, Dispatch } from '@reduxjs/toolkit'
 
 const loanAmortizationCalc = (
   loanValue: number, // Wysokość Kredytu

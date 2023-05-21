@@ -59,11 +59,7 @@ const LoanAmortizationSimulationTable = () => {
     <tr key={index} className="table__body-row">
       <td className="table__body-short">{index + 1}</td>
       {loanAmortizationResults.map((el) => {
-        return (
-          <td key={index * 2} className="table__body-short">
-            {el[index].toFixed(2)}
-          </td>
-        )
+        return <td className="table__body-short">{el[index].toFixed(2)}</td>
       })}
     </tr>
   ))

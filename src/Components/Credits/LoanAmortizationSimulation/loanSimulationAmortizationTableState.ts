@@ -3,22 +3,22 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface ArrayState {
   initialDebtBalanceArr: number[]
   interestArr: number[]
-  loanPaymentArr: number[]
   principalPaymentArr: number[]
+  loanPaymentArr: number[]
   finalDebtBalanceArr: number[]
 }
 
-const initialState: ArrayState = {
+const initialArraysState: ArrayState = {
   initialDebtBalanceArr: [],
   interestArr: [],
-  loanPaymentArr: [],
   principalPaymentArr: [],
+  loanPaymentArr: [],
   finalDebtBalanceArr: [],
 }
 
 const arraySlice = createSlice({
   name: 'arraySlice',
-  initialState,
+  initialState: initialArraysState,
   reducers: {
     updateArray: (
       state,

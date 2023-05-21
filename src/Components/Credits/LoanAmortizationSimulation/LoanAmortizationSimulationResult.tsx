@@ -1,14 +1,27 @@
 import { useSelector } from 'react-redux'
-import nominalCommisionFee from './FunctionForTest/nominalCommisionFee.ts'
-import '../../../Styles/Result.sass'
+import loanAmortizationResult from './FunctionForTest/loanAmortizationResult'
+import { useEffect } from 'react'
+import { Action, Dispatch } from '@reduxjs/toolkit'
 
-type LoanAmortizationSimulationResultType = {
+interface ResultState {
+  loanAmount: number
+  amountYouWillReceive: number
+  commissionWillBe: number
+  nominalInterestValue: number
+  repaymentNominal: number
+  annualPercentageRate: number
+  initialResult: ResultState
+}
+
+interface LoanAmortizationSimulationResultType {
   loanValue: number
   commisionFee: number
   interestForBasePeriod: number
   totalPaymentPeriods: number
   doesTheBankChargeACommission: string
   interestAccrualMethod: string
+  initialDebtBalanceArr: number[]
+  dispatch: Dispatch<Action>
 }
 
 const LoanAmortizationSimulationResult = ({
@@ -18,80 +31,74 @@ const LoanAmortizationSimulationResult = ({
   totalPaymentPeriods,
   doesTheBankChargeACommission,
   interestAccrualMethod,
+  initialDebtBalanceArr,
+  dispatch,
 }: LoanAmortizationSimulationResultType) => {
+  useEffect(() => {
+    loanAmortizationResult(
+      loanValue,
+      commisionFee,
+      interestForBasePeriod,
+      totalPaymentPeriods,
+      doesTheBankChargeACommission,
+      interestAccrualMethod,
+      initialDebtBalanceArr,
+      dispatch
+    )
+  }, [initialDebtBalanceArr])
+
   const navigationForSmallDeviceState = useSelector(
     (state: any) => state.navigationForSmallDevice.flag
   )
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+
   const checkTabIndex =
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
-  const valueOfFee = nominalCommisionFee(
-    loanValue,
-    commisionFee,
-    doesTheBankChargeACommission
-  )
+  const {
+    loanAmount,
+    amountYouWillReceive,
+    commissionWillBe,
+    nominalInterestValue,
+    repaymentNominal,
+    annualPercentageRate,
+  } = useSelector((state: ResultState) => state.initialResult)
 
-  const { initialDebtBalanceArr } = useSelector(
-    (state: any) => state.arraySlice
-  )
+  const jsxLoanAmount = loanAmount <= 0 ? 0 : loanAmount
 
-  let totalInterestInInterestPaidInAdvance = 0
-  let totalInterest = 0
+  const jsxAmountYouWillReceive =
+    amountYouWillReceive <= 0 ? 0 : amountYouWillReceive
 
-  initialDebtBalanceArr.forEach((el: number) => {
-    if (interestAccrualMethod === 'InterestPaidInAdvance')
-      totalInterestInInterestPaidInAdvance += el * (interestForBasePeriod / 100)
-    totalInterest += el * interestForBasePeriod
-  })
+  const jsxCommissionWillBe = commissionWillBe <= 0 ? 0 : commissionWillBe
 
-  // Wysokość kredytu
-  const loanAmount = loanValue
+  const jsxNominalInterestValue =
+    nominalInterestValue <= 0 ? 0 : nominalInterestValue
 
-  // Kwota którą otrzymasz
-  const amountYouWillReceive = (
-    loanValue -
-    valueOfFee -
-    totalInterestInInterestPaidInAdvance
-  ).toFixed(2)
+  const jsxRepaymentNominal = repaymentNominal <= 0 ? 0 : repaymentNominal
 
-  // Prowizja wyniesie
-  const commissionWillBe = (
-    valueOfFee + totalInterestInInterestPaidInAdvance
-  ).toFixed(2)
-
-  // Nominalna wartość odsetek
-  const nominalInterestValue = totalInterest.toFixed(2)
-
-  // Nominalnie łącznie oddasz bankowi
-  const repaymentNominal = (loanValue + totalInterest + valueOfFee).toFixed(2)
-
-  // RRSO wyniesie
-  const annualPercentageRate = (
-    (Math.pow(1 + interestForBasePeriod, totalPaymentPeriods) - 1) *
-    100
-  ).toFixed(2)
+  const jsxAnnualPercentageRate =
+    annualPercentageRate <= 0 ? 0 : annualPercentageRate
 
   return (
     <>
       <div className="result">
         <h2 tabIndex={checkTabIndex} className="result__item">
-          Wysokość kredytu: {loanAmount}
+          Wysokość kredytu: {jsxLoanAmount.toFixed(2)}
         </h2>
         <h2 tabIndex={checkTabIndex} className="result__item">
-          Kwota którą otrzymasz: {amountYouWillReceive}
+          Kwota którą otrzymasz: {jsxAmountYouWillReceive.toFixed(2)}
         </h2>
         <h2 tabIndex={checkTabIndex} className="result__item">
-          Prowizja wyniesie: {commissionWillBe}
+          Prowizja wyniesie: {jsxCommissionWillBe.toFixed(2)}
         </h2>
         <h2 tabIndex={checkTabIndex} className="result__item">
-          Nominalna wartość odsetek: {nominalInterestValue}
+          Nominalna wartość odsetek: {jsxNominalInterestValue.toFixed(2)}
         </h2>
         <h2 tabIndex={checkTabIndex} className="result__item">
-          Nominalnie oddasz bankowi: {repaymentNominal}
+          Nominalnie oddasz bankowi: {jsxRepaymentNominal.toFixed(2)}
         </h2>
         <h2 tabIndex={checkTabIndex} className="result__item">
-          RRSO wyniesie: {annualPercentageRate} %
+          RRSO wyniesie: {jsxAnnualPercentageRate.toFixed(2)} %
         </h2>
       </div>
     </>

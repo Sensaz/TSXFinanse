@@ -2,10 +2,12 @@ import { ChangeEvent, MouseEvent, useState } from 'react'
 import LoanAmortizationSimulationForm from './LoanAmortizationSimulationForm'
 import LoanAmortizationSimulationResult from './LoanAmortizationSimulationResult'
 import loanAmortizationCalc from './FunctionForTest/loanAmortizationCalc'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import numberOfBasePeriodsResult from './FunctionForTest/numberOfBasePeriodsResult'
 import creditDurationInMonths from './FunctionForTest/creditDurationInMonths'
 import LoanAmortizationSimulationTable from './LoanAmortizationSimulationTable'
+
+import loanAmortizationResult from './FunctionForTest/loanAmortizationResult'
 
 const LoanAmortizationSimulation = () => {
   const [loanValue, setLoanValue] = useState(10000)
@@ -71,6 +73,9 @@ const LoanAmortizationSimulation = () => {
   )
   // Oprocentowanie w okresie bazowym
   const interestForBasePeriod = marginOfTheBank / basePeriodsPerYear / 100
+  const { initialDebtBalanceArr } = useSelector(
+    (state: any) => state.arraySlice
+  )
 
   const calculate = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -84,6 +89,7 @@ const LoanAmortizationSimulation = () => {
       loanRepaymentMethod,
       dispatch
     )
+    console.log(initialDebtBalanceArr)
   }
 
   return (
@@ -118,6 +124,8 @@ const LoanAmortizationSimulation = () => {
         totalPaymentPeriods={totalPaymentPeriods}
         doesTheBankChargeACommission={doesTheBankChargeACommission}
         interestAccrualMethod={interestAccrualMethod}
+        initialDebtBalanceArr={initialDebtBalanceArr}
+        dispatch={dispatch}
       />
     </>
   )
