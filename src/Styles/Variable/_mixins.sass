@@ -10,7 +10,7 @@ $phone: 400px
   gap: $gap
 
 @mixin tablet
-  @media ($width: $tablet)
+  @media (max-width: $tablet)
     @content
 
 @mixin smallTablet($width: max-width, $center: false)

@@ -1,9 +1,13 @@
-import { MouseEvent } from 'react'
+import { Dispatch, MouseEvent } from 'react'
 import { NavLink } from 'react-router-dom'
 import DropDown from './DropDown'
 import DropDownItem from './DropDownItem'
 import { useDispatch } from 'react-redux'
 import { navigationForSmallDeviceValue } from '../Global/globalStore'
+
+type DropDownListType = {
+  [key: string]: Dispatch<React.SetStateAction<boolean>>
+}
 
 const NavigationList = ({
   setIsTimeValueOfMoneyDropDownOpen,
@@ -23,54 +27,51 @@ const NavigationList = ({
     dispatch(navigationForSmallDeviceValue.setFalseFlag())
   }
 
-  const handleTimeValueOfMoneyDropDownOpen = (
-    e: MouseEvent<HTMLButtonElement>
-  ) => {
-    setIsTimeValueOfMoneyDropDownOpen((prev: boolean) => !prev)
-    const target = e.target as HTMLAnchorElement
-    if (target.className === 'navigation__dropdown-link') {
-      setNavigationForSmallDeviceFalse()
+  const dropdownList: DropDownListType = {
+    setIsTimeCreditsDropDownOpen,
+    setIsTimeValueOfMoneyDropDownOpen,
+    setIsFinancialInstrumentsValuationDropDownOpen,
+    setIsKnowledgeBaseDropDownOpen,
+  }
+
+  const handleDropDownOpen =
+    (
+      setDropDownState: React.Dispatch<React.SetStateAction<boolean>>,
+      dropDownName: string
+    ) =>
+    (e: MouseEvent<HTMLButtonElement>) => {
+      setDropDownState((prev) => !prev)
+      const { [dropDownName]: selectedDropdownValue, ...restDropdowns } =
+        dropdownList
+      const target = e.target as HTMLAnchorElement
+      if (target.className === 'navigation__dropdown-link') {
+        setNavigationForSmallDeviceFalse()
+      }
+      for (const key in restDropdowns) {
+        const dropdownFunction = restDropdowns[key]
+        dropdownFunction(false)
+      }
     }
 
-    setIsTimeCreditsDropDownOpen(false)
-    setIsFinancialInstrumentsValuationDropDownOpen(false)
-    setIsKnowledgeBaseDropDownOpen(false)
-  }
+  const handleTimeValueOfMoneyDropDownOpen = handleDropDownOpen(
+    setIsTimeValueOfMoneyDropDownOpen,
+    'setIsTimeValueOfMoneyDropDownOpen'
+  )
 
-  const handleTimeCreditsDropDownOpen = (e: MouseEvent<HTMLButtonElement>) => {
-    setIsTimeCreditsDropDownOpen((prev: boolean) => !prev)
-    const target = e.target as HTMLAnchorElement
-    console.log(target)
-    if (target.className === 'navigation__dropdown-link')
-      setNavigationForSmallDeviceFalse()
-    setIsTimeValueOfMoneyDropDownOpen(false)
-    setIsFinancialInstrumentsValuationDropDownOpen(false)
-    setIsKnowledgeBaseDropDownOpen(false)
-  }
+  const handleTimeCreditsDropDownOpen = handleDropDownOpen(
+    setIsTimeCreditsDropDownOpen,
+    'setIsTimeCreditsDropDownOpen'
+  )
 
-  const handleFinancialInstrumentsValuationDropDownOpen = (
-    e: MouseEvent<HTMLButtonElement>
-  ) => {
-    setIsFinancialInstrumentsValuationDropDownOpen((prev: boolean) => !prev)
-    const target = e.target as HTMLAnchorElement
-    if (target.className === 'navigation__dropdown-link')
-      setNavigationForSmallDeviceFalse()
-    setIsTimeCreditsDropDownOpen(false)
-    setIsTimeValueOfMoneyDropDownOpen(false)
-    setIsKnowledgeBaseDropDownOpen(false)
-  }
+  const handleFinancialInstrumentsValuationDropDownOpen = handleDropDownOpen(
+    setIsFinancialInstrumentsValuationDropDownOpen,
+    'setIsFinancialInstrumentsValuationDropDownOpen'
+  )
 
-  const handleKnowledgeBaseDropDownOpen = (
-    e: MouseEvent<HTMLButtonElement>
-  ) => {
-    setIsKnowledgeBaseDropDownOpen((prev: boolean) => !prev)
-    const target = e.target as HTMLAnchorElement
-    if (target.className === 'navigation__dropdown-link')
-      setNavigationForSmallDeviceFalse()
-    setIsTimeCreditsDropDownOpen(false)
-    setIsTimeValueOfMoneyDropDownOpen(false)
-    setIsFinancialInstrumentsValuationDropDownOpen(false)
-  }
+  const handleKnowledgeBaseDropDownOpen = handleDropDownOpen(
+    setIsKnowledgeBaseDropDownOpen,
+    'setIsKnowledgeBaseDropDownOpen'
+  )
 
   const nav = [
     {

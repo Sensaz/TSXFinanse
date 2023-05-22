@@ -47,16 +47,12 @@ const Navigation = () => {
       setIsTimeCreditsDropDownOpen(false)
       setIsFinancialInstrumentsValuationDropDownOpen(false)
       setIsKnowledgeBaseDropDownOpen(false)
-    } else if (windowWidth <= 1090) {
-      navigationForSmallDeviceState
-        ? (document.body.style.overflow = 'hidden')
-        : (document.body.style.overflowY = 'auto')
     }
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [window.innerWidth, navigationForSmallDeviceState])
+  }, [window.innerWidth])
 
   const handleHamburgerToggleClass = () => {
     if (window.innerWidth <= 1090) toggleNavigationForSmallDevice()
