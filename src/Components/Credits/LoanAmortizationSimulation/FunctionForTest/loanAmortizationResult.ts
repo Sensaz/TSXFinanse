@@ -15,7 +15,6 @@ const loanAmortizationResult = (
   initialDebtBalanceArr: number[],
   dispatch: Dispatch<Action>
 ) => {
-  console.log(initialDebtBalanceArr)
   if (!initialDebtBalanceArr.length) {
     dispatch(resetResult('loanAmount'))
     dispatch(resetResult('amountYouWillReceive'))
@@ -35,14 +34,17 @@ const loanAmortizationResult = (
   let totalInterestInInterestPaidInAdvance = 0
   let totalInterest = 0
 
-  initialDebtBalanceArr.forEach((el: number) => {
-    if (interestAccrualMethod === 'InterestPaidInAdvance')
-      totalInterestInInterestPaidInAdvance += el * (interestForBasePeriod / 100)
-    totalInterest += el * interestForBasePeriod
-  })
-  // let previousTableContent: any = []
-  // console.log(previousTableContent)
-  // previousTableContent = initialDebtBalanceArr
+  if (interestAccrualMethod === 'InterestPaidInAdvance') {
+    for (const el of initialDebtBalanceArr) {
+      const interest = el * interestForBasePeriod
+      totalInterest += interest
+      totalInterestInInterestPaidInAdvance += interest
+    }
+  } else {
+    for (const el of initialDebtBalanceArr) {
+      totalInterest += el * interestForBasePeriod
+    }
+  }
 
   // Wysokość kredytu
   dispatch(updateResult({ resultType: 'loanAmount', value: loanValue }))
