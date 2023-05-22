@@ -2,10 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import '../../Styles/Navigation.sass'
 import logo from '../../Img/logo.png'
-import {
-  navigationForSmallDeviceValue,
-  phoneButtonValue,
-} from '../Global/globalStore.ts'
+import { navigationForSmallDeviceValue } from '../Global/globalStore.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import NavigationList from './NavigationList.tsx'
 
@@ -29,25 +26,11 @@ const Navigation = () => {
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
   const dispatch = useDispatch()
 
-  const showPhonButtonState = useSelector(
-    (state: any) => state.phoneButton.flag
-  )
-
   const reverseCheckTabIndex =
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
   const toggleNavigationForSmallDevice = () => {
     dispatch(navigationForSmallDeviceValue.toggledFlag())
-  }
-
-  const setNavigationForSmallDeviceFalse = () => {
-    dispatch(navigationForSmallDeviceValue.setFalseFlag())
-  }
-  const setShowPhoneButtonFalse = () => {
-    dispatch(phoneButtonValue.setFalseFlag())
-  }
-  const setShowPhoneButtonTrue = () => {
-    dispatch(phoneButtonValue.setTrueFlag())
   }
 
   const checkTabIndex =
@@ -60,16 +43,11 @@ const Navigation = () => {
     const handleResize = () => setWindowWidth(window.innerWidth)
 
     if (windowWidth >= 1091) {
-      setNavigationForSmallDeviceFalse() // ! Zabezpiecza aby przy np obróceniu telefonu, tabletu w przypadku gdy szerokość użądzenia przekroczy 1091px blur ekranu który zakrywa reszte ekranu na małuch urządrzeniach zniknął
-
-      setIsTimeValueOfMoneyDropDownOpen(false) // ! Sprawia że rozwinięty dropdown na małym ekranie przy zmianie jego szerokości na większą od 1091px jest zwijany, w przeciwnym razie zostanie rozwinięty
-      setIsTimeCreditsDropDownOpen(false) // ! Sprawia że rozwinięty dropdown na małym ekranie przy zmianie jego szerokości na większą od 1091px jest zwijany, w przeciwnym razie zostanie rozwinięty
-      setIsFinancialInstrumentsValuationDropDownOpen(false) // ! Sprawia że rozwinięty dropdown na małym ekranie przy zmianie jego szerokości na większą od 1091px jest zwijany, w przeciwnym razie zostanie rozwinięty
-      setIsKnowledgeBaseDropDownOpen(false) // ! Sprawia że rozwinięty dropdown na małym ekranie przy zmianie jego szerokości na większą od 1091px jest zwijany, w przeciwnym razie zostanie rozwinięty
-      
-      setShowPhoneButtonFalse() // ! Ukrywa Przycisk dla małych ekranów jeżeli szerokość ekranu przekracza 1091px
-    } else setShowPhoneButtonTrue()
-    if (windowWidth <= 1090) {
+      setIsTimeValueOfMoneyDropDownOpen(false)
+      setIsTimeCreditsDropDownOpen(false)
+      setIsFinancialInstrumentsValuationDropDownOpen(false)
+      setIsKnowledgeBaseDropDownOpen(false)
+    } else if (windowWidth <= 1090) {
       navigationForSmallDeviceState
         ? (document.body.style.overflow = 'hidden')
         : (document.body.style.overflowY = 'auto')
@@ -88,7 +66,7 @@ const Navigation = () => {
     setIsKnowledgeBaseDropDownOpen(false)
   }
 
-  const hamburgerButton = showPhonButtonState && (
+  const hamburgerButton = (
     <button
       tabIndex={modalStoreState ? -1 : 1}
       onClick={handleHamburgerToggleClass}
@@ -118,7 +96,7 @@ const Navigation = () => {
     </button>
   )
 
-  const phoneLoginButton = showPhonButtonState && (
+  const phoneLoginButton = (
     <li>
       <NavLink
         tabIndex={checkTabIndex}

@@ -38,11 +38,14 @@ $paddingSize: 10px 15px
   text-decoration: none
   transition: .1s linear background
   font-size: .8em
-  &:hover
-    background: map-get(colors.$primaryHover, "dark")
+  &--small
+    display: none
   &--custom-text
     color: map-get(colors.$fontColor, "light")
+  &:hover
+    background: map-get(colors.$primaryHover, "dark")
   @if $size == '--small'
+    display: block
     top: 20px
     left: 30px
     background: map-get(colors.$primary, "light")
@@ -98,7 +101,6 @@ $paddingSize: 10px 15px
       &--small
         @include mainButton('--small')
   &__hamburger
-    @include mixins.flexCenter($justify: center, $direction: column)
     @extend %focusBtn
     display: none
     margin: 0 20px 0 auto

@@ -257,6 +257,7 @@ const NavigationList = ({
       content: 'O mnie',
     },
   ]
+
   const links = nav.map((link) => (
     <li className="navigation__item" key={link.id}>
       {typeof link.content === 'string' ? (
