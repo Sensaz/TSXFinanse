@@ -2,13 +2,13 @@ import { ReactElement, ReactNode, MouseEvent } from 'react'
 import { useSelector } from 'react-redux'
 
 interface MyComponentProps {
-  click: (value: MouseEvent<HTMLButtonElement>) => void
   isOpen: boolean
+  click: (value: MouseEvent<HTMLButtonElement>) => void
   title: ReactNode
   children: ReactElement<any>
 }
 
-const Dropdown = ({ isOpen, click, title, children }: MyComponentProps) => {
+const DropDown = ({ isOpen, click, title, children }: MyComponentProps) => {
   const navigationForSmallDeviceState = useSelector(
     (state: any) => state.navigationForSmallDevice.flag
   )
@@ -41,4 +41,4 @@ const Dropdown = ({ isOpen, click, title, children }: MyComponentProps) => {
   )
 }
 
-export default Dropdown
+export default DropDown

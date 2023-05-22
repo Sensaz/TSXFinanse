@@ -47,8 +47,6 @@ const LoanAmortizationSimulationResult = ({
     )
   }, [initialDebtBalanceArr])
 
-  console.log(initialDebtBalanceArr)
-
   const navigationForSmallDeviceState = useSelector(
     (state: any) => state.navigationForSmallDevice.flag
   )
