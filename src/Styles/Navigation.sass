@@ -1,12 +1,12 @@
 @use 'Variable/mixins'
 @use 'Variable/colors'
 @use 'Variable/functions'
+@use 'Variable/property'
 
 $hamburgerMenuBG: #383838
 $drobDownMenuBG: #dadada
 $activeLink: #004747
 
-$fullSize: 100%
 $arrowBorder: 5px solid
 
 $radius: 5px
@@ -17,7 +17,7 @@ $paddingSize: 10px 15px
   cursor: pointer
 
 %animateColor
-  width: $fullSize
+  width: property.$fullSize
   color: map-get(colors.$fontColor, "normal")
   transition: .1s linear color
 
@@ -61,7 +61,7 @@ $paddingSize: 10px 15px
     @include mixins.tablet
       @include mixins.flexCenter($align: flex-start, $direction: column)
       position: fixed
-      height: $fullSize
+      height: property.$fullSize
       min-width: 310px
       top: 0
       left: -400px
@@ -109,7 +109,7 @@ $paddingSize: 10px 15px
       z-index: 100
       background: none
     &--component
-      width: $fullSize
+      width: property.$fullSize
       margin: 4px
       padding: 4px
       border-radius: $radius
@@ -179,7 +179,7 @@ $paddingSize: 10px 15px
         max-width: 230px
         margin-bottom: 20px
     &-divider
-      width: $fullSize
+      width: property.$fullSize
       padding: 1px 0
       background: map-get(colors.$fontColor, "normal")
     &-item

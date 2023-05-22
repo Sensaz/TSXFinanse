@@ -57,7 +57,7 @@ const LoanAmortizationSimulationTable = () => {
 
   const result = initialDebtBalanceArr.map((_: any, index: number) => (
     <tr key={index} className="table__body-row">
-      <td className="table__body-short">{index + 1}</td>
+      <td className="table__body-short table--id">{index + 1}</td>
       {loanAmortizationResults.map((el) => {
         return <td className="table__body-short">{el[index].toFixed(2)}</td>
       })}
@@ -67,7 +67,7 @@ const LoanAmortizationSimulationTable = () => {
   const checkLoanAmortizationResultsIsNotEmpty =
     initialDebtBalanceArr.length === 0 ? (
       <tr className="table__body-row">
-        <td className="table__body-short">1</td>
+        <td className="table__body-short table--id">1</td>
         <td className="table__body-short">0.00</td>
         <td className="table__body-short">0.00</td>
         <td className="table__body-short">0.00</td>
@@ -85,59 +85,59 @@ const LoanAmortizationSimulationTable = () => {
       )}
       <table className="table">
         <thead className="table__header">
-          <tr>
-            <th className="table__header-column">#</th>
-            <th className="table__header-column">
+          <tr className="table__header--row">
+            <th className="table__header-short table--id">#</th>
+            <th className="table__header-short">
               SPD
               <span
                 data-info="SPD"
                 onClick={handleOnModal}
                 tabIndex={checkTabIndex}
-                className="table__header--info"
+                className="table__header-short--info"
               >
                 i
               </span>
             </th>
-            <th className="table__header-column">
+            <th className="table__header-short">
               ODS
               <span
                 data-info="ODS"
                 onClick={handleOnModal}
                 tabIndex={checkTabIndex}
-                className="table__header--info"
+                className="table__header-short--info"
               >
                 i
               </span>
             </th>
-            <th className="table__header-column">
+            <th className="table__header-short">
               RK
               <span
                 data-info="RK"
                 onClick={handleOnModal}
                 tabIndex={checkTabIndex}
-                className="table__header--info"
+                className="table__header-short--info"
               >
                 i
               </span>
             </th>
-            <th className="table__header-column">
+            <th className="table__header-short">
               RPK
               <span
                 data-info="RPK"
                 onClick={handleOnModal}
                 tabIndex={checkTabIndex}
-                className="table__header--info"
+                className="table__header-short--info"
               >
                 i
               </span>
             </th>
-            <th className="table__header-column">
+            <th className="table__header-short">
               SKD
               <span
                 data-info="SKD"
                 onClick={handleOnModal}
                 tabIndex={checkTabIndex}
-                className="table__header--info"
+                className="table__header-short--info"
               >
                 i
               </span>
