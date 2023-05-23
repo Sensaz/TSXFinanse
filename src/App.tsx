@@ -7,14 +7,19 @@ function App() {
   const navigationForSmallDeviceState = useSelector(
     (state: any) => state.navigationForSmallDevice.flag
   )
+
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
 
   const checkShowModal = modalStoreState ? 'blur--modal' : ''
   const checkAppIsBlur = navigationForSmallDeviceState ? 'blur' : ''
+  const checkNavigationIsShow = navigationForSmallDeviceState
+    ? 'app--hidden'
+    : ''
+
   return (
     <>
       <Router>
-        <div className="app">
+        <div className={`app ${checkNavigationIsShow}`}>
           <span className={checkAppIsBlur || checkShowModal}></span>
           <nav className="app__navigation">
             <Navigation />
