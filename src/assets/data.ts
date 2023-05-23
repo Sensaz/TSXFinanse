@@ -1,30 +1,9 @@
+// -----------------------------------------------
+// ---------------- MODALS -----------------------
+// -----------------------------------------------
+
 type modalContentType = {
   [key: string]: string
-}
-
-type ResultPropertyType = {
-  info: string
-  toCalc: string
-  unit: string
-}
-
-type SelectOptionType = {
-  value: string
-  content: string
-}
-
-type SelectTypePropertyType = {
-  [key: string]: SelectOptionType[]
-}
-
-type DropDownItemType = {
-  id: number
-  info: string
-  path: string
-}
-
-type ContentForDropDownType = {
-  [key: string]: DropDownItemType[]
 }
 
 export const modalContentForLoanAmortizationSimulationTable: modalContentType =
@@ -35,6 +14,23 @@ export const modalContentForLoanAmortizationSimulationTable: modalContentType =
     RPK: 'Rozwinięciem skrótu jest Rata Płatności Kredytu, stanowi ona sume odsetek (ODS) z ratą kapitałową (RK), jej interpretacja jest następująca: tyle właśnie oddamy bankowi za ten okres spłaty zadłużenia',
     SKD: 'Rozwinięciem skrótu jest Saldo Końcowe Długu oznacza ono jaki jest nasz stan zadłużenia po zapłacie raty kapitałowej (RK) czyli ile jeszcze musimy oddać bankowi bez odsetek, wynik ten stanowi saldo początkowe długu (SPD) na początek następnego okresu',
   }
+
+// -----------------------------------------------
+// ---------------- MODALS -----------------------
+// -----------------------------------------------
+
+// -----------------------------------------------
+// ---------------- SELECT FORM ------------------
+// -----------------------------------------------
+
+type SelectOptionType = {
+  value: string
+  content: string
+}
+
+type SelectTypePropertyType = {
+  [key: string]: SelectOptionType[]
+}
 
 export const loanAmortizationSimulationSelectProperty: SelectTypePropertyType =
   {
@@ -134,6 +130,20 @@ export const presentValueOfAnAnnuitySelectProperty: SelectTypePropertyType = {
   ],
 }
 
+// -----------------------------------------------
+// ---------------- SELECT FORM ------------------
+// -----------------------------------------------
+
+// -----------------------------------------------
+// ---------------- RESULT DATA ------------------
+// -----------------------------------------------
+
+type ResultPropertyType = {
+  info: string
+  toCalc: string
+  unit: string
+}
+
 export const resultPropertyForLoanAmortizationSimulationResult: ResultPropertyType[] =
   [
     {
@@ -204,6 +214,24 @@ export const resultPropertyForPresentTimeValue: ResultPropertyType[] = [
   },
 ]
 
+// -----------------------------------------------
+// ---------------- RESULT DATA ------------------
+// -----------------------------------------------
+
+// -----------------------------------------------
+// ---------------- DROPDOWN DATA ----------------
+// -----------------------------------------------
+
+type DropDownItemType = {
+  id: number
+  info: string
+  path: string
+}
+
+type ContentForDropDownType = {
+  [key: string]: DropDownItemType[]
+}
+
 export const contentForDropDown: ContentForDropDownType = {
   dropDownContentForTimeValueOfMoney: [
     {
@@ -235,21 +263,16 @@ export const contentForDropDown: ContentForDropDownType = {
   dropDownContentForCredits: [
     {
       id: 0,
-      info: 'Wartość przyszła pojedynczego przepływu',
-      path: 'TimeValueOfMoney/FutureValueOfASingleFlowCalculator',
-    },
-    {
-      id: 1,
       info: 'Symulacja Amortyzacji Kredytu',
       path: 'Credits/LoanAmortizationSimulation',
     },
     {
-      id: 2,
+      id: 1,
       info: 'Kalkulator Zdolności Kredytowej',
       path: 'Credits/CreditCalculator',
     },
     {
-      id: 3,
+      id: 2,
       info: 'Jak to działa',
       path: 'KnowledgeBase/FinancialInstruments',
     },
@@ -305,3 +328,28 @@ export const contentForDropDown: ContentForDropDownType = {
     },
   ],
 }
+
+// -----------------------------------------------
+// ---------------- DROPDOWN DATA ----------------
+// -----------------------------------------------
+
+// -----------------------------------------------
+// ---------------- TABLE THEAD ------------------
+// -----------------------------------------------
+
+type TableColumnType = {
+  id: number
+  content: string
+}
+
+export const theadArrForLoanAmortizationSimulation: TableColumnType[] = [
+  { id: 0, content: 'SPD' },
+  { id: 1, content: 'ODS' },
+  { id: 3, content: 'RK' },
+  { id: 4, content: 'RPK' },
+  { id: 5, content: 'SKD' },
+]
+
+// -----------------------------------------------
+// ---------------- TABLE THEAD ------------------
+// -----------------------------------------------

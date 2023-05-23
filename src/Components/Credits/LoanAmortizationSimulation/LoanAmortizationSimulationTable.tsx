@@ -2,7 +2,10 @@ import { useState, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global/globalStore.ts'
 import Modal from '../../Global/Modal.tsx'
-import { modalContentForLoanAmortizationSimulationTable } from '../../../assets'
+import {
+  modalContentForLoanAmortizationSimulationTable,
+  theadArrForLoanAmortizationSimulation,
+} from '../../../assets'
 import '../../../Styles/Table.sass'
 
 interface NavigationForSmallDeviceType {
@@ -24,6 +27,11 @@ interface ArrayState {
   principalPaymentArr: number[]
   loanPaymentArr: number[]
   finalDebtBalanceArr: number[]
+}
+
+type TableColumnType = {
+  id: number
+  content: string
 }
 
 const LoanAmortizationSimulationTable = () => {
@@ -94,6 +102,22 @@ const LoanAmortizationSimulationTable = () => {
       result
     )
 
+  const theadResult = theadArrForLoanAmortizationSimulation.map(
+    ({ id, content }: TableColumnType) => (
+      <th key={id} className="table__header-short">
+        {content}
+        <span
+          data-info={content}
+          onClick={handleOnModal}
+          tabIndex={checkTabIndex}
+          className="table__header-short--info"
+        >
+          i{' '}
+        </span>
+      </th>
+    )
+  )
+
   return (
     <>
       {modalStoreState && (
@@ -103,61 +127,7 @@ const LoanAmortizationSimulationTable = () => {
         <thead className="table__header">
           <tr className="table__header--row">
             <th className="table__header-short table--id">#</th>
-            <th className="table__header-short">
-              SPD
-              <span
-                data-info="SPD"
-                onClick={handleOnModal}
-                tabIndex={checkTabIndex}
-                className="table__header-short--info"
-              >
-                i
-              </span>
-            </th>
-            <th className="table__header-short">
-              ODS
-              <span
-                data-info="ODS"
-                onClick={handleOnModal}
-                tabIndex={checkTabIndex}
-                className="table__header-short--info"
-              >
-                i
-              </span>
-            </th>
-            <th className="table__header-short">
-              RK
-              <span
-                data-info="RK"
-                onClick={handleOnModal}
-                tabIndex={checkTabIndex}
-                className="table__header-short--info"
-              >
-                i
-              </span>
-            </th>
-            <th className="table__header-short">
-              RPK
-              <span
-                data-info="RPK"
-                onClick={handleOnModal}
-                tabIndex={checkTabIndex}
-                className="table__header-short--info"
-              >
-                i
-              </span>
-            </th>
-            <th className="table__header-short">
-              SKD
-              <span
-                data-info="SKD"
-                onClick={handleOnModal}
-                tabIndex={checkTabIndex}
-                className="table__header-short--info"
-              >
-                i
-              </span>
-            </th>
+            {theadResult}
           </tr>
         </thead>
         <tbody className="table__body">

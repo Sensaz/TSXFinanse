@@ -8,6 +8,7 @@ import {
   resultPropertyForFutureTimeValue,
   resultPropertyForPresentTimeValue,
   contentForDropDown,
+  theadArrForLoanAmortizationSimulation,
 } from './data.ts'
 
 export {
@@ -20,4 +21,5 @@ export {
   resultPropertyForFutureTimeValue,
   resultPropertyForPresentTimeValue,
   contentForDropDown,
+  theadArrForLoanAmortizationSimulation,
 }
