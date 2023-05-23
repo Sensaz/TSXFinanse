@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux'
 import { ChangeEvent, MouseEvent, useEffect } from 'react'
 import '../../../Styles/Form.sass'
-import { Input, SelectInput, SelectOption } from '../../Global'
+import { loanAmortizationSimulationSelectProperty } from '../../../assets'
+import { Input, SelectInput } from '../../Global'
 
 interface LoanAmortizationSimulationFormProps {
   loanValue: number
@@ -51,8 +52,17 @@ const LoanAmortizationSimulationForm = ({
     (state: any) => state.navigationForSmallDevice.flag
   )
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
-  const checkTabIndex =
+  const checkTabIndex = 
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
+
+  const {
+    propertyForSetOptionDuration,
+    propertyForSetPaymentPeriodOfInstallment,
+    propertyForSetInterestAccrualMethod,
+    propertyForSetDoesTheBankChargeACommission,
+    propertyForSetLoanRepaymentMethod,
+  } = loanAmortizationSimulationSelectProperty
+
   return (
     <form className="form">
       <div className="form__group">
@@ -72,21 +82,15 @@ const LoanAmortizationSimulationForm = ({
           handleSetInputState={handleSetDuration}
           content="Czas trwania"
         />
+        <SelectInput
+          handleSetSelectState={handleSetOptionDuration}
+          property={propertyForSetOptionDuration}
+        />
 
-        <SelectInput handleSetSelectState={handleSetOptionDuration}>
-          <SelectOption value="">Podany</SelectOption>
-          <SelectOption value="DurationInMonths">W Miesiącach</SelectOption>
-          <SelectOption value="DurationInYears">W Latach</SelectOption>
-        </SelectInput>
-        <SelectInput handleSetSelectState={handleSetPaymentPeriodOfInstallment}>
-          <SelectOption value="">
-            Okres Płatności Raty Występuje co
-          </SelectOption>
-          <SelectOption value="DurationInYears">Rok</SelectOption>
-          <SelectOption value="DurationInHalfYears">Pół roku</SelectOption>
-          <SelectOption value="DurationInQarters">Kwartał</SelectOption>
-          <SelectOption value="DurationInMonths">Miesiąc</SelectOption>
-        </SelectInput>
+        <SelectInput
+          handleSetSelectState={handleSetPaymentPeriodOfInstallment}
+          property={propertyForSetPaymentPeriodOfInstallment}
+        />
       </div>
 
       <div className="form__group">
@@ -100,13 +104,10 @@ const LoanAmortizationSimulationForm = ({
           content="Marża banku w %"
         />
 
-        <SelectInput handleSetSelectState={handleSetInterestAccrualMethod}>
-          <SelectOption value="">
-            Metoda Pobierania Odsetek Przez Bank
-          </SelectOption>
-          <SelectOption value="InterestPaidInAdvance">Z Góry</SelectOption>
-          <SelectOption value="InterestPaidInArrears">Z Dołu</SelectOption>
-        </SelectInput>
+        <SelectInput
+          handleSetSelectState={handleSetInterestAccrualMethod}
+          property={propertyForSetInterestAccrualMethod}
+        />
       </div>
       <div className="form__group">
         {doesTheBankChargeACommission === 'ChargesAFee' && (
@@ -122,22 +123,14 @@ const LoanAmortizationSimulationForm = ({
         )}
         <SelectInput
           handleSetSelectState={handleSetDoesTheBankChargeACommission}
-        >
-          <SelectOption value="">Czy Bank Pobiera Prowizje</SelectOption>
-          <SelectOption value="ChargesAFee">Tak</SelectOption>
-          <SelectOption value="DoesNotChargeAFee">Nie</SelectOption>
-        </SelectInput>
+          property={propertyForSetDoesTheBankChargeACommission}
+        />
       </div>
       <div className="form__group">
-        <SelectInput handleSetSelectState={handleSetLoanRepaymentMethod}>
-          <SelectOption value="">Metoda Spłacania kredytu</SelectOption>
-          <SelectOption value="DecreasingInstallments">
-            Równe Raty Kapitałowe (Rata Malejąca)
-          </SelectOption>
-          <SelectOption value="FixedInstallments">
-            Równe Raty Płatności Kredytu (Rata Stała)
-          </SelectOption>
-        </SelectInput>
+        <SelectInput
+          handleSetSelectState={handleSetLoanRepaymentMethod}
+          property={propertyForSetLoanRepaymentMethod}
+        />
       </div>
 
       <div className="form__group--button">

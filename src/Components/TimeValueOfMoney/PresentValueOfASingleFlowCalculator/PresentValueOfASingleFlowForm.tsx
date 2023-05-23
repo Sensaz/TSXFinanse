@@ -1,18 +1,21 @@
 import { ChangeEvent } from 'react'
+import { useSelector } from 'react-redux'
+import { Input, SelectInput } from '../../Global'
+import { valueOfASingleFlowSelectProperty } from '../../../assets'
 import '../../../Styles/Form.sass'
-import { Input, SelectInput, SelectOption  } from '../../Global'
-import { useSelector } from 'react-redux';
 
 interface PresentValueOfASingleFlowCalculatorProps {
-  expectedFinalValue: number;
-  duration: number;
-  interestRate: number;
-  handleSetStartValue: (value: ChangeEvent<HTMLInputElement>) => void;
-  handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void;
-  handleSetInterestRate: (value: ChangeEvent<HTMLInputElement>) => void;
-  handleSetOptionDuration: (value: ChangeEvent<HTMLInputElement>) => void;
-  handleSetInterestCapitalization: (value: ChangeEvent<HTMLInputElement>) => void;
-  calculate: (value: React.MouseEvent<HTMLButtonElement>) => void;
+  expectedFinalValue: number
+  duration: number
+  interestRate: number
+  handleSetStartValue: (value: ChangeEvent<HTMLInputElement>) => void
+  handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void
+  handleSetInterestRate: (value: ChangeEvent<HTMLInputElement>) => void
+  handleSetOptionDuration: (value: ChangeEvent<HTMLInputElement>) => void
+  handleSetInterestCapitalization: (
+    value: ChangeEvent<HTMLInputElement>
+  ) => void
+  calculate: (value: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const PresentValueOfASingleFlowForm = ({
@@ -24,50 +27,71 @@ const PresentValueOfASingleFlowForm = ({
   handleSetInterestRate,
   handleSetOptionDuration,
   handleSetInterestCapitalization,
-  calculate
+  calculate,
 }: PresentValueOfASingleFlowCalculatorProps) => {
-  const navigationForSmallDeviceState = useSelector((state: any) => state.navigationForSmallDevice.flag)
+  const navigationForSmallDeviceState = useSelector(
+    (state: any) => state.navigationForSmallDevice.flag
+  )
   const modalStoreState = useSelector((state: any) => state.modalStore.flag)
 
-  const checkTabIndex = navigationForSmallDeviceState || modalStoreState ? -1 : 1
-  
+  const checkTabIndex =
+    navigationForSmallDeviceState || modalStoreState ? -1 : 1
+  const { propertyForSetOptionDuration, propertyForSetInterestCapitalization } =
+    valueOfASingleFlowSelectProperty
   return (
     <form className="form">
-
-      <div className='form__group'>
-        <Input inputState={`${expectedFinalValue <= 0 || Number.isNaN(expectedFinalValue) ? "" : expectedFinalValue}`} handleSetInputState={handleSetStartValue} content="Oczekiwana Wartość Końcowa" />
+      <div className="form__group">
+        <Input
+          inputState={`${
+            expectedFinalValue <= 0 || Number.isNaN(expectedFinalValue)
+              ? ''
+              : expectedFinalValue
+          }`}
+          handleSetInputState={handleSetStartValue}
+          content="Oczekiwana Wartość Końcowa"
+        />
       </div>
-      <div className='form__group'>
-        <Input inputState={`${duration <= 0 || Number.isNaN(duration) ? "" : duration}`} handleSetInputState={handleSetDuration} content="Czas trwania" />
+      <div className="form__group">
+        <Input
+          inputState={`${
+            duration <= 0 || Number.isNaN(duration) ? '' : duration
+          }`}
+          handleSetInputState={handleSetDuration}
+          content="Czas trwania"
+        />
 
-        <SelectInput handleSetSelectState={handleSetOptionDuration}>
-          <SelectOption value=''>Podany</SelectOption>
-          <SelectOption value='DurationInMonths'>W Miesiącach</SelectOption>
-          <SelectOption value='DurationInYears'>W Latach</SelectOption>
-        </SelectInput>
-        </div>
+        <SelectInput
+          handleSetSelectState={handleSetOptionDuration}
+          property={propertyForSetOptionDuration}
+        />
+      </div>
 
-        <div className='form__group'>
-        
-          <Input inputState={`${interestRate <= 0 || Number.isNaN(interestRate) ? "" : interestRate}`} handleSetInputState={handleSetInterestRate} content="Wymagana Stopa zwrotu w %" />
+      <div className="form__group">
+        <Input
+          inputState={`${
+            interestRate <= 0 || Number.isNaN(interestRate) ? '' : interestRate
+          }`}
+          handleSetInputState={handleSetInterestRate}
+          content="Wymagana Stopa zwrotu w %"
+        />
 
-          <SelectInput handleSetSelectState={handleSetInterestCapitalization}>
-            <SelectOption value=''>Kapitalizacja Stopy Zwrotu</SelectOption>
-            <SelectOption value='AnnualCapitalization'>Roczna</SelectOption>
-            <SelectOption value='SemiAnnualCapitalization'>Półroczna</SelectOption>
-            <SelectOption value='QuarterlyCapitalization'>Kwartalna</SelectOption>
-            <SelectOption value='MonthlyCapitalization'>Miesięczna</SelectOption>
-            <SelectOption value='DailyCapitalization'>Dzienna</SelectOption>
-            <SelectOption value='ContinuousCapitalization'>Ciągła</SelectOption>
-          </SelectInput>
+        <SelectInput
+          handleSetSelectState={handleSetInterestCapitalization}
+          property={propertyForSetInterestCapitalization}
+        />
+      </div>
 
-        </div>
-
-      <div className='form__group--button'>
-        <button tabIndex={checkTabIndex} className='form__button' onClick={calculate}>Oblicz</button>
+      <div className="form__group--button">
+        <button
+          tabIndex={checkTabIndex}
+          className="form__button"
+          onClick={calculate}
+        >
+          Oblicz
+        </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default PresentValueOfASingleFlowForm;
+export default PresentValueOfASingleFlowForm

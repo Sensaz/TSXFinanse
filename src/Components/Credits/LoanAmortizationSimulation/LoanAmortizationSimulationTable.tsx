@@ -2,25 +2,14 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global/globalStore.ts'
 import Modal from '../../Global/Modal.tsx'
+import { modalContentForLoanAmortizationSimulationTable } from '../../../assets'
 import '../../../Styles/Table.sass'
-
-type modalContentType = {
-  [key: string]: string
-}
 
 const LoanAmortizationSimulationTable = () => {
   const [modalData, setModalData] = useState({
     title: '',
     children: '',
   })
-
-  const modalContent: modalContentType = {
-    SPD: 'Rozwinięciem Skrótu jest Saldo Początkowe Długu, określa ile wynosi saldo tego właśnie długu na początek danego okresu, właściwością SPD jest to że jest równe SKD (saldu końcowemu długu) z poprzedniego okresu',
-    ODS: 'Rozwinięciem skrótu są odsetki, jak sama nazwa mówi jest to kwota która nie idzie na spłate stanu zadłużenia tylko do jako czysty zysk do banku',
-    RK: 'Rozwinięciem skrótu jest Rata Kapitałowa, jest to kwota jaka bezpośrednio idzie na spłate stanu zadłużenia',
-    RPK: 'Rozwinięciem skrótu jest Rata Płatności Kredytu, stanowi ona sume odsetek (ODS) z ratą kapitałową (RK), jej interpretacja jest następująca: tyle właśnie oddamy bankowi za ten okres spłaty zadłużenia',
-    SKD: 'Rozwinięciem skrótu jest Saldo Końcowe Długu oznacza ono jaki jest nasz stan zadłużenia po zapłacie raty kapitałowej (RK) czyli ile jeszcze musimy oddać bankowi bez odsetek, wynik ten stanowi saldo początkowe długu (SPD) na początek następnego okresu',
-  }
 
   const navigationForSmallDeviceState = useSelector(
     (state: any) => state.navigationForSmallDevice.flag
@@ -34,7 +23,7 @@ const LoanAmortizationSimulationTable = () => {
     const title = e.target.getAttribute('data-info')
     setModalData({
       title: title,
-      children: modalContent[title],
+      children: modalContentForLoanAmortizationSimulationTable[title],
     })
     dispatch(modalStoreValue.setTrueFlag())
   }

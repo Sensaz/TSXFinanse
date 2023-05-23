@@ -20,7 +20,6 @@ interface LoanAmortizationSimulationResultType {
   totalPaymentPeriods: number
   doesTheBankChargeACommission: string
   interestAccrualMethod: string
-  initialDebtBalanceArr: number[]
   dispatch: Dispatch<Action>
 }
 
@@ -31,9 +30,12 @@ const LoanAmortizationSimulationResult = ({
   totalPaymentPeriods,
   doesTheBankChargeACommission,
   interestAccrualMethod,
-  initialDebtBalanceArr,
   dispatch,
 }: LoanAmortizationSimulationResultType) => {
+  const { initialDebtBalanceArr } = useSelector(
+    (state: any) => state.arraySlice
+  )
+
   useEffect(() => {
     loanAmortizationResult(
       loanValue,
