@@ -86,3 +86,5 @@ SelectInputProps) => {
     </label>
   )
 }
+
+export default SelectInput

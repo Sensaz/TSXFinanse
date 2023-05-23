@@ -2,6 +2,12 @@ type modalContentType = {
   [key: string]: string
 }
 
+type ResultPropertyType = {
+  info: string
+  toCalc: string
+  unit: string
+}
+
 export const modalContentForLoanAmortizationSimulationTable: modalContentType =
   {
     SPD: 'Rozwinięciem Skrótu jest Saldo Początkowe Długu, określa ile wynosi saldo tego właśnie długu na początek danego okresu, właściwością SPD jest to że jest równe SKD (saldu końcowemu długu) z poprzedniego okresu',
@@ -107,3 +113,73 @@ export const presentValueOfAnAnnuitySelectProperty = {
     { value: 'AnnuityMonthly', content: 'Miesiąc' },
   ],
 }
+
+export const resultPropertyForLoanAmortizationSimulationResult: ResultPropertyType[] =
+  [
+    {
+      info: 'Wysokość kredytu: ',
+      toCalc: 'loanAmount',
+      unit: '',
+    },
+    {
+      info: 'Kwota którą otrzymasz: ',
+      toCalc: 'amountYouWillReceive',
+      unit: '',
+    },
+    {
+      info: 'Prowizja wyniesie: ',
+      toCalc: 'commissionWillBe',
+      unit: '',
+    },
+    {
+      info: 'Nominalna wartość odsetek: ',
+      toCalc: 'nominalInterestValue',
+      unit: '',
+    },
+    {
+      info: 'Nominalnie oddasz bankowi: ',
+      toCalc: 'repaymentNominal',
+      unit: '',
+    },
+    {
+      info: 'RRSO wyniesie: ',
+      toCalc: 'annualPercentageRate',
+      unit: ' %',
+    },
+  ]
+
+export const resultPropertyForFutureTimeValue: ResultPropertyType[] = [
+  {
+    info: 'Efektem inwestycji Będzie kwota: ',
+    toCalc: 'investmentResult',
+    unit: '',
+  },
+  {
+    info: 'Zainwestowana Kwota wynosi: ',
+    toCalc: 'parsedExpectedFinalValue',
+    unit: '',
+  },
+  {
+    info: 'Narosłe odsetki wynoszą: ',
+    toCalc: 'accruedInterest',
+    unit: '',
+  },
+]
+
+export const resultPropertyForPresentTimeValue: ResultPropertyType[] = [
+  {
+    info: 'Wartość Obecna Inwestycji: ',
+    toCalc: 'presentValue',
+    unit: '',
+  },
+  {
+    info: 'Wartość Nominalna wyniesie: ',
+    toCalc: 'nominalValue',
+    unit: '',
+  },
+  {
+    info: 'Różnica: ',
+    toCalc: 'accruedInterest',
+    unit: '',
+  },
+]

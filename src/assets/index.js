@@ -4,6 +4,9 @@ import {
   futureValueOfAnAnnuitySelectProperty,
   valueOfASingleFlowSelectProperty,
   presentValueOfAnAnnuitySelectProperty,
+  resultPropertyForLoanAmortizationSimulationResult,
+  resultPropertyForFutureTimeValue,
+  resultPropertyForPresentTimeValue,
 } from './data.ts'
 
 export {
@@ -12,4 +15,7 @@ export {
   futureValueOfAnAnnuitySelectProperty,
   valueOfASingleFlowSelectProperty,
   presentValueOfAnAnnuitySelectProperty,
+  resultPropertyForLoanAmortizationSimulationResult,
+  resultPropertyForFutureTimeValue,
+  resultPropertyForPresentTimeValue,
 }
