@@ -1,11 +1,6 @@
 import interestRateForPeriodicBaseAnnuity from '../AnnuityFunctions/interestRateForPeriodicBaseAnnuity.ts'
-// parseRequiredInterestRate: number,
-// annuityCapitalization: string
 
 import numberOfAnnuityPeriods from '../AnnuityFunctions/numberOfAnnuityPeriods.ts'
-// parseDuration: number,
-// optionDuration: string,
-// annuityCapitalization: string
 
 type ResultCompoundInterestCalculateType = {
   presentValue: number

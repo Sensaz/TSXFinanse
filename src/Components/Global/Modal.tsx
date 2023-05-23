@@ -3,8 +3,8 @@ import '../../Styles/Modal.sass'
 import { useDispatch } from 'react-redux'
 
 type propsForModal = {
-  children?: string | JSX.Element | JSX.Element[]  | any
-  modalTitle?: string | JSX.Element | JSX.Element[]  | any
+  children?: string | JSX.Element | JSX.Element[] 
+  modalTitle?: string | JSX.Element | JSX.Element[]  
 }
 
 

@@ -3,12 +3,27 @@ import Navigation from './Components/Navigation/Navigation'
 import Page from './Page'
 import './Styles/App.sass'
 import { useSelector } from 'react-redux'
+
+interface NavigationForSmallDeviceType {
+  navigationForSmallDevice: {
+    flag: boolean
+  }
+}
+
+interface ModalStoreStateType {
+  modalStore: {
+    flag: boolean
+  }
+}
+
 function App() {
   const navigationForSmallDeviceState = useSelector(
-    (state: any) => state.navigationForSmallDevice.flag
+    (state: NavigationForSmallDeviceType) => state.navigationForSmallDevice.flag
   )
 
-  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+  const modalStoreState = useSelector(
+    (state: ModalStoreStateType) => state.modalStore.flag
+  )
 
   const checkShowModal = modalStoreState ? 'blur--modal' : ''
   const checkAppIsBlur = navigationForSmallDeviceState ? 'blur' : ''

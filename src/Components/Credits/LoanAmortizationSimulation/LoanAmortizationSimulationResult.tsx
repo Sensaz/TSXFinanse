@@ -27,6 +27,11 @@ interface LoanAmortizationSimulationResultType {
   dispatch: Dispatch<Action>
 }
 
+interface ArrayState {
+  arraySlice: ArrayState
+  initialDebtBalanceArr: number[]
+}
+
 const LoanAmortizationSimulationResult = ({
   loanValue,
   commisionFee,
@@ -37,7 +42,7 @@ const LoanAmortizationSimulationResult = ({
   dispatch,
 }: LoanAmortizationSimulationResultType) => {
   const { initialDebtBalanceArr } = useSelector(
-    (state: any) => state.arraySlice
+    (state: ArrayState) => state.arraySlice
   )
 
   useEffect(() => {

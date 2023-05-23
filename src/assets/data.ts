@@ -8,6 +8,25 @@ type ResultPropertyType = {
   unit: string
 }
 
+type SelectOptionType = {
+  value: string
+  content: string
+}
+
+type SelectTypePropertyType = {
+  [key: string]: SelectOptionType[]
+}
+
+type DropDownItemType = {
+  id: number
+  info: string
+  path: string
+}
+
+type ContentForDropDownType = {
+  [key: string]: DropDownItemType[]
+}
+
 export const modalContentForLoanAmortizationSimulationTable: modalContentType =
   {
     SPD: 'Rozwinięciem Skrótu jest Saldo Początkowe Długu, określa ile wynosi saldo tego właśnie długu na początek danego okresu, właściwością SPD jest to że jest równe SKD (saldu końcowemu długu) z poprzedniego okresu',
@@ -17,47 +36,48 @@ export const modalContentForLoanAmortizationSimulationTable: modalContentType =
     SKD: 'Rozwinięciem skrótu jest Saldo Końcowe Długu oznacza ono jaki jest nasz stan zadłużenia po zapłacie raty kapitałowej (RK) czyli ile jeszcze musimy oddać bankowi bez odsetek, wynik ten stanowi saldo początkowe długu (SPD) na początek następnego okresu',
   }
 
-export const loanAmortizationSimulationSelectProperty = {
-  propertyForSetOptionDuration: [
-    { value: '', content: 'Pdany' },
-    { value: 'DurationInMonths', content: 'W Miesiącach' },
-    { value: 'DurationInYears', content: 'W Latach' },
-  ],
+export const loanAmortizationSimulationSelectProperty: SelectTypePropertyType =
+  {
+    propertyForSetOptionDuration: [
+      { value: '', content: 'Pdany' },
+      { value: 'DurationInMonths', content: 'W Miesiącach' },
+      { value: 'DurationInYears', content: 'W Latach' },
+    ],
 
-  propertyForSetPaymentPeriodOfInstallment: [
-    { value: '', content: 'Okres Płatności Raty Występuje co' },
-    { value: 'DurationInYears', content: 'Rok' },
-    { value: 'DurationInHalfYears', content: 'Pół roku' },
-    { value: 'DurationInQarters', content: 'Kwartał' },
-    { value: 'DurationInMonths', content: 'Miesiąc' },
-  ],
+    propertyForSetPaymentPeriodOfInstallment: [
+      { value: '', content: 'Okres Płatności Raty Występuje co' },
+      { value: 'DurationInYears', content: 'Rok' },
+      { value: 'DurationInHalfYears', content: 'Pół roku' },
+      { value: 'DurationInQarters', content: 'Kwartał' },
+      { value: 'DurationInMonths', content: 'Miesiąc' },
+    ],
 
-  propertyForSetInterestAccrualMethod: [
-    { value: '', content: 'Metoda Pobierania Odsetek Przez Bank' },
-    { value: 'InterestPaidInAdvance', content: 'Z Góry' },
-    { value: 'InterestPaidInArrears', content: 'Z Dołu' },
-  ],
+    propertyForSetInterestAccrualMethod: [
+      { value: '', content: 'Metoda Pobierania Odsetek Przez Bank' },
+      { value: 'InterestPaidInAdvance', content: 'Z Góry' },
+      { value: 'InterestPaidInArrears', content: 'Z Dołu' },
+    ],
 
-  propertyForSetDoesTheBankChargeACommission: [
-    { value: '', content: 'Czy Bank Pobiera Prowizje' },
-    { value: 'ChargesAFee', content: 'Tak' },
-    { value: 'DoesNotChargeAFee', content: 'Nie' },
-  ],
+    propertyForSetDoesTheBankChargeACommission: [
+      { value: '', content: 'Czy Bank Pobiera Prowizje' },
+      { value: 'ChargesAFee', content: 'Tak' },
+      { value: 'DoesNotChargeAFee', content: 'Nie' },
+    ],
 
-  propertyForSetLoanRepaymentMethod: [
-    { value: '', content: 'Metoda Spłacania kredytu' },
-    {
-      value: 'DecreasingInstallments',
-      content: 'Równe Raty Kapitałowe (Rata Malejąca)',
-    },
-    {
-      value: 'FixedInstallments',
-      content: 'Równe Raty Płatności Kredytu (Rata Stała)',
-    },
-  ],
-}
+    propertyForSetLoanRepaymentMethod: [
+      { value: '', content: 'Metoda Spłacania kredytu' },
+      {
+        value: 'DecreasingInstallments',
+        content: 'Równe Raty Kapitałowe (Rata Malejąca)',
+      },
+      {
+        value: 'FixedInstallments',
+        content: 'Równe Raty Płatności Kredytu (Rata Stała)',
+      },
+    ],
+  }
 
-export const futureValueOfAnAnnuitySelectProperty = {
+export const futureValueOfAnAnnuitySelectProperty: SelectTypePropertyType = {
   propertyForSetAnnuityPaymentOption: [
     { value: '', content: 'Renta płatna z' },
     { value: 'AnnuityPaidInAdvance', content: 'Góry' },
@@ -77,7 +97,7 @@ export const futureValueOfAnAnnuitySelectProperty = {
   ],
 }
 
-export const valueOfASingleFlowSelectProperty = {
+export const valueOfASingleFlowSelectProperty: SelectTypePropertyType = {
   propertyForSetOptionDuration: [
     { value: '', content: 'Podany' },
     { value: 'DurationInMonths', content: 'W Miesiącach' },
@@ -94,7 +114,7 @@ export const valueOfASingleFlowSelectProperty = {
   ],
 }
 
-export const presentValueOfAnAnnuitySelectProperty = {
+export const presentValueOfAnAnnuitySelectProperty: SelectTypePropertyType = {
   propertyForSetAnnuityRecived: [
     { value: '', content: 'Renta otrzymywana z' },
     { value: 'AnnuityPaidInAdvance', content: 'Góry' },
@@ -184,7 +204,7 @@ export const resultPropertyForPresentTimeValue: ResultPropertyType[] = [
   },
 ]
 
-export const contentForDropDown = {
+export const contentForDropDown: ContentForDropDownType = {
   dropDownContentForTimeValueOfMoney: [
     {
       id: 0,

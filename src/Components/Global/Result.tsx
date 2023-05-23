@@ -15,16 +15,28 @@ interface ResultProps {
   results: ResultResultsType
 }
 
+interface NavigationForSmallDeviceType {
+  navigationForSmallDevice: {
+    flag: boolean
+  }
+}
+
+interface ModalStoreStateType {
+  modalStore: {
+    flag: boolean
+  }
+}
+
 const Result = ({ property, results }: ResultProps) => {
   const navigationForSmallDeviceState = useSelector(
-    (state: any) => state.navigationForSmallDevice.flag
+    (state: NavigationForSmallDeviceType) => state.navigationForSmallDevice.flag
   )
-  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+  const modalStoreState = useSelector(
+    (state: ModalStoreStateType) => state.modalStore.flag
+  )
 
   const checkTabIndex =
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
-
-  console.log(results)
 
   const result = property.map(({ info, toCalc, unit }, index) => (
     <h2 tabIndex={checkTabIndex} key={index} className="result__item">
@@ -33,8 +45,6 @@ const Result = ({ property, results }: ResultProps) => {
       {unit}
     </h2>
   ))
-
-  //   console.log(result)
 
   return <div className="result">{result}</div>
 }

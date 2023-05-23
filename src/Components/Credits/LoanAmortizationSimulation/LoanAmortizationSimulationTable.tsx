@@ -1,9 +1,30 @@
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global/globalStore.ts'
 import Modal from '../../Global/Modal.tsx'
 import { modalContentForLoanAmortizationSimulationTable } from '../../../assets'
 import '../../../Styles/Table.sass'
+
+interface NavigationForSmallDeviceType {
+  navigationForSmallDevice: {
+    flag: boolean
+  }
+}
+
+interface ModalStoreStateType {
+  modalStore: {
+    flag: boolean
+  }
+}
+
+interface ArrayState {
+  arraySlice: ArrayState
+  initialDebtBalanceArr: number[]
+  interestArr: number[]
+  principalPaymentArr: number[]
+  loanPaymentArr: number[]
+  finalDebtBalanceArr: number[]
+}
 
 const LoanAmortizationSimulationTable = () => {
   const [modalData, setModalData] = useState({
@@ -12,17 +33,19 @@ const LoanAmortizationSimulationTable = () => {
   })
 
   const navigationForSmallDeviceState = useSelector(
-    (state: any) => state.navigationForSmallDevice.flag
+    (state: NavigationForSmallDeviceType) => state.navigationForSmallDevice.flag
   )
-  const modalStoreState = useSelector((state: any) => state.modalStore.flag)
+  const modalStoreState = useSelector(
+    (state: ModalStoreStateType) => state.modalStore.flag
+  )
   const dispatch = useDispatch()
   const checkTabIndex =
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
-  const handleOnModal = (e: any) => {
-    const title = e.target.getAttribute('data-info')
+  const handleOnModal = (e: MouseEvent<HTMLButtonElement>) => {
+    const title = e.currentTarget.getAttribute('data-info') ?? ''
     setModalData({
-      title: title,
+      title,
       children: modalContentForLoanAmortizationSimulationTable[title],
     })
     dispatch(modalStoreValue.setTrueFlag())
@@ -34,7 +57,7 @@ const LoanAmortizationSimulationTable = () => {
     principalPaymentArr,
     loanPaymentArr,
     finalDebtBalanceArr,
-  } = useSelector((state: any) => state.arraySlice)
+  } = useSelector((state: ArrayState) => state.arraySlice)
 
   const loanAmortizationResults = [
     initialDebtBalanceArr,
@@ -48,7 +71,11 @@ const LoanAmortizationSimulationTable = () => {
     <tr key={index} className="table__body-row">
       <td className="table__body-short table--id">{index + 1}</td>
       {loanAmortizationResults.map((el) => {
-        return <td className="table__body-short">{el[index].toFixed(2)}</td>
+        return (
+          <td key={el[index] + 0.125} className="table__body-short">
+            {el[index].toFixed(2)}
+          </td>
+        )
       })}
     </tr>
   ))

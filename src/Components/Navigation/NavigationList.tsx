@@ -9,6 +9,21 @@ type DropDownListType = {
   [key: string]: Dispatch<React.SetStateAction<boolean>>
 }
 
+type NavigationListType = {
+  setIsTimeValueOfMoneyDropDownOpen: Dispatch<React.SetStateAction<boolean>>
+  setIsTimeCreditsDropDownOpen: Dispatch<React.SetStateAction<boolean>>
+  setIsFinancialInstrumentsValuationDropDownOpen: Dispatch<
+    React.SetStateAction<boolean>
+  >
+  setIsKnowledgeBaseDropDownOpen: Dispatch<React.SetStateAction<boolean>>
+  isTimeValueOfMoneyDropDownOpen: boolean
+  isTimeCreditsDropDownOpen: boolean
+  isFinancialInstrumentsValuationDropDownOpen: boolean
+  isKnowledgeBaseDropDownOpen: boolean
+  checkTabIndex: number
+  handleHamburgerToggleClass: () => void
+}
+
 const NavigationList = ({
   setIsTimeValueOfMoneyDropDownOpen,
   setIsTimeCreditsDropDownOpen,
@@ -20,7 +35,7 @@ const NavigationList = ({
   isKnowledgeBaseDropDownOpen,
   checkTabIndex,
   handleHamburgerToggleClass,
-}: any) => {
+}: NavigationListType) => {
   const dispatch = useDispatch()
 
   const setNavigationForSmallDeviceFalse = () => {
@@ -137,19 +152,19 @@ const NavigationList = ({
     },
   ]
 
-  const links = nav.map((link) => (
-    <li className="navigation__item" key={link.id}>
-      {typeof link.content === 'string' ? (
+  const links = nav.map(({ id, content, path }) => (
+    <li className="navigation__item" key={id}>
+      {typeof content === 'string' ? (
         <NavLink
           tabIndex={checkTabIndex}
           onClick={handleHamburgerToggleClass}
           className="navigation__link"
-          to={link.path}
+          to={path}
         >
-          {link.content}
+          {content}
         </NavLink>
       ) : (
-        link.content
+        content
       )}
     </li>
   ))
