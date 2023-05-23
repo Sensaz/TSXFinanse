@@ -1,9 +1,9 @@
+import { useDispatch } from 'react-redux'
 import { Dispatch, MouseEvent } from 'react'
 import { NavLink } from 'react-router-dom'
 import DropDown from './DropDown'
-import DropDownItem from './DropDownItem'
-import { useDispatch } from 'react-redux'
 import { navigationForSmallDeviceValue } from '../Global/globalStore'
+import { contentForDropDown } from '../../assets'
 
 type DropDownListType = {
   [key: string]: Dispatch<React.SetStateAction<boolean>>
@@ -73,6 +73,13 @@ const NavigationList = ({
     'setIsKnowledgeBaseDropDownOpen'
   )
 
+  const {
+    dropDownContentForTimeValueOfMoney,
+    dropDownContentForCredits,
+    dropDownContentForFinancialInstrumentValution,
+    dropDownContentForKnowledgeBase,
+  } = contentForDropDown
+
   const nav = [
     {
       id: 0,
@@ -81,45 +88,8 @@ const NavigationList = ({
           isOpen={isTimeValueOfMoneyDropDownOpen}
           click={handleTimeValueOfMoneyDropDownOpen}
           title="Wartość Pieniądza w czasie"
-        >
-          <>
-            <DropDownItem
-              click={handleTimeValueOfMoneyDropDownOpen}
-              path="TimeValueOfMoney/FutureValueOfASingleFlowCalculator"
-            >
-              Wartość przyszła pojedynczego przepływu
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleTimeValueOfMoneyDropDownOpen}
-              path="TimeValueOfMoney/PresentValueOfASingleFlowCalculator"
-            >
-              Wartość obecna pojedynczego przepływu
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleTimeValueOfMoneyDropDownOpen}
-              path="TimeValueOfMoney/FutureValueOfAnAnnuityCalculator"
-            >
-              Wartość przyszła renty
-            </DropDownItem>
-            <DropDownItem
-              click={handleTimeValueOfMoneyDropDownOpen}
-              path="TimeValueOfMoney/PresentValueOfAnAnnuityCalculator"
-            >
-              Wartość obecna renty
-            </DropDownItem>
-
-            <li className="navigation__DropDown-divider"></li>
-
-            <DropDownItem
-              click={handleTimeValueOfMoneyDropDownOpen}
-              path="KnowledgeBase/FinancialInstruments"
-            >
-              Jak to działa?
-            </DropDownItem>
-          </>
-        </DropDown>
+          content={dropDownContentForTimeValueOfMoney}
+        />
       ),
     },
     {
@@ -129,33 +99,8 @@ const NavigationList = ({
           isOpen={isTimeCreditsDropDownOpen}
           click={handleTimeCreditsDropDownOpen}
           title="Kredyty"
-        >
-          <>
-            <DropDownItem
-              click={handleTimeCreditsDropDownOpen}
-              path="Credits/LoanAmortizationSimulation"
-            >
-              Symulacja Amortyzacji Kredytu
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleTimeCreditsDropDownOpen}
-              path="Credits/CreditCalculator"
-            >
-              {' '}
-              Kalkulator Zdolności Kredytowej
-            </DropDownItem>
-
-            <li className="navigation__DropDown-divider"></li>
-
-            <DropDownItem
-              click={handleTimeCreditsDropDownOpen}
-              path="KnowledgeBase/FinancialInstruments"
-            >
-              Jak to działa?
-            </DropDownItem>
-          </>
-        </DropDown>
+          content={dropDownContentForCredits}
+        />
       ),
     },
     {
@@ -165,53 +110,8 @@ const NavigationList = ({
           isOpen={isFinancialInstrumentsValuationDropDownOpen}
           click={handleFinancialInstrumentsValuationDropDownOpen}
           title="Wyceny"
-        >
-          <>
-            <DropDownItem
-              click={handleFinancialInstrumentsValuationDropDownOpen}
-              path="FinancialInstrumentsValuation/BondValuationCalculator"
-            >
-              Obligacji
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleFinancialInstrumentsValuationDropDownOpen}
-              path="FinancialInstrumentsValuation/EquitiesValuationCalculator"
-            >
-              Akcji
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleFinancialInstrumentsValuationDropDownOpen}
-              path="FinancialInstrumentsValuation/OptionValutionCalculator"
-            >
-              Opcji
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleFinancialInstrumentsValuationDropDownOpen}
-              path="FinancialInstrumentsValuation/FuturesAndForwardsCalculator"
-            >
-              Kontraktu Futures i Forword
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleFinancialInstrumentsValuationDropDownOpen}
-              path="FinancialInstrumentsValuation/SwapPricingCalculator"
-            >
-              Kontraktu Swap
-            </DropDownItem>
-
-            <li className="navigation__DropDown-divider"></li>
-
-            <DropDownItem
-              click={handleFinancialInstrumentsValuationDropDownOpen}
-              path="KnowledgeBase/FinancialInstruments"
-            >
-              Jak to działa?
-            </DropDownItem>
-          </>
-        </DropDown>
+          content={dropDownContentForFinancialInstrumentValution}
+        />
       ),
     },
     {
@@ -226,30 +126,8 @@ const NavigationList = ({
           isOpen={isKnowledgeBaseDropDownOpen}
           click={handleKnowledgeBaseDropDownOpen}
           title="Baza Wiedzy"
-        >
-          <>
-            <DropDownItem
-              click={handleKnowledgeBaseDropDownOpen}
-              path="KnowledgeBase/FinancialInstruments"
-            >
-              Instrumenty Finansowe
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleKnowledgeBaseDropDownOpen}
-              path="KnowledgeBase/InvestmentStrategies"
-            >
-              Strategie Inwestycyjne
-            </DropDownItem>
-
-            <DropDownItem
-              click={handleKnowledgeBaseDropDownOpen}
-              path="KnowledgeBase/SolutionsInApp"
-            >
-              Opis Rozwiązań w Aplikacji
-            </DropDownItem>
-          </>
-        </DropDown>
+          content={dropDownContentForKnowledgeBase}
+        />
       ),
     },
     {

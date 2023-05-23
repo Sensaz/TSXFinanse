@@ -1,14 +1,15 @@
-import { ReactElement, ReactNode, MouseEvent } from 'react'
+import { ReactNode, MouseEvent } from 'react'
 import { useSelector } from 'react-redux'
+import DropDownItem from './DropDownItem'
 
 interface MyComponentProps {
   isOpen: boolean
   click: (value: MouseEvent<HTMLButtonElement>) => void
   title: ReactNode
-  children: ReactElement<any>
+  content: any
 }
 
-const DropDown = ({ isOpen, click, title, children }: MyComponentProps) => {
+const DropDown = ({ isOpen, click, title, content }: MyComponentProps) => {
   const navigationForSmallDeviceState = useSelector(
     (state: any) => state.navigationForSmallDevice.flag
   )
@@ -26,6 +27,12 @@ const DropDown = ({ isOpen, click, title, children }: MyComponentProps) => {
     ? 'navigation__dropdown-button--open'
     : ''
 
+  const result = content.map(({ id, info, path }): any => (
+    <DropDownItem key={id} click={click} path={path}>
+      {info}
+    </DropDownItem>
+  ))
+
   return (
     <div className="navigation__dropdown">
       <button
@@ -36,7 +43,7 @@ const DropDown = ({ isOpen, click, title, children }: MyComponentProps) => {
         {title}
         <span className={`navigation__dropdown-arrow ${swapArrow}`}></span>
       </button>
-      {isOpen && <ul className="navigation__dropdown-menu">{children}</ul>}
+      {isOpen && <ul className="navigation__dropdown-menu">{result}</ul>}
     </div>
   )
 }

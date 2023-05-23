@@ -156,7 +156,7 @@ export const resultPropertyForFutureTimeValue: ResultPropertyType[] = [
   },
   {
     info: 'Zainwestowana Kwota wynosi: ',
-    toCalc: 'parsedExpectedFinalValue',
+    toCalc: 'investedAmountValue',
     unit: '',
   },
   {
@@ -183,3 +183,105 @@ export const resultPropertyForPresentTimeValue: ResultPropertyType[] = [
     unit: '',
   },
 ]
+
+export const contentForDropDown = {
+  dropDownContentForTimeValueOfMoney: [
+    {
+      id: 0,
+      info: 'Wartość przyszła pojedynczego przepływu',
+      path: 'TimeValueOfMoney/FutureValueOfASingleFlowCalculator',
+    },
+    {
+      id: 1,
+      info: 'Wartość obecna pojedynczego przepływu',
+      path: 'TimeValueOfMoney/PresentValueOfASingleFlowCalculator',
+    },
+    {
+      id: 2,
+      info: 'Wartość przyszła renty',
+      path: 'TimeValueOfMoney/FutureValueOfAnAnnuityCalculator',
+    },
+    {
+      id: 3,
+      info: 'Wartość obecna renty',
+      path: 'TimeValueOfMoney/PresentValueOfAnAnnuityCalculator',
+    },
+    {
+      id: 4,
+      info: 'Jak to działa',
+      path: 'KnowledgeBase/FinancialInstruments',
+    },
+  ],
+  dropDownContentForCredits: [
+    {
+      id: 0,
+      info: 'Wartość przyszła pojedynczego przepływu',
+      path: 'TimeValueOfMoney/FutureValueOfASingleFlowCalculator',
+    },
+    {
+      id: 1,
+      info: 'Symulacja Amortyzacji Kredytu',
+      path: 'Credits/LoanAmortizationSimulation',
+    },
+    {
+      id: 2,
+      info: 'Kalkulator Zdolności Kredytowej',
+      path: 'Credits/CreditCalculator',
+    },
+    {
+      id: 3,
+      info: 'Jak to działa',
+      path: 'KnowledgeBase/FinancialInstruments',
+    },
+  ],
+  dropDownContentForFinancialInstrumentValution: [
+    {
+      id: 0,
+      info: 'Obligacji',
+      path: 'FinancialInstrumentsValuation/BondValuationCalculator',
+    },
+    {
+      id: 1,
+      info: 'Akcji',
+      path: 'FinancialInstrumentsValuation/EquitiesValuationCalculator',
+    },
+    {
+      id: 2,
+      info: 'Opcji',
+      path: 'FinancialInstrumentsValuation/OptionValutionCalculator',
+    },
+    {
+      id: 3,
+      info: 'Kontraktu Futures i Forword',
+      path: 'FinancialInstrumentsValuation/FuturesAndForwardsCalculator',
+    },
+    {
+      id: 4,
+      info: 'Kontraktu Swap',
+      path: 'FinancialInstrumentsValuation/SwapPricingCalculator',
+    },
+    {
+      id: 5,
+      info: 'Jak to działa?',
+      path: 'KnowledgeBase/FinancialInstruments',
+    },
+  ],
+
+  dropDownContentForKnowledgeBase: [
+    {
+      id: 0,
+      info: 'Instrumenty Finansowe',
+      path: 'KnowledgeBase/FinancialInstruments',
+    },
+    {
+      id: 1,
+      info: 'Strategie Inwestycyjne',
+      path: 'KnowledgeBase/FinancialInstruments',
+    },
+    {
+      id: 2,
+      info: 'Opis Rozwiązań w Aplikacji',
+      path: 'KnowledgeBase/FinancialInstruments',
+    },
+  ],
+}
