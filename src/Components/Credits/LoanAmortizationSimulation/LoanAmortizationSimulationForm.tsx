@@ -175,6 +175,3 @@ const LoanAmortizationSimulationForm = ({
 }
 
 export default LoanAmortizationSimulationForm
-function useRef(arg0: string) {
-  throw new Error('Function not implemented.')
-}
