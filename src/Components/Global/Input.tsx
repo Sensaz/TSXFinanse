@@ -49,31 +49,38 @@ const Input = ({
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
 
   const inputClassName = `form__input ${
-    inputState ? '' : 'form__input--warning'
+    inputState
+      ? ''
+      : `${inputRequired ? 'form__input--warning' : 'form__input--optional'}`
   }`
 
-  const spanClassName = inputRequired ? 'form__help-text' : ''
+  const spanContent = inputState ? null : (
+    <span
+      className={
+        inputRequired ? 'form__help-text--warn' : 'form__help-text--optional'
+      }
+    >
+      {inputRequired ? 'WYMAGANE' : 'OPCJONALNE'}
+    </span>
+  )
 
-  const spanContent =
-    !inputState && inputRequired ? (
-      <span className="form__help-text--warn">WYMAGANE</span>
-    ) : null
+  const minInNumberInput = inputType === 'number' ? '0.01' : undefined
 
-  const minInNumberInput = inputType === 'number' ? '0.01' : null
+  console.log(inputState)
 
   return (
     <label className="form__label">
       <input
         tabIndex={checkTabIndex}
-        min={minInNumberInput ?? undefined}
-        step={'0.01' ?? undefined}
+        min={minInNumberInput}
+        step="0.01"
         className={inputClassName}
         type={inputType}
-        required={inputRequired}
+        required={true}
         onChange={handleInputChange}
         value={inputState}
       />
-      <span className={spanClassName}>{content}</span>
+      <span className="form__help-text">{content}</span>
       {spanContent}
     </label>
   )

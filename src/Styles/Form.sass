@@ -6,8 +6,16 @@ $positiveBorderColor: #1CA027
 
 $border: 1px solid map-get(colors.$fontColor, "normal")
 $borderWarn: 1px solid map-get(colors.$fontColor, "warn")
+$borderOptional: 1px solid map-get(colors.$fontColor, "disabled")
+
 $validBorder: 1px solid $positiveBorderColor
 $focusBorder: 2px solid $positiveBorderColor
+
+$optionalValidBorder: 1px solid map-get(colors.$fontColor, "disabled")
+$optionalFocusBorder: 2px solid map-get(colors.$fontColor, "disabled")
+
+$borderForAnimate: 0 solid rgba(colors.$pageBG, 1)
+$borderTransition: .2s ease-out border
 
 $focusButtonBG: map-get(colors.$fontColorHover, "normal")
 
@@ -15,6 +23,13 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
   position: absolute
   left: 0
   background: colors.$pageBG
+
+%inputOptionHelpText
+  @extend %inputHelpText
+  bottom: 0
+  padding: 0 5px
+  font-size: .6em
+  transform: translateX(15px) translateY(3px)
 
 %borderWithRadius
   border: $border
@@ -38,10 +53,10 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
     position: relative
     min-width: 300px
   &__input
-    @extend %borderWithRadius
     width: 100%
     max-height: 40px
     padding: 10px
+    border-radius: 5px
     font-size: 1em
     background: none
     outline: none
@@ -51,8 +66,10 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
       margin: 0
     &:valid
       border: $validBorder
+      transition: $borderTransition
     &:focus
       border: $focusBorder
+      transition: $borderTransition
     &:valid ~ .form__help-text,
     &:focus ~ .form__help-text
       font-size: 0.8em
@@ -64,23 +81,39 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
       transform: translateX(10px) translateY(-7px)
     &--warning
       border: $borderWarn
+      outline: none
+      transition: $borderTransition
+    &--optional
+      border: $borderOptional
+      transition: $borderTransition
+      &:valid
+        border: $optionalValidBorder
+      &:focus
+        border: $optionalFocusBorder
+      &:valid ~ .form__help-text,
+      &:focus ~ .form__help-text
+        border-left: $borderOptional
+        border-right: $borderOptional
   &__help-text
     @extend %inputHelpText
+    border-left: $borderForAnimate
+    border-right: $borderForAnimate
     margin: 10px
     font-size: 1em
     color: map-get(colors.$fontColor, "normal")
     pointer-events: none
     text-transform: uppercase
-    transition: functions.transition-repeat(.2s, color, transform, font-size, padding, margin)
+    transition: functions.transition-repeat(.2s, color, transform, font-size, padding, margin, border-left, border-right )
     &--warn
-      @extend %inputHelpText
-      bottom: 0
-      padding: 0 5px
-      font-size: .6em
+      @extend %inputOptionHelpText
       color: map-get(colors.$fontColor, "warn")
       border-left: $borderWarn
       border-right: $borderWarn
-      transform: translateX(15px) translateY(3px)
+    &--optional
+      @extend %inputOptionHelpText
+      color: map-get(colors.$fontColor, "disabled")
+      border-left: $borderOptional
+      border-right: $borderOptional
   &__select
     padding: 7px
     border: $borderWarn
@@ -88,10 +121,6 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
       border: $validBorder
     &--required
       border: $borderWarn
-  &__option
-    padding: 50px 0
-    &--disabled
-      color: map-get(colors.$fontColor, "disabled")
   &__button
     @extend %borderWithRadius
     width: 80px

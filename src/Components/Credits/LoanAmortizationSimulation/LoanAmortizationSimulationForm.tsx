@@ -77,22 +77,35 @@ const LoanAmortizationSimulationForm = ({
     propertyForSetLoanRepaymentMethod,
   } = loanAmortizationSimulationSelectProperty
 
+  const handleInputState = (stateValue: number) => {
+    return stateValue <= 0 || Number.isNaN(stateValue)
+      ? ''
+      : stateValue.toString()
+  }
+
+
+  const checkDoesTheBankChargeACommission = doesTheBankChargeACommission ===
+    'ChargesAFee' && (
+    <Input
+      inputState={handleInputState(commisionFee)}
+      handleSetInputState={handleSetCommisionFee}
+      inputRequired={false}
+      content="Wysokość Prowizji w %"
+    />
+  )
+
   return (
     <form className="form">
       <div className="form__group">
         <Input
-          inputState={`${
-            loanValue <= 0 || Number.isNaN(loanValue) ? '' : loanValue
-          }`}
+          inputState={handleInputState(loanValue)}
           handleSetInputState={handleSetLoanValue}
           content="Wysokość Kredytu"
         />
       </div>
       <div className="form__group">
         <Input
-          inputState={`${
-            duration <= 0 || Number.isNaN(duration) ? '' : duration
-          }`}
+          inputState={handleInputState(duration)}
           handleSetInputState={handleSetDuration}
           content="Czas trwania"
         />
@@ -109,11 +122,7 @@ const LoanAmortizationSimulationForm = ({
 
       <div className="form__group">
         <Input
-          inputState={`${
-            marginOfTheBank <= 0 || Number.isNaN(marginOfTheBank)
-              ? ''
-              : marginOfTheBank
-          }`}
+          inputState={handleInputState(marginOfTheBank)}
           handleSetInputState={handleSetMarginOfTheBank}
           content="Marża banku w %"
         />
@@ -124,17 +133,7 @@ const LoanAmortizationSimulationForm = ({
         />
       </div>
       <div className="form__group">
-        {doesTheBankChargeACommission === 'ChargesAFee' && (
-          <Input
-            inputState={`${
-              commisionFee <= 0 || Number.isNaN(commisionFee)
-                ? ''
-                : commisionFee
-            }`}
-            handleSetInputState={handleSetCommisionFee}
-            content="Wysokość Prowizji w %"
-          />
-        )}
+        {checkDoesTheBankChargeACommission}
         <SelectInput
           handleSetSelectState={handleSetDoesTheBankChargeACommission}
           property={propertyForSetDoesTheBankChargeACommission}

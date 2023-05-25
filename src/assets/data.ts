@@ -35,7 +35,7 @@ type SelectTypePropertyType = {
 export const loanAmortizationSimulationSelectProperty: SelectTypePropertyType =
   {
     propertyForSetOptionDuration: [
-      { value: '', content: 'Pdany' },
+      { value: '', content: 'Podany' },
       { value: 'DurationInMonths', content: 'W Miesiącach' },
       { value: 'DurationInYears', content: 'W Latach' },
     ],
