@@ -12,69 +12,79 @@ const decreasingInstallmentsResults = (
 ) => {
   // Saldo Początkowe Długu
   let initialDebtBalance = loanValue
+  let initialDebtBalanceArray = []
   dispatch(resetArray('initialDebtBalanceArr'))
 
   // Odsetki
   let interest = initialDebtBalance * interestForBasePeriod
+  let interestArray = []
   dispatch(resetArray('interestArr'))
 
   // Rata Kapitałowa
   let principalPayment = loanValue / totalPaymentPeriods
+  let principalPaymentArray = []
   dispatch(resetArray('principalPaymentArr'))
 
   // Rata Płatności Kredytu
   let loanPayment = principalPayment + interest
+  let loanPaymentArray = []
   dispatch(resetArray('loanPaymentArr'))
 
   // Saldo Końcowe Długu
   let finalDebtBalance = initialDebtBalance - principalPayment
+  let finalDebtBalanceArray = []
   dispatch(resetArray('finalDebtBalanceArr'))
 
-  dispatch(
-    updateArray({
-      arrayType: 'initialDebtBalanceArr',
-      value: initialDebtBalance,
-    })
-  )
-  dispatch(updateArray({ arrayType: 'interestArr', value: interest }))
-  dispatch(
-    updateArray({ arrayType: 'principalPaymentArr', value: principalPayment })
-  )
-  dispatch(updateArray({ arrayType: 'loanPaymentArr', value: loanPayment }))
-  dispatch(
-    updateArray({ arrayType: 'finalDebtBalanceArr', value: finalDebtBalance })
-  )
+  initialDebtBalanceArray.push(initialDebtBalance)
+  interestArray.push(interest)
+  principalPaymentArray.push(principalPayment)
+  loanPaymentArray.push(loanPayment)
+  finalDebtBalanceArray.push(finalDebtBalance)
 
   for (let n = 1; n < totalPaymentPeriods; n++) {
     // ---------------------------------
     // -- Saldo Początkowe Długu -------
     initialDebtBalance = initialDebtBalance - principalPayment
-    dispatch(
-      updateArray({
-        arrayType: 'initialDebtBalanceArr',
-        value: initialDebtBalance,
-      })
-    )
+    initialDebtBalanceArray = [...initialDebtBalanceArray, initialDebtBalance]
     // ---------------------------------
     // -- Odsetki ----------------------
     interest = initialDebtBalance * interestForBasePeriod
-    dispatch(updateArray({ arrayType: 'interestArr', value: interest }))
+    interestArray = [...interestArray, interest]
     // ---------------------------------
     // -- Rata Kapitałowa --------------
-    dispatch(
-      updateArray({ arrayType: 'principalPaymentArr', value: principalPayment })
-    )
+    principalPaymentArray = [...principalPaymentArray, principalPayment]
     // ---------------------------------
     // -- Rata Płatności Kredytu -------
     loanPayment = principalPayment + interest
-    dispatch(updateArray({ arrayType: 'loanPaymentArr', value: loanPayment }))
+    loanPaymentArray = [...loanPaymentArray, loanPayment]
     // ---------------------------------
     // -- Saldo Końcowe Długu ----------
     finalDebtBalance = initialDebtBalance - principalPayment
-    dispatch(
-      updateArray({ arrayType: 'finalDebtBalanceArr', value: finalDebtBalance })
-    )
+    finalDebtBalanceArray = [...finalDebtBalanceArray, finalDebtBalance]
   }
+
+  dispatch(
+    updateArray({
+      arrayType: 'initialDebtBalanceArr',
+      value: initialDebtBalanceArray,
+    })
+  )
+  dispatch(updateArray({ arrayType: 'interestArr', value: interestArray }))
+  dispatch(
+    updateArray({
+      arrayType: 'principalPaymentArr',
+      value: principalPaymentArray,
+    })
+  )
+  dispatch(
+    updateArray({ arrayType: 'loanPaymentArr', value: loanPaymentArray })
+  )
+  dispatch(
+    updateArray({
+      arrayType: 'finalDebtBalanceArr',
+      value: finalDebtBalanceArray,
+    })
+  )
 
   return 1
 }

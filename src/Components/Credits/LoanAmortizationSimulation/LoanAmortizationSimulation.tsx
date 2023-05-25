@@ -87,8 +87,6 @@ const LoanAmortizationSimulation = () => {
     )
   }
 
-  console.log(loanRepaymentMethod)
-
   return (
     <>
       <LoanAmortizationSimulationForm
