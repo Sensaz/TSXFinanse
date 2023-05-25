@@ -82,9 +82,12 @@ const LoanAmortizationSimulation = () => {
       interestForBasePeriod,
       interestAccrualMethod,
       loanRepaymentMethod,
+      doesTheBankChargeACommission,
       dispatch
     )
   }
+
+  console.log(loanRepaymentMethod)
 
   return (
     <>
@@ -94,6 +97,8 @@ const LoanAmortizationSimulation = () => {
         marginOfTheBank={marginOfTheBank}
         commisionFee={commisionFee}
         setCommisionFee={setCommisionFee}
+        setLoanRepaymentMethod={setLoanRepaymentMethod}
+        interestAccrualMethod={interestAccrualMethod}
         doesTheBankChargeACommission={doesTheBankChargeACommission}
         handleSetLoanValue={handleSetLoanValue}
         handleSetDuration={handleSetDuration}

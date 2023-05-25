@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { ChangeEvent, MouseEvent, useEffect } from 'react'
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 import '../../../Styles/Form.sass'
 import { loanAmortizationSimulationSelectProperty } from '../../../assets'
 import { Input, SelectInput, parseInputState } from '../../Global'
@@ -9,8 +9,10 @@ interface LoanAmortizationSimulationFormProps {
   duration: number
   marginOfTheBank: number
   commisionFee: number
+  interestAccrualMethod: string
   doesTheBankChargeACommission: string
   setCommisionFee: (value: number) => void
+  setLoanRepaymentMethod: (value: string) => void
   handleSetLoanValue: (value: ChangeEvent<HTMLInputElement>) => void
   handleSetDuration: (value: ChangeEvent<HTMLInputElement>) => void
   handleSetMarginOfTheBank: (value: ChangeEvent<HTMLInputElement>) => void
@@ -44,8 +46,10 @@ const LoanAmortizationSimulationForm = ({
   duration,
   marginOfTheBank,
   commisionFee,
+  interestAccrualMethod,
   doesTheBankChargeACommission,
   setCommisionFee,
+  setLoanRepaymentMethod,
   handleSetLoanValue,
   handleSetDuration,
   handleSetMarginOfTheBank,
@@ -60,6 +64,22 @@ const LoanAmortizationSimulationForm = ({
   useEffect(() => {
     setCommisionFee(0)
   }, [doesTheBankChargeACommission])
+
+  const [prevInterestAccrualMethod, setPrevInterestAccrualMethod] = useState('')
+
+  useEffect(() => {
+    if (interestAccrualMethod === 'InterestPaidInAdvance') {
+      setLoanRepaymentMethod('DecreasingInstallments')
+    } else if (
+      interestAccrualMethod !== 'InterestPaidInAdvance' &&
+      prevInterestAccrualMethod === 'InterestPaidInAdvance'
+    ) {
+      setLoanRepaymentMethod('')
+    }
+
+    setPrevInterestAccrualMethod(interestAccrualMethod)
+  }, [interestAccrualMethod, prevInterestAccrualMethod])
+
   const navigationForSmallDeviceState = useSelector(
     (state: NavigationForSmallDeviceType) => state.navigationForSmallDevice.flag
   )
@@ -68,7 +88,6 @@ const LoanAmortizationSimulationForm = ({
   )
   const checkTabIndex =
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
-
   const {
     propertyForSetOptionDuration,
     propertyForSetPaymentPeriodOfInstallment,
@@ -84,6 +103,14 @@ const LoanAmortizationSimulationForm = ({
       handleSetInputState={handleSetCommisionFee}
       inputRequired={false}
       content="Wysokość Prowizji w %"
+    />
+  )
+
+  const checkInterestAccuralMehod = interestAccrualMethod !==
+    'InterestPaidInAdvance' && (
+    <SelectInput
+      handleSetSelectState={handleSetLoanRepaymentMethod}
+      property={propertyForSetLoanRepaymentMethod}
     />
   )
 
@@ -132,12 +159,7 @@ const LoanAmortizationSimulationForm = ({
           property={propertyForSetDoesTheBankChargeACommission}
         />
       </div>
-      <div className="form__group">
-        <SelectInput
-          handleSetSelectState={handleSetLoanRepaymentMethod}
-          property={propertyForSetLoanRepaymentMethod}
-        />
-      </div>
+      <div className="form__group">{checkInterestAccuralMehod}</div>
 
       <div className="form__group--button">
         <button
@@ -153,3 +175,6 @@ const LoanAmortizationSimulationForm = ({
 }
 
 export default LoanAmortizationSimulationForm
+function useRef(arg0: string) {
+  throw new Error('Function not implemented.')
+}

@@ -80,7 +80,7 @@ const LoanAmortizationSimulationTable = () => {
       <td className="table__body-short table--id">{index + 1}</td>
       {loanAmortizationResults.map((el) => {
         return (
-          <td key={index + 0.124} className="table__body-short">
+          <td key={index + 0.124 + Math.random()} className="table__body-short">
             {el[index].toFixed(2)}
           </td>
         )

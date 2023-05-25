@@ -12,6 +12,7 @@ const loanAmortizationCalc = (
   interestForBasePeriod: number, // Oprocentowanie w okresie bazowym
   interestAccrualMethod: string, // Metoda Pobierania Odsetek Przez Bank
   loanRepaymentMethod: string, // Metoda Spłacania Kredytu
+  doesTheBankChargeACommission: string, // Czy bank pobiera prowizje
   dispatch: Dispatch<Action>
 ) => {
   if (
@@ -26,7 +27,9 @@ const loanAmortizationCalc = (
     (interestAccrualMethod !== 'InterestPaidInAdvance' &&
       interestAccrualMethod !== 'InterestPaidInArrears') ||
     (loanRepaymentMethod !== 'DecreasingInstallments' &&
-      loanRepaymentMethod !== 'FixedInstallments')
+      loanRepaymentMethod !== 'FixedInstallments') ||
+    (doesTheBankChargeACommission !== 'ChargesAFee' &&
+      doesTheBankChargeACommission !== 'DoesNotChargeAFee')
   ) {
     dispatch(resetArray('interestArr'))
     dispatch(resetArray('initialDebtBalanceArr'))

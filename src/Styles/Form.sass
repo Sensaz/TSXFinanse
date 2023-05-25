@@ -60,16 +60,15 @@ $focusButtonBG: map-get(colors.$fontColorHover, "normal")
     font-size: 1em
     background: none
     outline: none
+    transition: $borderTransition
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button
       -webkit-appearance: none
       margin: 0
     &:valid
       border: $validBorder
-      transition: $borderTransition
     &:focus
       border: $focusBorder
-      transition: $borderTransition
     &:valid ~ .form__help-text,
     &:focus ~ .form__help-text
       font-size: 0.8em
