@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { ChangeEvent, MouseEvent, useEffect } from 'react'
 import '../../../Styles/Form.sass'
 import { loanAmortizationSimulationSelectProperty } from '../../../assets'
-import { Input, SelectInput } from '../../Global'
+import { Input, SelectInput, parseInputState } from '../../Global'
 
 interface LoanAmortizationSimulationFormProps {
   loanValue: number
@@ -77,17 +77,10 @@ const LoanAmortizationSimulationForm = ({
     propertyForSetLoanRepaymentMethod,
   } = loanAmortizationSimulationSelectProperty
 
-  const handleInputState = (stateValue: number) => {
-    return stateValue <= 0 || Number.isNaN(stateValue)
-      ? ''
-      : stateValue.toString()
-  }
-
-
   const checkDoesTheBankChargeACommission = doesTheBankChargeACommission ===
     'ChargesAFee' && (
     <Input
-      inputState={handleInputState(commisionFee)}
+      inputState={parseInputState(commisionFee)}
       handleSetInputState={handleSetCommisionFee}
       inputRequired={false}
       content="Wysokość Prowizji w %"
@@ -98,14 +91,14 @@ const LoanAmortizationSimulationForm = ({
     <form className="form">
       <div className="form__group">
         <Input
-          inputState={handleInputState(loanValue)}
+          inputState={parseInputState(loanValue)}
           handleSetInputState={handleSetLoanValue}
           content="Wysokość Kredytu"
         />
       </div>
       <div className="form__group">
         <Input
-          inputState={handleInputState(duration)}
+          inputState={parseInputState(duration)}
           handleSetInputState={handleSetDuration}
           content="Czas trwania"
         />
@@ -122,7 +115,7 @@ const LoanAmortizationSimulationForm = ({
 
       <div className="form__group">
         <Input
-          inputState={handleInputState(marginOfTheBank)}
+          inputState={parseInputState(marginOfTheBank)}
           handleSetInputState={handleSetMarginOfTheBank}
           content="Marża banku w %"
         />

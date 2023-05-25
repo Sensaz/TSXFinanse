@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { useSelector } from 'react-redux'
-import { Input, SelectInput } from '../../Global'
+import { Input, SelectInput, parseInputState } from '../../Global'
 import { presentValueOfAnAnnuitySelectProperty } from '../../../assets'
 import '../../../Styles/Form.sass'
 
@@ -60,11 +60,7 @@ const PresentValueOfAnAnnuityForm = ({
     <form className="form">
       <div className="form__group">
         <Input
-          inputState={`${
-            expectedAnnuity <= 0 || Number.isNaN(expectedAnnuity)
-              ? ''
-              : expectedAnnuity
-          }`}
+          inputState={parseInputState(expectedAnnuity)}
           handleSetInputState={handleSetExpectedAnnuity}
           content="Oczekiwana Renta"
         />
@@ -75,9 +71,7 @@ const PresentValueOfAnAnnuityForm = ({
       </div>
       <div className="form__group">
         <Input
-          inputState={`${
-            duration <= 0 || Number.isNaN(duration) ? '' : duration
-          }`}
+          inputState={parseInputState(duration)}
           handleSetInputState={handleSetDuration}
           content="Czas trwania"
         />
@@ -95,11 +89,7 @@ const PresentValueOfAnAnnuityForm = ({
 
       <div className="form__group">
         <Input
-          inputState={`${
-            requiredInterestRate <= 0 || Number.isNaN(requiredInterestRate)
-              ? ''
-              : requiredInterestRate
-          }`}
+          inputState={parseInputState(requiredInterestRate)}
           handleSetInputState={handleSetRequiredInterestRate}
           content="Wymagana Stopa zwrotu w %"
         />

@@ -1,7 +1,7 @@
 import { ChangeEvent, MouseEvent } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Input, SelectInput } from '../../Global'
+import { Input, SelectInput, parseInputState } from '../../Global'
 import { futureValueOfAnAnnuitySelectProperty } from '../../../assets'
 import '../../../Styles/Form.sass'
 
@@ -66,11 +66,7 @@ const FutureValueOfAnAnnuityForm = ({
     <form className="form">
       <div className="form__group">
         <Input
-          inputState={`${
-            pensionAmount <= 0 || Number.isNaN(pensionAmount)
-              ? ''
-              : pensionAmount
-          }`}
+          inputState={parseInputState(pensionAmount)}
           handleSetInputState={handleSetPenstionAmount}
           content="Wysokość Renty"
         />
@@ -81,9 +77,7 @@ const FutureValueOfAnAnnuityForm = ({
       </div>
       <div className="form__group">
         <Input
-          inputState={`${
-            duration <= 0 || Number.isNaN(duration) ? '' : duration
-          }`}
+          inputState={parseInputState(duration)}
           handleSetInputState={handleSetDuration}
           content="Czas trwania"
         />
@@ -99,9 +93,7 @@ const FutureValueOfAnAnnuityForm = ({
       </div>
       <div className="form__group">
         <Input
-          inputState={`${
-            interestRate <= 0 || Number.isNaN(interestRate) ? '' : interestRate
-          }`}
+          inputState={parseInputState(interestRate)}
           handleSetInputState={handleSetInterestRate}
           content="Roczne Oprocentowanie w %"
         />

@@ -66,8 +66,6 @@ const Input = ({
 
   const minInNumberInput = inputType === 'number' ? '0.01' : undefined
 
-  console.log(inputState)
-
   return (
     <label className="form__label">
       <input

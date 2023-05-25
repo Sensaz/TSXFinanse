@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { useSelector } from 'react-redux'
-import { Input, SelectInput } from '../../Global'
+import { Input, SelectInput, parseInputState } from '../../Global'
 import { valueOfASingleFlowSelectProperty } from '../../../assets'
 import '../../../Styles/Form.sass'
 
@@ -52,24 +52,19 @@ const PresentValueOfASingleFlowForm = ({
     navigationForSmallDeviceState || modalStoreState ? -1 : 1
   const { propertyForSetOptionDuration, propertyForSetInterestCapitalization } =
     valueOfASingleFlowSelectProperty
+
   return (
     <form className="form">
       <div className="form__group">
         <Input
-          inputState={`${
-            expectedFinalValue <= 0 || Number.isNaN(expectedFinalValue)
-              ? ''
-              : expectedFinalValue
-          }`}
+          inputState={parseInputState(expectedFinalValue)}
           handleSetInputState={handleSetStartValue}
           content="Oczekiwana Wartość Końcowa"
         />
       </div>
       <div className="form__group">
         <Input
-          inputState={`${
-            duration <= 0 || Number.isNaN(duration) ? '' : duration
-          }`}
+          inputState={parseInputState(duration)}
           handleSetInputState={handleSetDuration}
           content="Czas trwania"
         />
@@ -82,9 +77,7 @@ const PresentValueOfASingleFlowForm = ({
 
       <div className="form__group">
         <Input
-          inputState={`${
-            interestRate <= 0 || Number.isNaN(interestRate) ? '' : interestRate
-          }`}
+          inputState={parseInputState(interestRate)}
           handleSetInputState={handleSetInterestRate}
           content="Wymagana Stopa zwrotu w %"
         />
