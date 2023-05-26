@@ -1,8 +1,5 @@
-import {
-  updateArray,
-  resetArray,
-} from '../loanSimulationAmortizationTableState.ts'
 import { Action, Dispatch } from '@reduxjs/toolkit'
+import pushResultToRedux from './pushResultToRedux.ts'
 
 const decreasingInstallmentsResults = (
   loanValue: number,
@@ -12,34 +9,23 @@ const decreasingInstallmentsResults = (
 ) => {
   // Saldo Początkowe Długu
   let initialDebtBalance = loanValue
-  let initialDebtBalanceArray = []
-  dispatch(resetArray('initialDebtBalanceArr'))
+  let initialDebtBalanceArray = [initialDebtBalance]
 
   // Odsetki
   let interest = initialDebtBalance * interestForBasePeriod
-  let interestArray = []
-  dispatch(resetArray('interestArr'))
+  let interestArray = [interest]
 
   // Rata Kapitałowa
   let principalPayment = loanValue / totalPaymentPeriods
-  let principalPaymentArray = []
-  dispatch(resetArray('principalPaymentArr'))
+  let principalPaymentArray = [principalPayment]
 
   // Rata Płatności Kredytu
   let loanPayment = principalPayment + interest
-  let loanPaymentArray = []
-  dispatch(resetArray('loanPaymentArr'))
+  let loanPaymentArray = [loanPayment]
 
   // Saldo Końcowe Długu
   let finalDebtBalance = initialDebtBalance - principalPayment
-  let finalDebtBalanceArray = []
-  dispatch(resetArray('finalDebtBalanceArr'))
-
-  initialDebtBalanceArray.push(initialDebtBalance)
-  interestArray.push(interest)
-  principalPaymentArray.push(principalPayment)
-  loanPaymentArray.push(loanPayment)
-  finalDebtBalanceArray.push(finalDebtBalance)
+  let finalDebtBalanceArray = [finalDebtBalance]
 
   for (let n = 1; n < totalPaymentPeriods; n++) {
     // ---------------------------------
@@ -63,27 +49,13 @@ const decreasingInstallmentsResults = (
     finalDebtBalanceArray = [...finalDebtBalanceArray, finalDebtBalance]
   }
 
-  dispatch(
-    updateArray({
-      arrayType: 'initialDebtBalanceArr',
-      value: initialDebtBalanceArray,
-    })
-  )
-  dispatch(updateArray({ arrayType: 'interestArr', value: interestArray }))
-  dispatch(
-    updateArray({
-      arrayType: 'principalPaymentArr',
-      value: principalPaymentArray,
-    })
-  )
-  dispatch(
-    updateArray({ arrayType: 'loanPaymentArr', value: loanPaymentArray })
-  )
-  dispatch(
-    updateArray({
-      arrayType: 'finalDebtBalanceArr',
-      value: finalDebtBalanceArray,
-    })
+  pushResultToRedux(
+    dispatch,
+    initialDebtBalanceArray,
+    interestArray,
+    principalPaymentArray,
+    loanPaymentArray,
+    finalDebtBalanceArray
   )
 
   return 1
