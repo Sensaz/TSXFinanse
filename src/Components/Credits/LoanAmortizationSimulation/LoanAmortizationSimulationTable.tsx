@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useRef, useCallback, useEffect } from 'react'
+import { useState, MouseEvent, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global/globalStore.ts'
 import Modal from '../../Global/Modal.tsx'
@@ -75,19 +75,26 @@ const LoanAmortizationSimulationTable = () => {
     finalDebtBalanceArr,
   ]
 
-  const [numberOfRows, setSnumberOfRows] = useState(10)
+  const [numberOfRows, setNumberOfRows] = useState(10)
   const [hasMore, setHasMore] = useState(false)
+  const observer = useRef<IntersectionObserver | undefined>(undefined)
   let array = [0]
-  const observer = useRef()
 
   useEffect(() => {
     setHasMore(initialDebtBalanceArr.length >= numberOfRows)
   }, [hasMore, numberOfRows, initialDebtBalanceArr])
 
-  const lastArrayRowRef = (node: any) => {
+  useEffect(() => {
+    console.log('jestem')
+    setNumberOfRows(10)
+  }, [initialDebtBalanceArr])
+
+  const lastArrayRowRef = (node: HTMLTableRowElement) => {
+    observer.current?.disconnect()
+
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && hasMore) {
-        setSnumberOfRows((prev) => prev + 10)
+        setNumberOfRows((prev) => prev + 10)
       }
     })
 
@@ -96,7 +103,7 @@ const LoanAmortizationSimulationTable = () => {
 
   array =
     initialDebtBalanceArr.length >= numberOfRows
-      ? Array.from({ length: numberOfRows }, (_, i) => i)
+      ? Array.from({ length: numberOfRows }, (_, i: number) => i)
       : initialDebtBalanceArr
 
   const result = array.map((_: any, index: number) => {
