@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useRef, useEffect } from 'react'
+import { useState, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global/globalStore.ts'
 import Modal from '../../Global/Modal.tsx'
@@ -6,6 +6,7 @@ import {
   modalContentForLoanAmortizationSimulationTable,
   theadArrForLoanAmortizationSimulation,
 } from '../../../assets'
+import InfinityScrollingForTable from '../../Global/InfinityScrollingForTable.ts'
 import '../../../Styles/Table.sass'
 
 interface NavigationForSmallDeviceType {
@@ -75,39 +76,12 @@ const LoanAmortizationSimulationTable = () => {
     finalDebtBalanceArr,
   ]
 
-  const [numberOfRows, setNumberOfRows] = useState(10)
-  const [hasMore, setHasMore] = useState(false)
-  const observer = useRef<IntersectionObserver | undefined>(undefined)
-  let array = [0]
+  const { lastArrayRowRef, arrayForRender } = InfinityScrollingForTable(
+    initialDebtBalanceArr
+  )
 
-  useEffect(() => {
-    setHasMore(initialDebtBalanceArr.length >= numberOfRows)
-  }, [hasMore, numberOfRows, initialDebtBalanceArr])
-
-  useEffect(() => {
-    console.log('jestem')
-    setNumberOfRows(10)
-  }, [initialDebtBalanceArr])
-
-  const lastArrayRowRef = (node: HTMLTableRowElement) => {
-    observer.current?.disconnect()
-
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasMore) {
-        setNumberOfRows((prev) => prev + 10)
-      }
-    })
-
-    if (node) observer.current.observe(node)
-  }
-
-  array =
-    initialDebtBalanceArr.length >= numberOfRows
-      ? Array.from({ length: numberOfRows }, (_, i: number) => i)
-      : initialDebtBalanceArr
-
-  const result = array.map((_: any, index: number) => {
-    if (array.length === index + 1) {
+  const result = arrayForRender.map((_: any, index: number) => {
+    if (arrayForRender.length === index + 1) {
       return (
         <tr ref={lastArrayRowRef} key={index} className="table__body-row">
           <td className="table__body-short table--id">{index + 1}</td>
