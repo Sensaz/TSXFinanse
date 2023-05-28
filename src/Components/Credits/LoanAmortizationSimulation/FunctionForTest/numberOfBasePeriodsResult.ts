@@ -11,7 +11,8 @@ const numberOfBasePeriodsResult = (
       paymentPeriodOfInstallment !== 'DurationInHalfYears' &&
       paymentPeriodOfInstallment !== 'DurationInQarters' &&
       paymentPeriodOfInstallment !== 'DurationInMonths') ||
-    durationInMonths <= 0
+    durationInMonths <= 0 ||
+    isNaN(durationInMonths)
   )
     return {
       totalPaymentPeriods: 0,
