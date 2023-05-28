@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
-import loanAmortizationResult from './FunctionForTest/loanAmortizationResult'
+import { loanAmortizationResult } from './FunctionForTest'
 import { useEffect } from 'react'
 import { Action, Dispatch } from '@reduxjs/toolkit'
 
 import { resultPropertyForLoanAmortizationSimulationResult } from '../../../assets/data'
 
-import Result from '../../Global/Result'
+import { Result } from '../../Global'
 
 interface ResultState {
   loanAmount: number

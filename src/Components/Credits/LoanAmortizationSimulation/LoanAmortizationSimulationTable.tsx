@@ -1,12 +1,12 @@
 import { useState, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { modalStoreValue } from '../../Global/globalStore.ts'
-import Modal from '../../Global/Modal.tsx'
+import { modalStoreValue } from '../../Global'
+import { Modal, InfinityScrollingForTable } from '../../Global'
 import {
   modalContentForLoanAmortizationSimulationTable,
   theadArrForLoanAmortizationSimulation,
 } from '../../../assets'
-import InfinityScrollingForTable from '../../Global/InfinityScrollingForTable.ts'
+
 import '../../../Styles/Table.sass'
 
 interface NavigationForSmallDeviceType {

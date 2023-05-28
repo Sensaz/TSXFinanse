@@ -1,6 +1,7 @@
-import interestRateForPeriodicBaseAnnuity from '../AnnuityFunctions/interestRateForPeriodicBaseAnnuity.ts'
-
-import numberOfAnnuityPeriods from '../AnnuityFunctions/numberOfAnnuityPeriods.ts'
+import {
+  interestRateForPeriodicBaseAnnuity,
+  numberOfAnnuityPeriods,
+} from '../AnnuityFunctions'
 
 type ResultCompoundInterestCalculateType = {
   presentValue: number

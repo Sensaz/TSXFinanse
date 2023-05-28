@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import '../../Styles/Navigation.sass'
 import logo from '../../Img/logo.png'
-import { navigationForSmallDeviceValue } from '../Global/globalStore.ts'
+import { navigationForSmallDeviceValue } from '../Global'
 import { useDispatch, useSelector } from 'react-redux'
 import NavigationList from './NavigationList.tsx'
 
