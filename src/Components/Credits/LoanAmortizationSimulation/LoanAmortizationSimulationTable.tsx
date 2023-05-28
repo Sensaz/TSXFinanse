@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react'
+import { useState, MouseEvent, useRef, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global/globalStore.ts'
 import Modal from '../../Global/Modal.tsx'
@@ -75,18 +75,59 @@ const LoanAmortizationSimulationTable = () => {
     finalDebtBalanceArr,
   ]
 
-  const result = initialDebtBalanceArr.map((_: any, index: number) => (
-    <tr key={index} className="table__body-row">
-      <td className="table__body-short table--id">{index + 1}</td>
-      {loanAmortizationResults.map((el) => {
-        return (
-          <td key={index + 0.124 + Math.random()} className="table__body-short">
-            {el[index].toFixed(2)}
-          </td>
-        )
-      })}
-    </tr>
-  ))
+  const [numberOfRows, setSnumberOfRows] = useState(10)
+  const [hasMore, setHasMore] = useState(false)
+  let array = [0]
+  const observer = useRef()
+
+  useEffect(() => {
+    setHasMore(initialDebtBalanceArr.length >= numberOfRows)
+  }, [hasMore, numberOfRows, initialDebtBalanceArr])
+
+  const lastArrayRowRef = (node: any) => {
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore) {
+        setSnumberOfRows((prev) => prev + 10)
+      }
+    })
+
+    if (node) observer.current.observe(node)
+  }
+
+  array =
+    initialDebtBalanceArr.length >= numberOfRows
+      ? Array.from({ length: numberOfRows }, (_, i) => i)
+      : initialDebtBalanceArr
+
+  const result = array.map((_: any, index: number) => {
+    if (array.length === index + 1) {
+      return (
+        <tr ref={lastArrayRowRef} key={index} className="table__body-row">
+          <td className="table__body-short table--id">{index + 1}</td>
+          {loanAmortizationResults.map((el) => {
+            return (
+              <td key={index + Math.random()} className="table__body-short">
+                {el[index].toFixed(2)}
+              </td>
+            )
+          })}
+        </tr>
+      )
+    }
+
+    return (
+      <tr key={index} className="table__body-row">
+        <td className="table__body-short table--id">{index + 1}</td>
+        {loanAmortizationResults.map((el) => {
+          return (
+            <td key={index + Math.random()} className="table__body-short">
+              {el[index].toFixed(2)}
+            </td>
+          )
+        })}
+      </tr>
+    )
+  })
 
   const checkLoanAmortizationResultsIsNotEmpty =
     initialDebtBalanceArr.length === 0 ? (
