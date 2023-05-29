@@ -2,13 +2,14 @@ import { ChangeEvent } from 'react'
 import '../../Styles/Form.sass'
 import { useSelector } from 'react-redux'
 
-interface PropertyType {
-  [key: string]: string
-}
+// TODO: Nie zgadzają się typy
+// type PropertyType = {
+//   [key: string]: string
+// }
 
-interface SelectInputProps {
+type SelectInputProps = {
   isRequired?: boolean
-  property: PropertyType
+  property: any
   handleSetSelectState: (value: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -69,7 +70,7 @@ const SelectInput = ({
   const requiredClass = isRequired ? 'form__select--required' : ''
 
   const resultFromProperty = property.map(
-    ({ value, content }: PropertyType, index: number) => (
+    ({ value, content }: any /* PropertyType */, index: number) => (
       <SelectOption key={index} value={value}>
         {content}
       </SelectOption>

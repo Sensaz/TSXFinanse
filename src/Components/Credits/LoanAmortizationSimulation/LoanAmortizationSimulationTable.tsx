@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalStoreValue } from '../../Global'
-import { Modal, InfinityScrollingForTable } from '../../Global'
+import { Modal, useInfinityScrolling } from '../../Global'
 import {
   modalContentForLoanAmortizationSimulationTable,
   theadArrForLoanAmortizationSimulation,
@@ -76,7 +76,7 @@ const LoanAmortizationSimulationTable = () => {
     finalDebtBalanceArr,
   ]
 
-  const { lastArrayRowRef, arrayForRender } = InfinityScrollingForTable(
+  const { lastArrayRowRef, arrayForRender } = useInfinityScrolling(
     initialDebtBalanceArr
   )
 

@@ -25,7 +25,7 @@ import {
 const Page = () => {
   return (
     <Routes>
-      <Route exact path="/" element={<Navigate to="/home" replace />} />
+      <Route path="/" element={<Navigate to="/home" replace />} />
 
       <Route path="/home" element={<HomePage />} />
 

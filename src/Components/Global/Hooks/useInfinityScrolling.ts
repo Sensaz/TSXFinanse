@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const InfinityScrollingForTable = (arr: number[]) => {
+const useInfinityScrolling = (arr: number[]) => {
   const [numberOfRows, setNumberOfRows] = useState(10)
   const [hasMore, setHasMore] = useState(false)
   const observer = useRef<IntersectionObserver | undefined>(undefined)
@@ -37,4 +37,4 @@ const InfinityScrollingForTable = (arr: number[]) => {
   }
 }
 
-export default InfinityScrollingForTable
+export default useInfinityScrolling

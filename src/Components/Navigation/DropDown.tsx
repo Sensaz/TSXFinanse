@@ -2,21 +2,22 @@ import { ReactNode, MouseEvent } from 'react'
 import { useSelector } from 'react-redux'
 import DropDownItem from './DropDownItem'
 
-interface ContentElementType {
-  id: number
-  info: string
-  path: string
-}
+// TODO: Nie zgadzają się typy
+// interface ContentElementType {
+//   id: number
+//   info: string
+//   path: string
+// }
 
-interface ContentType {
-  [key: string]: ContentElementType[]
-}
+// interface ContentType {
+//   [key: string]: ContentElementType[]
+// }
 
 interface MyComponentProps {
   isOpen: boolean
   click: (value: MouseEvent<HTMLButtonElement>) => void
   title: ReactNode
-  content: ContentType
+  content: any
 }
 
 interface NavigationForSmallDeviceType {
@@ -53,11 +54,13 @@ const DropDown = ({ isOpen, click, title, content }: MyComponentProps) => {
 
   // TODO: Dlaczego aktyalny typ content wywala mi błąd w przy mapie? Oraz mam problem z otypowaniem click'a jeśli dam ten sam typ co jest w DropDownItem to TS wywala błąd
 
-  const result = content.map(({ id, info, path }: ContentElementType) => (
-    <DropDownItem key={id} click={click} path={path}>
-      {info}
-    </DropDownItem>
-  ))
+  const result = content.map(
+    ({ id, info, path }: any /* ContentElementType */) => (
+      <DropDownItem key={id} click={click} path={path}>
+        {info}
+      </DropDownItem>
+    )
+  )
 
   return (
     <div className="navigation__dropdown">
