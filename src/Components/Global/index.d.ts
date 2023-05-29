@@ -5,7 +5,7 @@ import store, {
   modalStoreValue,
   navigationForSmallDeviceValue,
 } from './globalStore.ts'
-import InfinityScrollingForTable from './InfinityScrollingForTable.ts'
+import useInfinityScrolling from './Hooks/useInfinityScrolling.ts'
 import Input from './Input.tsx'
 import Modal from './Modal.tsx'
 import parseInputState from './parseInputState.ts'
@@ -17,7 +17,7 @@ export {
   store,
   modalStoreValue,
   navigationForSmallDeviceValue,
-  InfinityScrollingForTable,
+  useInfinityScrolling,
   Input,
   Modal,
   parseInputState,
