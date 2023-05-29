@@ -39,6 +39,8 @@ const loanAmortizationCalc = (
     return
   }
 
+  // TODO: Jak mam napisać testy do tych 3 funkcji poniżej?
+
   if (interestAccrualMethod === 'InterestPaidInAdvance')
     return interestInstallmentsInAdvance(
       loanValue,

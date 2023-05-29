@@ -51,6 +51,8 @@ const DropDown = ({ isOpen, click, title, content }: MyComponentProps) => {
     ? 'navigation__dropdown-button--open'
     : ''
 
+  // TODO: Dlaczego aktyalny typ content wywala mi błąd w przy mapie? Oraz mam problem z otypowaniem click'a jeśli dam ten sam typ co jest w DropDownItem to TS wywala błąd
+
   const result = content.map(({ id, info, path }: ContentElementType) => (
     <DropDownItem key={id} click={click} path={path}>
       {info}

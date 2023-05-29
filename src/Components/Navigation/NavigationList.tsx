@@ -159,7 +159,7 @@ const NavigationList = ({
           tabIndex={checkTabIndex}
           onClick={handleHamburgerToggleClass}
           className="navigation__link"
-          to={path}
+          to={path || ''}
         >
           {content}
         </NavLink>
