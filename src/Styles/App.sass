@@ -1,0 +1,37 @@
+@use 'Variable/colors'
+@use 'Variable/mixins'
+@use 'Variable/property'
+
+%blurProperty
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  min-height: 100vh
+  backdrop-filter: blur(1px)
+
+.app
+  display: flex
+  flex-wrap: wrap
+  overflow-x: hidden
+  &--hidden
+    max-height: 100vh
+  &__navigation
+    width: 100vw
+    background: colors.$navBG
+    box-shadow: 0 .2px 6px -3px map-get(colors.$fontColor, "hover")
+  &__main
+    width: 96vw
+    min-height: 70vh
+    margin: property.$element-margin auto
+    @include mixins.phone
+      margin: property.$element-margin 2%
+
+.blur
+  @extend %blurProperty
+  z-index: 90
+  @media screen and ( min-width: 1091px)
+    display: none
+  &--modal
+    @extend %blurProperty
+    z-index: 120
