@@ -13,5 +13,7 @@ dzieli nową od starej wersji.
 - Użycie jednego pliku do generowania tekstów na stronie
 - Ogólna poprawa wydajności, paginacja w posci infity scorll'a dla renderu tabelki, dodanie zagadnień z oop i wiele więcej
 
+## 
+
 
 
