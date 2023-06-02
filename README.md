@@ -3,7 +3,7 @@ Jest to durga wersja mojej aplikacji finansowej, w niej postanowiłem zadbać o 
 Poprawiłem optymalizacje oraz zmieniłem logikę wielu funckji tak aby można było dopisać do nich testy, jest to również jedna z większych różnic która
 dzieli nową od starej wersji.
 
-Głównymi zmianami jakie są między tą a poprzednią wersją to:
+## Głównymi zmianami jakie są między tą a poprzednią wersją to:
 - Testy funkcji
 - Wykorzystanie TypeScripta
 - Użycie redux toolkit'a 
@@ -12,6 +12,8 @@ Głównymi zmianami jakie są między tą a poprzednią wersją to:
 - Przygotowanie aplikacji pod dopisanie backednu
 - Użycie jednego pliku do generowania tekstów na stronie
 - Ogólna poprawa wydajności, paginacja w posci infity scorll'a dla renderu tabelki, dodanie zagadnień z oop i wiele więcej
+
+## 
 
 
 
