@@ -1,5 +1,7 @@
-import capitalizationInThePeriod from '../SingleFlowFunctions/capitalizationInThePeriod.ts'
-import durationInvestmentInMonth from '../SingleFlowFunctions/durationInvestmentInMonth.ts'
+import {
+  capitalizationInThePeriod,
+  durationInvestmentInMonth,
+} from '../SingleFlowFunctions'
 
 type ResultCompoundInterestCalculateType = {
   startValue: number

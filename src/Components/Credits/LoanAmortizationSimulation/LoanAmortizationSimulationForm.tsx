@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux'
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 import '../../../Styles/Form.sass'
 import { loanAmortizationSimulationSelectProperty } from '../../../assets'
-import { Input, SelectInput, parseInputState } from '../../Global'
+import { FormButton, Input, SelectInput, parseInputState } from '../../Global'
 
 interface LoanAmortizationSimulationFormProps {
   loanValue: number
@@ -27,18 +26,6 @@ interface LoanAmortizationSimulationFormProps {
   ) => void
   handleSetLoanRepaymentMethod: (value: ChangeEvent<HTMLInputElement>) => void
   calculate: (value: MouseEvent<HTMLButtonElement>) => void
-}
-
-interface NavigationForSmallDeviceType {
-  navigationForSmallDevice: {
-    flag: boolean
-  }
-}
-
-interface ModalStoreStateType {
-  modalStore: {
-    flag: boolean
-  }
 }
 
 const LoanAmortizationSimulationForm = ({
@@ -80,14 +67,6 @@ const LoanAmortizationSimulationForm = ({
     setPrevInterestAccrualMethod(interestAccrualMethod)
   }, [interestAccrualMethod, prevInterestAccrualMethod])
 
-  const navigationForSmallDeviceState = useSelector(
-    (state: NavigationForSmallDeviceType) => state.navigationForSmallDevice.flag
-  )
-  const modalStoreState = useSelector(
-    (state: ModalStoreStateType) => state.modalStore.flag
-  )
-  const checkTabIndex =
-    navigationForSmallDeviceState || modalStoreState ? -1 : 1
   const {
     propertyForSetOptionDuration,
     propertyForSetPaymentPeriodOfInstallment,
@@ -161,15 +140,7 @@ const LoanAmortizationSimulationForm = ({
       </div>
       <div className="form__group">{checkInterestAccuralMehod}</div>
 
-      <div className="form__group--button">
-        <button
-          tabIndex={checkTabIndex}
-          className="form__button"
-          onClick={calculate}
-        >
-          Oblicz
-        </button>
-      </div>
+      <FormButton calculate={calculate} />
     </form>
   )
 }

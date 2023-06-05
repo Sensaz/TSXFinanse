@@ -1,5 +1,6 @@
 @use 'Variable/colors'
 @use 'Variable/mixins'
+@use 'Variable/property'
 
 $resultItemBorder: 1px solid map-get(colors.$fontColor, "disabled")
 
@@ -10,6 +11,7 @@ $resultItemBorder: 1px solid map-get(colors.$fontColor, "disabled")
   width: 100%
   max-width: 650px
   gap: 15px
+  margin-top: property.$element-margin
   @include mixins.smallTablet($width: min-width, $center: true)
   &__item
     line-height: 140%

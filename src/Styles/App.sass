@@ -1,5 +1,6 @@
 @use 'Variable/colors'
 @use 'Variable/mixins'
+@use 'Variable/property'
 
 %blurProperty
   position: fixed
@@ -22,9 +23,9 @@
   &__main
     width: 96vw
     min-height: 70vh
-    margin: 30px auto
+    margin: property.$element-margin auto
     @include mixins.phone
-      margin: 30px 2%
+      margin: property.$element-margin 2%
 
 .blur
   @extend %blurProperty

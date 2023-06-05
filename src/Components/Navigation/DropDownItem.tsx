@@ -1,8 +1,8 @@
-import { ReactNode, MouseEvent } from 'react'
+import { ReactNode, MouseEventHandler } from 'react'
 import { NavLink, To } from 'react-router-dom'
 
 interface MyComponentProps {
-  click: (value: MouseEvent<HTMLButtonElement>) => void
+  click: MouseEventHandler<HTMLAnchorElement>
   path: To
   children: ReactNode
 }

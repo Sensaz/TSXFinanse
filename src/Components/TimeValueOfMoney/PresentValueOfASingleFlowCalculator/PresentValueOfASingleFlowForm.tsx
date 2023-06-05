@@ -1,6 +1,5 @@
 import { ChangeEvent } from 'react'
-import { useSelector } from 'react-redux'
-import { Input, SelectInput, parseInputState } from '../../Global'
+import { FormButton, Input, SelectInput, parseInputState } from '../../Global'
 import { valueOfASingleFlowSelectProperty } from '../../../assets'
 import '../../../Styles/Form.sass'
 
@@ -18,18 +17,6 @@ interface PresentValueOfASingleFlowCalculatorProps {
   calculate: (value: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-interface NavigationForSmallDeviceType {
-  navigationForSmallDevice: {
-    flag: boolean
-  }
-}
-
-interface ModalStoreStateType {
-  modalStore: {
-    flag: boolean
-  }
-}
-
 const PresentValueOfASingleFlowForm = ({
   expectedFinalValue,
   duration,
@@ -41,15 +28,6 @@ const PresentValueOfASingleFlowForm = ({
   handleSetInterestCapitalization,
   calculate,
 }: PresentValueOfASingleFlowCalculatorProps) => {
-  const navigationForSmallDeviceState = useSelector(
-    (state: NavigationForSmallDeviceType) => state.navigationForSmallDevice.flag
-  )
-  const modalStoreState = useSelector(
-    (state: ModalStoreStateType) => state.modalStore.flag
-  )
-
-  const checkTabIndex =
-    navigationForSmallDeviceState || modalStoreState ? -1 : 1
   const { propertyForSetOptionDuration, propertyForSetInterestCapitalization } =
     valueOfASingleFlowSelectProperty
 
@@ -88,15 +66,7 @@ const PresentValueOfASingleFlowForm = ({
         />
       </div>
 
-      <div className="form__group--button">
-        <button
-          tabIndex={checkTabIndex}
-          className="form__button"
-          onClick={calculate}
-        >
-          Oblicz
-        </button>
-      </div>
+      <FormButton calculate={calculate} />
     </form>
   )
 }
