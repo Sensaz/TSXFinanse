@@ -1,3 +1,11 @@
-import TimeValueOfMoney from './TimeValueOfMoney.tsx'
+import FutureValueOfASingleFlowCalculator from './FutureValueOfASingleFlowCalculator'
+import PresentValueOfASingleFlowCalculator from './PresentValueOfASingleFlowCalculator'
+import FutureValueOfAnAnnuityCalculator from './FutureValueOfAnAnnuityCalculator'
+import PresentValueOfAnAnnuityCalculator from './PresentValueOfAnAnnuityCalculator'
 
-export { TimeValueOfMoney as default }
+export {
+  FutureValueOfASingleFlowCalculator,
+  PresentValueOfASingleFlowCalculator,
+  PresentValueOfAnAnnuityCalculator,
+  FutureValueOfAnAnnuityCalculator,
+}

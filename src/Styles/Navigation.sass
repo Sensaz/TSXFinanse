@@ -1,0 +1,198 @@
+@use 'Variable/mixins'
+@use 'Variable/colors'
+@use 'Variable/functions'
+@use 'Variable/property'
+
+$hamburgerMenuBG: #383838
+$drobDownMenuBG: #dadada
+$activeLink: #004747
+
+$arrowBorder: 5px solid
+
+$radius: 5px
+$paddingSize: 10px 15px
+
+%focusBtn
+  border: none
+  cursor: pointer
+
+%animateColor
+  width: property.$fullSize
+  color: map-get(colors.$fontColor, "normal")
+  transition: .1s linear color
+
+@mixin arrow-styles($direction)
+  position: relative
+  &-open#{$direction}
+    top: if($direction == 45, 8px, -8px)
+    transform: rotate(#{$direction}deg)
+
+@mixin mainButton($size: '--nomrmal')
+  position: relative
+  left: 50px
+  font-weight: 600
+  padding: 8px 10px
+  border-radius: $radius
+  background: map-get(colors.$primary, "dark")
+  cursor: pointer
+  text-decoration: none
+  transition: .1s linear background
+  font-size: .8em
+  &--small
+    display: none
+  &--custom-text
+    color: map-get(colors.$fontColor, "light")
+  &:hover
+    background: map-get(colors.$primaryHover, "dark")
+  @if $size == '--small'
+    display: block
+    top: 20px
+    left: 30px
+    background: map-get(colors.$primary, "light")
+    &:hover
+      color: map-get(colors.$primary, "textOnLight")
+      background: map-get(colors.$primaryHover, "light")
+
+.navigation
+  @include mixins.flexCenter($justify: center, $align: center)
+  width: 100vw
+  min-height: 65px
+  padding: $paddingSize
+  &__list
+    @include mixins.flexCenter($align: center)
+    list-style-type: none
+    @include mixins.tablet
+      @include mixins.flexCenter($align: flex-start, $direction: column)
+      position: fixed
+      height: property.$fullSize
+      min-width: 310px
+      top: 0
+      left: -400px
+      z-index: 100
+      background: $hamburgerMenuBG
+      transition: .3s ease-out left
+      overflow-y: auto
+      &--show
+        left: 0
+      @include mixins.phone
+        width: 100vw
+  &__item
+    margin-left: 15px
+    @include mixins.tablet
+      margin: 5px 30px
+      &:nth-child(1)
+        margin-top: 25px
+  &__link
+    color: map-get(colors.$fontColor, "normal")
+    text-decoration: none
+    &--hidden
+      display: none
+    &:hover
+      color: map-get(colors.$fontColorHover, "normal")
+    @include mixins.tablet
+      color: map-get(colors.$fontColor, "light")
+      transition: .1s linear color
+      &:hover
+        color: map-get(colors.$fontColorHover, "light")
+  &__button
+    @include mainButton
+    @include mixins.tablet
+      display: none
+      &--small
+        @include mainButton('--small')
+  &__hamburger
+    @extend %focusBtn
+    display: none
+    margin: 0 20px 0 auto
+    width: 60px
+    background: colors.$navBG
+    @include mixins.tablet
+      @include mixins.flexCenter($direction: column)
+      z-index: 100
+      background: none
+    &--component
+      width: property.$fullSize
+      margin: 4px
+      padding: 4px
+      border-radius: $radius
+      background: map-get(colors.$fontColorHover, "normal")
+      transition: functions.transition-repeat(.2s, transform, background)
+      @include mixins.phone
+        &-light
+          background: map-get(colors.$fontColor, "light")
+      &-hidden
+        display: none
+      @include arrow-styles(45)
+      @include arrow-styles(-45)
+  &__logo
+    width: 50px
+    @include mixins.tablet
+      width: 60px
+    @include mixins.phone
+      margin-left: 2%
+  &__dropdown
+    position: relative
+    z-index: 99
+    &-arrow
+      border-left: $arrowBorder transparent
+      border-right: $arrowBorder transparent
+      border-bottom: $arrowBorder map-get(colors.$fontColor, "normal")
+      transition: functions.transition-repeat(.1s, border-bottom, transform)
+      &--top
+        border-bottom: $arrowBorder map-get(colors.$fontColor, "hover")
+        transform: rotateX(180deg)
+      @include mixins.tablet
+        border-bottom: $arrowBorder map-get(colors.$fontColor, "light")
+        &--top
+          border-bottom: $arrowBorder map-get(colors.$fontColorHover, "light")
+    &-button
+      @include mixins.flexCenter($align: center)
+      @extend %focusBtn
+      @extend %animateColor
+      position: relative
+      font-size: 1em
+      gap: 5px
+      background: colors.$navBG
+      &:hover
+        color: map-get(colors.$fontColorHover, "normal")
+      &:hover .navigation__dropdown-arrow
+        border-bottom: $arrowBorder map-get(colors.$fontColorHover, "normal")
+      @include mixins.tablet
+        color: map-get(colors.$fontColor, "light")
+        background: none
+        &:hover
+          color: map-get(colors.$fontColorHover, "light")
+        &:hover .navigation__dropdown-arrow
+          border-bottom: $arrowBorder map-get(colors.$fontColorHover, "light")
+        &--open
+          color: map-get(colors.$fontColorHover, "light")
+    &-menu
+      @include mixins.flexCenter($align: flex-start, $direction: column)
+      position: absolute
+      top: 25px
+      left: 0
+      padding: $paddingSize
+      border-radius: $radius
+      list-style-type: none
+      background: $drobDownMenuBG
+      @include mixins.tablet
+        position: relative
+        top: 10px
+        max-width: 230px
+        margin-bottom: 20px
+    &-divider
+      width: property.$fullSize
+      padding: 1px 0
+      background: map-get(colors.$fontColor, "normal")
+    &-item
+      padding: 10px 0
+    &-link
+      @extend %animateColor
+      text-decoration: none
+      &:hover
+        color: map-get(colors.$fontColorHover, "normal")
+
+.active
+  color: $activeLink
+  &:hover
+    color: lighten($activeLink, 10%)

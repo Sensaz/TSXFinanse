@@ -1,0 +1,3 @@
+import FutureValueOfAnAnnuityCalculator from './FutureValueOfAnAnnuityCalculator.tsx'
+
+export default FutureValueOfAnAnnuityCalculator

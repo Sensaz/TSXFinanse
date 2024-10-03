@@ -1,0 +1,64 @@
+@use 'Variable/mixins'
+@use 'Variable/colors'
+@use 'Variable/property'
+@import 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lobster&family=Montserrat:wght@400;700&display=swap'
+
+$tablePadding: 12px
+$borderForTBodyShort: 1px solid map-get(colors.$fontColor, "disabled")
+
+%circle
+  flex: 0 0 20px
+  text-align: center
+  font-size: 1em
+  border-radius: 50%
+  cursor: pointer
+
+%short
+  @include mixins.flexCenter($justify: center, $align: center)
+  width: calc((property.$fullSize - 50px) / 5)
+  padding: $tablePadding
+
+.table
+  display: grid
+  width: clamp(300px, property.$fullSize, 650px)
+  max-height: 250px
+  margin-top: property.$element-margin
+  border-collapse: collapse
+  border-spacing: 0
+  overflow: auto
+  &--id
+    width: clamp(50px, 50px ,50px)
+  @include mixins.smallTablet($width: min-width)
+    margin: 40px auto
+  &__header
+    position: sticky
+    top: 0
+    width: property.$fullSize
+    text-align: center
+    color: map-get(colors.$fontColor, "light")
+    background-color: map-get(colors.$secondary, "normal")
+    &--row
+      @include mixins.flexCenter($justify: center, $align: center)
+    &-short
+      @extend %short
+      &--info
+        @extend %circle
+        margin-left: 10%
+        color: map-get(colors.$secondary, "normal")
+        background: white
+        font-family: 'Lobster', cursive
+        &:hover, &:focus
+          color: map-get(colors.$fontColor, "light")
+          background: map-get(colors.$secondaryHover, "normal")
+  &__body
+    width: property.$fullSize
+    text-align: center
+    &-row
+      @include mixins.flexCenter
+      width: property.$fullSize
+      transition: box-shadow .1s ease-in
+      &:hover
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, .2), -1px -1px 8px rgb(0, 0, 0, .2)
+    &-short
+      @extend %short
+      border-bottom: $borderForTBodyShort

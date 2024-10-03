@@ -1,0 +1,135 @@
+@use 'Variable/mixins'
+@use 'Variable/functions'
+@use 'Variable/colors'
+
+$positiveBorderColor: #1CA027
+
+$border: 1px solid map-get(colors.$fontColor, "normal")
+$borderWarn: 1px solid map-get(colors.$fontColor, "warn")
+$borderOptional: 1px solid map-get(colors.$fontColor, "disabled")
+
+$validBorder: 1px solid $positiveBorderColor
+$focusBorder: 2px solid $positiveBorderColor
+
+$optionalValidBorder: 1px solid map-get(colors.$fontColor, "disabled")
+$optionalFocusBorder: 2px solid map-get(colors.$fontColor, "disabled")
+
+$borderForAnimate: 0 solid rgba(colors.$pageBG, 1)
+$borderTransition: .2s ease-out border
+
+$focusButtonBG: map-get(colors.$fontColorHover, "normal")
+
+%inputHelpText
+  position: absolute
+  left: 0
+  background: colors.$pageBG
+
+%inputOptionHelpText
+  @extend %inputHelpText
+  bottom: 0
+  padding: 0 5px
+  font-size: .6em
+  transform: translateX(15px) translateY(3px)
+
+%borderWithRadius
+  border: $border
+  border-radius: 5px
+
+// TODO: Dlaczego nie moge ostylować selecta? chodzi mi o głównie o tą liste rozwijaną
+
+.form
+  @include mixins.flexCenter($gap: 30px)
+  flex-wrap: wrap
+  width: 100%
+  max-width: 650px
+  @include mixins.smallTablet($width: min-width, $center: true)
+  &__group
+    @include mixins.flexCenter($direction: column, $gap: 20px)
+    width: 100%
+    @include mixins.smallTablet(min-width)
+      width: 300px
+    &--button
+      @include mixins.flexCenter()
+      width: 100%
+  &__label
+    position: relative
+    min-width: 300px
+  &__input
+    width: 100%
+    max-height: 40px
+    padding: 10px
+    border-radius: 5px
+    font-size: 1em
+    background: none
+    outline: none
+    transition: $borderTransition
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button
+      -webkit-appearance: none
+      margin: 0
+    &:valid
+      border: $validBorder
+    &:focus
+      border: $focusBorder
+    &:valid ~ .form__help-text,
+    &:focus ~ .form__help-text
+      font-size: 0.8em
+      padding: 0 15px
+      margin: 0
+      color: map-get(colors.$primary, "dark")
+      border-left: $validBorder
+      border-right: $validBorder
+      transform: translateX(10px) translateY(-7px)
+    &--warning
+      border: $borderWarn
+      outline: none
+      transition: $borderTransition
+    &--optional
+      border: $borderOptional
+      transition: $borderTransition
+      &:valid
+        border: $optionalValidBorder
+      &:focus
+        border: $optionalFocusBorder
+      &:valid ~ .form__help-text,
+      &:focus ~ .form__help-text
+        border-left: $borderOptional
+        border-right: $borderOptional
+  &__help-text
+    @extend %inputHelpText
+    border-left: $borderForAnimate
+    border-right: $borderForAnimate
+    margin: 10px
+    font-size: 1em
+    color: map-get(colors.$fontColor, "normal")
+    pointer-events: none
+    text-transform: uppercase
+    transition: functions.transition-repeat(.2s, color, transform, font-size, padding, margin, border-left, border-right )
+    &--warn
+      @extend %inputOptionHelpText
+      color: map-get(colors.$fontColor, "warn")
+      border-left: $borderWarn
+      border-right: $borderWarn
+    &--optional
+      @extend %inputOptionHelpText
+      color: map-get(colors.$fontColor, "disabled")
+      border-left: $borderOptional
+      border-right: $borderOptional
+  &__select
+    padding: 7px
+    border: $borderWarn
+    &:valid
+      border: $validBorder
+    &--required
+      border: $borderWarn
+  &__button
+    @extend %borderWithRadius
+    width: 80px
+    height: 35px
+    color: map-get(colors.$fontColor, "normal")
+    background: colors.$pageBG
+    cursor: pointer
+    transition: functions.transition-repeat(.1s, color, background)
+    &:active
+      color: colors.$pageBG
+      background: $focusButtonBG

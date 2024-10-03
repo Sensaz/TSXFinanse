@@ -1,3 +1,5 @@
-import KnowledgeBase from './KnowledgeBase.tsx'
+import FinancialInstruments from './FinancialInstruments'
+import InvestmentStrategies from './InvestmentStrategies'
+import SolutionsInApp from './SolutionsInApp'
 
-export { KnowledgeBase as default }
+export { FinancialInstruments, InvestmentStrategies, SolutionsInApp }

@@ -1,0 +1,2 @@
+.app{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.app__navigation{width:100vw;background:#fefefe}.app__main{margin:30px;width:100%}.blur{position:absolute;top:0;left:0;z-index:90;width:100vw;min-height:100vh;-webkit-backdrop-filter:blur(1px);backdrop-filter:blur(1px)}@media screen and (max-width: 350px){.app__main{margin:30px 10px}}
+/*# sourceMappingURL=App.css.map */

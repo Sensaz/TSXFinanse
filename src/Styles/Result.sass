@@ -1,0 +1,25 @@
+@use 'Variable/colors'
+@use 'Variable/mixins'
+@use 'Variable/property'
+
+$resultItemBorder: 1px solid map-get(colors.$fontColor, "disabled")
+
+.result
+  display: flex
+  flex-direction: column
+  min-width: 300px
+  width: 100%
+  max-width: 650px
+  gap: 15px
+  margin-top: property.$element-margin
+  @include mixins.smallTablet($width: min-width, $center: true)
+  &__item
+    line-height: 140%
+    font-size: 1.2em
+    padding: 10px
+    border-radius: 5px
+    text-align: left
+    font-weight: bold
+    border: $resultItemBorder
+    color: map-get(colors.$fontColor, "normal")
+    background-color: colors.$navBG
