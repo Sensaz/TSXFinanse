@@ -1,6 +1,6 @@
 import '../../Styles/Result.sass'
 import { resultPropertyForPresentTimeValue } from '../../assets'
-import Result from '../Global/Result'
+import { Result } from '../Global'
 
 interface CompoundInterestCalculateResult {
   presentValue: number

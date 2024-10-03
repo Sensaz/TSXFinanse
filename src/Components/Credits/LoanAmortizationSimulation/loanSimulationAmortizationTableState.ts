@@ -22,10 +22,10 @@ const arraySlice = createSlice({
   reducers: {
     updateArray: (
       state,
-      action: PayloadAction<{ arrayType: keyof ArrayState; value: number }>
+      action: PayloadAction<{ arrayType: keyof ArrayState; value: number[] }>
     ) => {
       const { arrayType, value } = action.payload
-      state[arrayType].push(value)
+      state[arrayType].push(...value)
     },
     resetArray: (state, action: PayloadAction<keyof ArrayState>) => {
       const arrayType = action.payload

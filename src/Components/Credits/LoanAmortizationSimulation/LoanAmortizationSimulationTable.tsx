@@ -1,11 +1,12 @@
 import { useState, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { modalStoreValue } from '../../Global/globalStore.ts'
-import Modal from '../../Global/Modal.tsx'
+import { modalStoreValue } from '../../Global'
+import { Modal, useInfinityScrolling } from '../../Global'
 import {
   modalContentForLoanAmortizationSimulationTable,
   theadArrForLoanAmortizationSimulation,
 } from '../../../assets'
+
 import '../../../Styles/Table.sass'
 
 interface NavigationForSmallDeviceType {
@@ -75,18 +76,39 @@ const LoanAmortizationSimulationTable = () => {
     finalDebtBalanceArr,
   ]
 
-  const result = initialDebtBalanceArr.map((_: any, index: number) => (
-    <tr key={index} className="table__body-row">
-      <td className="table__body-short table--id">{index + 1}</td>
-      {loanAmortizationResults.map((el) => {
-        return (
-          <td key={index + 0.124 + Math.random()} className="table__body-short">
-            {el[index].toFixed(2)}
-          </td>
-        )
-      })}
-    </tr>
-  ))
+  const { lastArrayRowRef, arrayForRender } = useInfinityScrolling(
+    initialDebtBalanceArr
+  )
+
+  const result = arrayForRender.map((_: any, index: number) => {
+    if (arrayForRender.length === index + 1) {
+      return (
+        <tr ref={lastArrayRowRef} key={index} className="table__body-row">
+          <td className="table__body-short table--id">{index + 1}</td>
+          {loanAmortizationResults.map((el) => {
+            return (
+              <td key={index + Math.random()} className="table__body-short">
+                {el[index].toFixed(2)}
+              </td>
+            )
+          })}
+        </tr>
+      )
+    }
+
+    return (
+      <tr key={index} className="table__body-row">
+        <td className="table__body-short table--id">{index + 1}</td>
+        {loanAmortizationResults.map((el) => {
+          return (
+            <td key={index + Math.random()} className="table__body-short">
+              {el[index].toFixed(2)}
+            </td>
+          )
+        })}
+      </tr>
+    )
+  })
 
   const checkLoanAmortizationResultsIsNotEmpty =
     initialDebtBalanceArr.length === 0 ? (

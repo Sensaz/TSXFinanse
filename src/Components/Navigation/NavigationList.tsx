@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { Dispatch, MouseEvent } from 'react'
 import { NavLink } from 'react-router-dom'
 import DropDown from './DropDown'
-import { navigationForSmallDeviceValue } from '../Global/globalStore'
+import { navigationForSmallDeviceValue } from '../Global'
 import { contentForDropDown } from '../../assets'
 
 type DropDownListType = {
@@ -159,7 +159,7 @@ const NavigationList = ({
           tabIndex={checkTabIndex}
           onClick={handleHamburgerToggleClass}
           className="navigation__link"
-          to={path}
+          to={path || ''}
         >
           {content}
         </NavLink>

@@ -1,10 +1,12 @@
 import { ChangeEvent, MouseEvent, useState } from 'react'
 import LoanAmortizationSimulationForm from './LoanAmortizationSimulationForm'
 import LoanAmortizationSimulationResult from './LoanAmortizationSimulationResult'
-import loanAmortizationCalc from './FunctionForTest/loanAmortizationCalc'
+import {
+  loanAmortizationCalc,
+  numberOfBasePeriodsResult,
+  creditDurationInMonths,
+} from './FunctionForTest'
 import { useDispatch } from 'react-redux'
-import numberOfBasePeriodsResult from './FunctionForTest/numberOfBasePeriodsResult'
-import creditDurationInMonths from './FunctionForTest/creditDurationInMonths'
 import LoanAmortizationSimulationTable from './LoanAmortizationSimulationTable'
 
 const LoanAmortizationSimulation = () => {
@@ -86,8 +88,6 @@ const LoanAmortizationSimulation = () => {
       dispatch
     )
   }
-
-  console.log(loanRepaymentMethod)
 
   return (
     <>

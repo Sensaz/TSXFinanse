@@ -1,5 +1,3 @@
-import React from 'react'
-
 const nominalCommisionFee = (
   loanValue: number,
   commisionFee: number,

@@ -1,4 +1,4 @@
-import Result from '../Global/Result'
+import { Result } from '../Global'
 import { resultPropertyForFutureTimeValue } from '../../assets'
 import '../../Styles/Result.sass'
 
